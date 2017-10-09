@@ -35,11 +35,23 @@
 #include <stdlib.h>
 #include <iostream>
 #include <gtest/gtest.h>
+#include "benchmark/benchmark.h"
+#include "bitFlipTest.h"
+#include "bitFlip.h"
+
 
 using namespace std;
 
 int main(int argc, char** argv) {
+    ::benchmark::Initialize(&argc, argv);
+    if (::benchmark::ReportUnrecognizedArguments(argc, argv)) return 1;
+
+    SetUp();
     testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    RUN_ALL_TESTS();
+    ::benchmark::RunSpecifiedBenchmarks();
+    return 1;
 }
+
+
 

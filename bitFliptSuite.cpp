@@ -11,16 +11,26 @@
 #include <bitset>
 #include <math.h>
 #include <omp.h>
-
+#include<iostream>
+#include <cmath>
+#include <benchmark/benchmark.h>
+#include "bitFlipTest.h"
 
 using namespace std;
+
+#define ARRAY_SIZE 1000
 
 uint8_t hex8;
 uint16_t t, hex16, rev1, rev2;
 uint64_t hex64;
 uint16_t cntbits;
-// Constants (first we got the mask, then the high order nibble look up table and last we got the low order nibble lookup table)
+uint8_t foo1[ARRAY_SIZE];
+uint8_t foo2[ARRAY_SIZE];
+uint8_t foo3[ARRAY_SIZE];
+__attribute__ ((aligned(32))) uint8_t fooZ[ARRAY_SIZE + 32] = {};
 
+__attribute__ ((aligned(32))) uint16_t foo16Z[ARRAY_SIZE + 32] = {};
+// Constants (first we got the mask, then the high order nibble look up table and last we got the low order nibble lookup table)
 
 class TestSuite : public testing::Test {
 public:
@@ -28,6 +38,9 @@ public:
 };
 
 void SetUp() {
+    for (uint32_t i = 0; i < ARRAY_SIZE; i++)
+        foo16Z[i] = fooZ[i] = foo3[i] = foo2[i] = foo1[i] = rand();
+
     hex8 = 0b01010101;
     hex16 = 0b0000110001111001;
     hex64 = 0b0101010111111110000011001111100000111110101000011111000000011101;
@@ -35,25 +48,54 @@ void SetUp() {
 }
 
 void TearDown() {
+}
 
+void BM_bitFlip_Assym(benchmark::State& state) {
+    while (state.KeepRunning())
+        bitFlipZ(fooZ);
+}
+
+void BM_bitFlip2(benchmark::State& state) {
+    while (state.KeepRunning())
+        bitFlipA2(foo2, ARRAY_SIZE);
+}
+
+void BM_naive(benchmark::State& state) {
+    while (state.KeepRunning())
+        bitFlipNaive(foo3, ARRAY_SIZE);
 }
 
 TEST_F(TestSuite, testExample) {
 
+    cout << "foo16Z: " << bitset<16>(foo16Z[ARRAY_SIZE - 2]) << endl;
+    bitFlipZ(foo16Z);
 
-    for (uint32_t i = 0; i < NUM_DATA_BYTES; i++) {
-	data[i] = rand();
-    }
-    bitflipbyte(data, (uint8_t) ceil(NUM_DATA_BYTES / 32.0), k1);
+    cout << "foo16Z: " << bitset<16>(foo16Z[ARRAY_SIZE - 2]) << endl;
+
+    cout << "fooZ: " << bitset<8>(fooZ[ARRAY_SIZE - 2 ]) << endl;
+    cout << "foo2: " << bitset<8>(foo2[ARRAY_SIZE - 2]) << endl;
+    cout << "foo3: " << bitset<8>(foo3[ARRAY_SIZE - 2]) << endl;
 
 
-    cntbits = bits <uint16_t>(0b0000110001111001);
+    bitFlipZ(fooZ);
+    bitFlipA2(foo2, ARRAY_SIZE);
+    bitFlipNaive(foo3, ARRAY_SIZE);
 
+    cout << "barZ: " << bitset<8>(fooZ[ARRAY_SIZE - 2]) << endl;
+    cout << "bar2: " << bitset<8>(foo2[ARRAY_SIZE - 2]) << endl;
+    cout << "bar3: " << bitset<8>(foo3[ARRAY_SIZE - 2]) << endl;
+
+    ASSERT_TRUE(fooZ[ARRAY_SIZE - 2] == foo2[ARRAY_SIZE - 2]);
+    ASSERT_TRUE(foo3[ARRAY_SIZE - 2] == foo2[ARRAY_SIZE - 2]);
+    /* 
+     * cntbits = bits <uint16_t>(0b0000110001111001);
+    cout << "bar: " << bitset<8>(foo[2]) << endl;
     cout << "bits: " << cntbits << endl;
-    cout << "hex8: " << std::bitset<8>(bitFlipb(hex8)) << endl;
-    cout << "hex16r: " << std::bitset<16>(bitFlipl(0b0000110001111001)) << endl;
-    cout << "hex16l: " << std::bitset<16>(bitFlip<uint16_t> (hex16)) << endl;
-    cout << "hex16l: " << std::bitset<16>(bitFlip<uint16_t> (0b0000110001111001)) << endl;
+    cout << "hex8: " << bitset<8>(bitFlipb(hex8)) << endl;
+    cout << "hex16r: " << bitset<16>(bitFlipl(0b0000110001111001)) << endl;
+    cout << "hex16l: " << bitset<16>(bitFlip<uint16_t> (hex16)) << endl;
+    cout << "hex16l: " << bitset<16>(bitFlip<uint16_t> (0b0000110001111001)) << endl;
+     */
 
     SUCCEED();
 }

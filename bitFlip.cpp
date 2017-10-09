@@ -35,9 +35,6 @@
 #include <omp.h>
 #include "bitFlip.h"
 
-
-
-
 uint16_t bitFlipl(uint16_t o) {
     return bitFlip<uint16_t> (o);
 }
@@ -52,7 +49,13 @@ uint8_t bitFlipb(uint8_t o) {
 
 }
 
+void bitFlipA2(uint8_t * o, uint32_t size) {
+    for (uint32_t i = 0; i < size; i++) o[i] = (o[i] * 0x202020202ULL & 0x010884422010ULL) % 1023;
+}
 
+void bitFlipNaive(uint8_t * o, uint32_t size) {
+    for (uint32_t i = 0; i < size; i++) o[i] = bitFlip(o[i]);
+}
 
 /*
 uint8_t bitFlipb(uint8_t o) {
