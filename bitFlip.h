@@ -81,17 +81,18 @@ template <typename T, size_t N> void bitFlipZ(T(&a)[N]) {
 }
 
 template <typename T>
-typename std::enable_if<std::is_integral<T>::value, T >::type bitFlip(T const &i) {
-    T r;
-    uint8_t c, s = sizeof (r)*8;
+//typename std::enable_if<std::is_integral<T>::value, T >::type bitFlipNaive(T const &i) {
+T bitFlipNaive(T const &i) {
+    T r = 0;
+    uint8_t c = 0;
+    uint8_t s = sizeof (T)*8;
     for (; c < s; c++) r |= ((i >> c) & 1) << (s - c - 1);
-
     return r;
 }
 
 template <typename T>
-typename std::enable_if<std::is_integral<T>::value, uint8_t>::type bits(T const &o) {
-    T n = o;
+typename std::enable_if<std::is_integral<T>::value, uint8_t>::type bitCount(T const &i) {
+    T n = i;
     uint8_t c(0);
     while (n) {
         n = n & (n - 1);
@@ -102,16 +103,30 @@ typename std::enable_if<std::is_integral<T>::value, uint8_t>::type bits(T const 
 #endif
 
 
-
 #ifdef __cplusplus
+
+
+uint64_t bitFlipNaivell(uint64_t & o);
+uint16_t bitFlipNaive(uint16_t & o);
+uint32_t bitFlipNaivel(uint32_t & o);
+uint8_t bitFlipNaiveb(uint8_t & o);
+
+uint8_t bitFlipMaskb(uint8_t & o);
+
 extern "C" {
 #endif
 
-    uint64_t bitFlipll(uint64_t o);
-    uint16_t bitFlipl(uint16_t o);
-    uint8_t bitFlipb(uint8_t o);
-    void bitFlipA2(uint8_t * o, uint32_t size);
-    void bitFlipNaive(uint8_t * o, uint32_t size);
+    uint64_t bitFlipNaivellp(uint64_t * o);
+    uint16_t bitFlipNaivep(uint16_t*o);
+    uint16_t bitFlipNaive(uint16_t * o);
+    uint32_t bitFlipNaivelp(uint32_t * o);
+    uint8_t bitFlipNaivebp(uint8_t*o);
+
+    uint8_t bitFlipMaskbp(uint8_t * o);
+
+    void bitFlipMaskArray(uint8_t * o, uint32_t size);
+    void bitFlipNaiveArray(uint8_t * o, uint32_t size);
+
 #ifdef __cplusplus
 }
 #endif

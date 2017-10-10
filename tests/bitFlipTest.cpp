@@ -48,8 +48,8 @@ int main(int argc, char** argv) {
 
     SetUp();
     testing::InitGoogleTest(&argc, argv);
-    RUN_ALL_TESTS();
-    ::benchmark::RunSpecifiedBenchmarks();
+  RUN_ALL_TESTS();
+   ::benchmark::RunSpecifiedBenchmarks();
     return 1;
 }
 

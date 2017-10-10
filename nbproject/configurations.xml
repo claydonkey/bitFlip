@@ -29,7 +29,7 @@
       <logicalFolder name="f1" displayName="Gtest" projectFiles="true" kind="TEST">
         <itemPath>tests/bitFlipTest.cpp</itemPath>
         <itemPath>bitFlipTest.h</itemPath>
-        <itemPath>bitFliptSuite.cpp</itemPath>
+        <itemPath>bitFlipTestSuite.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
   </logicalFolder>
@@ -62,7 +62,7 @@
       </item>
       <item path="bitFlipTest.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="bitFliptSuite.cpp" ex="false" tool="1" flavor2="0">
+      <item path="bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="bitflipbyte.asm" ex="false" tool="4" flavor2="0">
       </item>
@@ -116,7 +116,7 @@
       </item>
       <item path="bitFlipTest.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="bitFliptSuite.cpp" ex="false" tool="1" flavor2="0">
+      <item path="bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="bitflipbyte.asm" ex="false" tool="4" flavor2="0">
       </item>
@@ -170,7 +170,7 @@
       </item>
       <item path="bitFlipTest.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="bitFliptSuite.cpp" ex="false" tool="1" flavor2="0">
+      <item path="bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="bitflipbyte.asm" ex="false" tool="4" flavor2="0">
       </item>
@@ -220,15 +220,23 @@
         <cTool>
           <developmentMode>5</developmentMode>
           <stripSymbols>true</stripSymbols>
+          <commandLine>-Ofast</commandLine>
+          <preprocessorList>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
         </cTool>
         <ccTool>
-          <developmentMode>6</developmentMode>
+          <developmentMode>0</developmentMode>
           <stripSymbols>true</stripSymbols>
           <standard>11</standard>
           <incDir>
             <pElem>C:/msys2/mingw64/include</pElem>
             <pElem>/usr/include</pElem>
           </incDir>
+          <commandLine>-Ofast</commandLine>
+          <preprocessorList>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
         </ccTool>
         <asmTool>
           <developmentMode>0</developmentMode>
@@ -248,7 +256,7 @@
       </item>
       <item path="bitFlipTest.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="bitFliptSuite.cpp" ex="false" tool="1" flavor2="0">
+      <item path="bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="bitflipbyte.asm" ex="false" tool="4" flavor2="0">
       </item>
@@ -257,11 +265,13 @@
           <incDir>
             <pElem>/usr/include</pElem>
           </incDir>
+          <commandLine>-Ofast</commandLine>
         </cTool>
         <ccTool>
           <incDir>
             <pElem>/usr/include</pElem>
           </incDir>
+          <commandLine>-Ofast</commandLine>
         </ccTool>
       </folder>
       <folder path="TestFiles/f1">

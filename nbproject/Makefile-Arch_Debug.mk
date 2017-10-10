@@ -47,7 +47,7 @@ TESTFILES= \
 
 # Test Object Files
 TESTOBJECTFILES= \
-	${TESTDIR}/bitFliptSuite.o \
+	${TESTDIR}/bitFlipTestSuite.o \
 	${TESTDIR}/tests/bitFlipTest.o
 
 # C Compiler Flags
@@ -90,7 +90,7 @@ ${OBJECTDIR}/bitflipbyte.o: bitflipbyte.asm
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/bitFliptSuite.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/bitFlipTestSuite.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   -lgtest -lbenchmark -lpthread 
 
@@ -101,10 +101,10 @@ ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp
 	$(COMPILE.cc) -g -I/C/msys2/mingw64/include -I/usr/include -I/usr/include -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
-${TESTDIR}/bitFliptSuite.o: bitFliptSuite.cpp 
+${TESTDIR}/bitFlipTestSuite.o: bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/C/msys2/mingw64/include -I/usr/include -I/usr/include -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/bitFliptSuite.o bitFliptSuite.cpp
+	$(COMPILE.cc) -g -I/C/msys2/mingw64/include -I/usr/include -I/usr/include -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/bitFlipTestSuite.o bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/bitFlip_nomain.o: ${OBJECTDIR}/bitFlip.o bitFlip.cpp 

@@ -16,15 +16,6 @@
 #include <benchmark/benchmark.h>
 #include <stdint.h>
 
-void BM_bitFlip2(benchmark::State& state);
-BENCHMARK(BM_bitFlip2);
-
-void BM_bitFlip_Assym(benchmark::State& state);
-BENCHMARK(BM_bitFlip_Assym);
-
-void BM_naive(benchmark::State& state);
-BENCHMARK(BM_naive);
-
 
 void SetUp() ;
 #ifdef __cplusplus

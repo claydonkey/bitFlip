@@ -35,35 +35,41 @@
 #include <omp.h>
 #include "bitFlip.h"
 
-uint16_t bitFlipl(uint16_t o) {
-    return bitFlip<uint16_t> (o);
+#ifdef __cplusplus
+
+uint16_t bitFlipNaive(uint16_t &o) {
+    return bitFlipNaive<uint16_t> (o);
 }
 
-uint16_t bitFlipl(uint16_t * o) {
-    return bitFlip<uint16_t> (*o);
-
+uint8_t bitFlipNaiveb(uint8_t &o) {
+    return bitFlipNaive<uint8_t> (o);
 }
 
-uint8_t bitFlipb(uint8_t o) {
+uint32_t bitFlipNaivel(uint32_t &o) {
+    return bitFlipNaive<uint32_t> (o);
+}
+
+uint64_t bitFlipNaivell(uint64_t &o) {
+    return bitFlipNaive<uint64_t> (o);
+}
+
+uint8_t bitFlipMaskb(uint8_t &o) {
     return ( (o * 0x202020202ULL & 0x010884422010ULL) % 1023);
-
 }
 
-void bitFlipA2(uint8_t * o, uint32_t size) {
-    for (uint32_t i = 0; i < size; i++) o[i] = (o[i] * 0x202020202ULL & 0x010884422010ULL) % 1023;
+void bitFlipMaskArray(uint8_t * o, uint32_t size) {
+    for (uint32_t i = 0; i < size; i++) o[i] = bitFlipMaskb(o[i]);
 }
 
-void bitFlipNaive(uint8_t * o, uint32_t size) {
-    for (uint32_t i = 0; i < size; i++) o[i] = bitFlip(o[i]);
+void bitFlipNaiveArray(uint8_t * o, uint32_t size) {
+    for (uint32_t i = 0; i < size; i++) o[i] = bitFlipNaive(o[i]);
 }
 
-/*
-uint8_t bitFlipb(uint8_t o) {
-    return bitFlip<uint8_t> (o);
-}
+extern "C" {
 
-uint8_t bitFlipb(uint8_t * o) {
-    return bitFlip<uint8_t> (*o);
-}
- * */
+    uint16_t bitFlipNaive(uint16_t *o) {
+        return bitFlipNaive<uint16_t> (*o);
+    }
 
+}
+#endif

@@ -47,15 +47,15 @@ TESTFILES= \
 
 # Test Object Files
 TESTOBJECTFILES= \
-	${TESTDIR}/bitFliptSuite.o \
+	${TESTDIR}/bitFlipTestSuite.o \
 	${TESTDIR}/tests/bitFlipTest.o
 
 # C Compiler Flags
-CFLAGS=
+CFLAGS=-Ofast
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=-Ofast
+CXXFLAGS=-Ofast
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -77,7 +77,7 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT}: ${OBJECTF
 ${OBJECTDIR}/bitFlip.o: bitFlip.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -I/C/msys2/mingw64/include -I/usr/include -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/bitFlip.o bitFlip.cpp
+	$(COMPILE.cc) -s -DNDEBUG -I/C/msys2/mingw64/include -I/usr/include -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/bitFlip.o bitFlip.cpp
 
 ${OBJECTDIR}/bitflipbyte.o: bitflipbyte.asm
 	${MKDIR} -p ${OBJECTDIR}
@@ -90,7 +90,7 @@ ${OBJECTDIR}/bitflipbyte.o: bitflipbyte.asm
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/bitFliptSuite.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/bitFlipTestSuite.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   -lgtest -lbenchmark -lpthread 
 
@@ -98,13 +98,13 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/bitFliptSuite
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -I/C/msys2/mingw64/include -I/usr/include -I/usr/include -I. -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -s -DNDEBUG -I/C/msys2/mingw64/include -I/usr/include -I/usr/include -I. -std=c++14 -Ofast -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
-${TESTDIR}/bitFliptSuite.o: bitFliptSuite.cpp 
+${TESTDIR}/bitFlipTestSuite.o: bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -I/C/msys2/mingw64/include -I/usr/include -I/usr/include -I. -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/bitFliptSuite.o bitFliptSuite.cpp
+	$(COMPILE.cc) -s -DNDEBUG -I/C/msys2/mingw64/include -I/usr/include -I/usr/include -I. -std=c++14 -Ofast -MMD -MP -MF "$@.d" -o ${TESTDIR}/bitFlipTestSuite.o bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/bitFlip_nomain.o: ${OBJECTDIR}/bitFlip.o bitFlip.cpp 
@@ -115,7 +115,7 @@ ${OBJECTDIR}/bitFlip_nomain.o: ${OBJECTDIR}/bitFlip.o bitFlip.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O3 -s -I/C/msys2/mingw64/include -I/usr/include -fPIC  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/bitFlip_nomain.o bitFlip.cpp;\
+	    $(COMPILE.cc) -s -DNDEBUG -I/C/msys2/mingw64/include -I/usr/include -fPIC  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/bitFlip_nomain.o bitFlip.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/bitFlip.o ${OBJECTDIR}/bitFlip_nomain.o;\
 	fi

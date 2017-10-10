@@ -44,7 +44,7 @@ void SetUp() {
     hex8 = 0b01010101;
     hex16 = 0b0000110001111001;
     hex64 = 0b0101010111111110000011001111100000111110101000011111000000011101;
-    cout << "hex16: " << hex16 << endl;
+    // cout << "hex16: " << hex16 << endl;
 }
 
 void TearDown() {
@@ -55,15 +55,20 @@ void BM_bitFlip_Assym(benchmark::State& state) {
         bitFlipZ(fooZ);
 }
 
-void BM_bitFlip2(benchmark::State& state) {
+void BM_bitFlipMask(benchmark::State& state) {
     while (state.KeepRunning())
-        bitFlipA2(foo2, ARRAY_SIZE);
+        bitFlipMaskArray(foo2, ARRAY_SIZE);
 }
 
 void BM_naive(benchmark::State& state) {
     while (state.KeepRunning())
-        bitFlipNaive(foo3, ARRAY_SIZE);
+        bitFlipNaiveArray(foo3, ARRAY_SIZE);
 }
+
+
+BENCHMARK(BM_bitFlipMask);
+BENCHMARK(BM_bitFlip_Assym);
+BENCHMARK(BM_naive);
 
 TEST_F(TestSuite, testExample) {
 
@@ -76,10 +81,11 @@ TEST_F(TestSuite, testExample) {
     cout << "foo2: " << bitset<8>(foo2[ARRAY_SIZE - 2]) << endl;
     cout << "foo3: " << bitset<8>(foo3[ARRAY_SIZE - 2]) << endl;
 
-
     bitFlipZ(fooZ);
-    bitFlipA2(foo2, ARRAY_SIZE);
-    bitFlipNaive(foo3, ARRAY_SIZE);
+    bitFlipMaskArray(foo2, ARRAY_SIZE);
+    bitFlipNaiveArray(foo3, ARRAY_SIZE);
+    uint8_t b = bitFlipNaive((uint8_t) 0b01010101);
+    cout << "b: " << bitset<8>(b) << endl;
 
     cout << "barZ: " << bitset<8>(fooZ[ARRAY_SIZE - 2]) << endl;
     cout << "bar2: " << bitset<8>(foo2[ARRAY_SIZE - 2]) << endl;
@@ -87,15 +93,17 @@ TEST_F(TestSuite, testExample) {
 
     ASSERT_TRUE(fooZ[ARRAY_SIZE - 2] == foo2[ARRAY_SIZE - 2]);
     ASSERT_TRUE(foo3[ARRAY_SIZE - 2] == foo2[ARRAY_SIZE - 2]);
-    /* 
-     * cntbits = bits <uint16_t>(0b0000110001111001);
-    cout << "bar: " << bitset<8>(foo[2]) << endl;
+    ASSERT_TRUE(foo3[ARRAY_SIZE - 2] == foo2[ARRAY_SIZE - 2]);
+    ASSERT_TRUE(0b10101010 == b);
+
+    cntbits = bitCount <uint16_t>(0b0000110001111001);
+    cout << "bar: " << bitset<8>(foo1[2]) << endl;
     cout << "bits: " << cntbits << endl;
-    cout << "hex8: " << bitset<8>(bitFlipb(hex8)) << endl;
-    cout << "hex16r: " << bitset<16>(bitFlipl(0b0000110001111001)) << endl;
-    cout << "hex16l: " << bitset<16>(bitFlip<uint16_t> (hex16)) << endl;
-    cout << "hex16l: " << bitset<16>(bitFlip<uint16_t> (0b0000110001111001)) << endl;
-     */
+    cout << "hex8: " << bitset<8>(bitFlipNaiveb(hex8)) << endl;
+    cout << "hex16 RValue: " << bitset<16> (bitFlipNaive(((uint16_t)0b0000110001111001))) << endl;
+    cout << "hex16 LValue Template: " << bitset<16>(bitFlipNaive<uint16_t> (hex16)) << endl;
+    cout << "hex16 RValue Template: " << bitset<16>(bitFlipNaive<uint16_t> (0b0000110001111001)) << endl;
+
 
     SUCCEED();
 }
