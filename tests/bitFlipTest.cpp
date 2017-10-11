@@ -45,13 +45,9 @@ using namespace std;
 int main(int argc, char** argv) {
     ::benchmark::Initialize(&argc, argv);
     if (::benchmark::ReportUnrecognizedArguments(argc, argv)) return 1;
-
-    SetUp();
     testing::InitGoogleTest(&argc, argv);
   RUN_ALL_TESTS();
    ::benchmark::RunSpecifiedBenchmarks();
     return 1;
 }
-
-
 

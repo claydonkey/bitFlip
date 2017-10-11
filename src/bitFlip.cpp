@@ -34,42 +34,54 @@
 #include <math.h>
 #include <omp.h>
 #include "bitFlip.h"
+#include "BitReverseTable16.h"
 
 #ifdef __cplusplus
 
-uint16_t bitFlipNaive(uint16_t &o) {
-    return bitFlipNaive<uint16_t> (o);
-}
 
-uint8_t bitFlipNaiveb(uint8_t &o) {
-    return bitFlipNaive<uint8_t> (o);
-}
 
-uint32_t bitFlipNaivel(uint32_t &o) {
-    return bitFlipNaive<uint32_t> (o);
-}
-
-uint64_t bitFlipNaivell(uint64_t &o) {
-    return bitFlipNaive<uint64_t> (o);
-}
-
-uint8_t bitFlipMaskb(uint8_t &o) {
-    return ( (o * 0x202020202ULL & 0x010884422010ULL) % 1023);
-}
-
-void bitFlipMaskArray(uint8_t * o, uint32_t size) {
-    for (uint32_t i = 0; i < size; i++) o[i] = bitFlipMaskb(o[i]);
-}
-
-void bitFlipNaiveArray(uint8_t * o, uint32_t size) {
-    for (uint32_t i = 0; i < size; i++) o[i] = bitFlipNaive(o[i]);
-}
 
 extern "C" {
 
-    uint16_t bitFlipNaive(uint16_t *o) {
-        return bitFlipNaive<uint16_t> (*o);
+    uint16_t bitFlipNaives(const uint16_t bits) {
+        return bitFlipNaive<uint16_t> (bits);
     }
+
+    uint64_t bitFlipNaivell(const uint64_t bits) {
+        return bitFlipNaive<uint64_t> (bits);
+    }
+
+    __attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
+
+    uint8_t bitFlipZb(uint8_t bits) {
+        uint8_t r = 0;
+        c[0] = bits;
+        bitFlipZ<uint8_t> (c);
+        r = c[0];
+        __attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
+        return r;
+    }
+
+    void bitFlipNaiveArrayll(uint64_t * bits, uint32_t size) {
+        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipNaive<uint64_t>(bits[i]);     
+    }
+
+    void bitFlipTableArrayl(uint32_t * bits, uint32_t size) {
+        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipTable<uint32_t>(bits[i]);
+    }
+
+    void bitFlipTableArrays(uint16_t * bits, uint32_t size) {
+        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipTable<uint16_t>(bits[i]);
+    }
+
+    void bitFlipMaskArrayb(uint8_t * bits, uint32_t size) {
+        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipMask<uint8_t> (bits[i]);
+    }
+
+    void bitFlipNaiveArrayb(uint8_t * bits, uint32_t size) {
+        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipNaive<uint8_t> (bits[i]);
+    }
+
 
 }
 #endif

@@ -3,7 +3,7 @@
 #
 # NOCDDL
 #
+# Arch_Release configuration
+# Arch_Debug configuration
 # Debug configuration
 # Release configuration
-# Arch_Debug configuration
-# Arch_Release configuration

@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=bitFlip
 
 # Active Configuration
-DEFAULTCONF=Debug
+DEFAULTCONF=Arch_Release
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=Debug Release Arch_Debug Arch_Release 
+ALLCONFS=Arch_Release Arch_Debug Debug Release 
 
 
 # build
