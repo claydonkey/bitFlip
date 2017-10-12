@@ -41,8 +41,7 @@ __attribute__ ((aligned(32))) uint16_t foo16Z[ARRAY_SIZE + 32] = {};
 class TestSuite : public testing::Test {
 public:
 
-    void SetUp()
-    {
+    void SetUp() {
         for (uint32_t i = 0; i < ARRAY_SIZE; i++) {
             foo16Z[i] = fooZ[i] = foo3[i] = foo2[i] = foo1[i] = rand();
 
@@ -94,14 +93,35 @@ public:
     }
 };
 
-void BM_bitFlip_assemb(benchmark::State& state)
-{
+void BM_bitFlip_assemb(benchmark::State& state) {
     while (state.KeepRunning())
         bitFlipZ(fooZ);
 }
 
-void BM_bitFlip_64(benchmark::State& state)
-{
+void BM_bitFlipNaiveArrayll(benchmark::State& state) {
+#ifndef __MINGW64__
+    while (state.KeepRunning())
+        bitFlipNaiveArrayll(foo64, ARRAY_SIZE / 8);
+#else
+    while (state.KeepRunning())
+        bitFlipNaiveArrayll(foo64, ARRAY_SIZE / 8);
+
+#endif
+}
+
+void BM_bitFlipNaiveLambda(benchmark::State& state) {
+#ifndef __MINGW64__
+    while (state.KeepRunning())
+        bitFlipNaiveLambda(foo64, ARRAY_SIZE / 8);
+
+#else
+    while (state.KeepRunning())
+        bitFlipNaiveLambda(foo64, ARRAY_SIZE / 8);
+
+#endif
+}
+
+void BM_bitFliplloop(benchmark::State& state) {
 #ifndef __MINGW64__
     while (state.KeepRunning())
         bitflipllloop(foo64, ARRAY_SIZE / 8);
@@ -112,26 +132,23 @@ void BM_bitFlip_64(benchmark::State& state)
 #endif
 }
 
-void BM_bitFlip_mask(benchmark::State& state)
-{
+void BM_bitFlip_mask(benchmark::State& state) {
     while (state.KeepRunning())
+        //     for (uint32_t i = 0; i < ARRAY_SIZE; i++) foo2[i] = ((foo2[i] * 0x202020202ULL & 0x010884422010ULL) % 1023);
         bitFlipMaskArray<uint8_t>(foo2);
 }
 
-void BM_bitflip_naive(benchmark::State& state)
-{
+void BM_bitflip_naive(benchmark::State& state) {
     while (state.KeepRunning())
         bitFlipNaiveArray<uint8_t>(foo3);
 }
 
-void BM_bitFlip_table_16(benchmark::State& state)
-{
+void BM_bitFlip_table_16(benchmark::State& state) {
     while (state.KeepRunning())
         bitFlipTableArray<uint16_t>(foo16);
 }
 
-void BM_bitflip_table_32(benchmark::State& state)
-{
+void BM_bitflip_table_32(benchmark::State& state) {
     while (state.KeepRunning())
         bitFlipTableArray<uint32_t>(foo32);
 }
@@ -141,42 +158,52 @@ BENCHMARK(BM_bitFlip_table_16);
 BENCHMARK(BM_bitflip_table_32);
 BENCHMARK(BM_bitflip_naive);
 BENCHMARK(BM_bitFlip_mask);
-BENCHMARK(BM_bitFlip_64);
+BENCHMARK(BM_bitFliplloop);
+BENCHMARK(BM_bitFlipNaiveArrayll);
+BENCHMARK(BM_bitFlipNaiveLambda);
 
-TEST_F(TestSuite, textPlainC)
-{
+TEST_F(TestSuite, textPlainC) {
 #ifndef __MINGW64__
     uint8_t b = bitFlipZb(((uint8_t) 0b10001100));
     EXPECT_EQ(0b00110001, b);
 #endif
 }
 
-TEST_F(TestSuite, test_bitflip_naive)
-{
+TEST_F(TestSuite, test_bitflip_naive) {
     uint8_t b = bitFlipNaive((uint8_t) 0b01010101);
     EXPECT_EQ(0b10101010, b);
 }
 
-TEST_F(TestSuite, testTableLookup16)
-{
+TEST_F(TestSuite, testLambda64) {
+    uint64_t r = 0;
+    uint8_t c = 0;
+    uint8_t s = sizeof (uint64_t)*8;
+    
+    hex64 = [&] (uint64_t i) -> uint64_t {
+        r = 0; 
+        for (c=0; c < s; c++) r |= ((i >> c) & 1) << (s - c - 1);
+        return r;
+    }(hex64);
+    
+    EXPECT_EQ(13262966195775111082ul, hex64);
+}
+
+TEST_F(TestSuite, testTableLookup16) {
     hex16 = bitFlipTable<uint16_t>(hex16);
     EXPECT_EQ(0b1001111000110000, hex16);
 }
 
-TEST_F(TestSuite, testTableLookup32)
-{
+TEST_F(TestSuite, testTableLookup32) {
     hex32 = bitFlipTable<uint32_t>(hex32);
     EXPECT_EQ(0b00011111001100000111111110101011, hex32);
 }
 
-TEST_F(TestSuite, testTableLookup8)
-{
+TEST_F(TestSuite, testTableLookup8) {
     hex8 = bitFlipTable<uint8_t>(hex8);
     EXPECT_EQ(0b10101010, hex8);
 }
 
-TEST_F(TestSuite, letsTestThoseBits)
-{
+TEST_F(TestSuite, letsTestThoseBits) {
 #ifndef __MINGW64__
     bitFlipZ(fooZ);
 #endif

@@ -79,7 +79,7 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT}: ${OBJECTF
 ${OBJECTDIR}/src/bitFlip.o: src/bitFlip.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I./include -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
+	$(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 
 ${OBJECTDIR}/src/bitflipbyte.o: src/bitflipbyte.asm
 	${MKDIR} -p ${OBJECTDIR}/src
@@ -108,13 +108,13 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/tests/bitFlip
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I./include -I/usr/include -I../include -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -I/usr/include -I../include -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
 ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I./include -I/usr/include -I../include -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+	$(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -I/usr/include -I../include -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp 
@@ -125,7 +125,7 @@ ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -I./include -fPIC  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
+	    $(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -fPIC  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/bitFlip.o ${OBJECTDIR}/src/bitFlip_nomain.o;\
 	fi

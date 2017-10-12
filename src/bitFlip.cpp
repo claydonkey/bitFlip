@@ -38,8 +38,18 @@
 
 #ifdef __cplusplus
 
+void bitFlipNaiveLambda(uint64_t * bits, uint32_t size) {
 
+    uint64_t r = 0;
+    uint8_t c = 0;
+    const uint8_t s = sizeof (uint64_t)*8;
+    for (uint32_t i = 0; i < size; i++) bits[i] = [&] (uint64_t i) -> uint64_t {
+            r = 0;
+            for (c = 0; c < s; c++) r |= ((i >> c) & 1) << (s - c - 1);
+            return r;
+        }(bits[i]);
 
+}
 
 extern "C" {
 
@@ -63,7 +73,7 @@ extern "C" {
     }
 
     void bitFlipNaiveArrayll(uint64_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipNaive<uint64_t>(bits[i]);     
+        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipNaive<uint64_t>(bits[i]);
     }
 
     void bitFlipTableArrayl(uint32_t * bits, uint32_t size) {
@@ -84,4 +94,6 @@ extern "C" {
 
 
 }
+
+
 #endif

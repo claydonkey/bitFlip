@@ -7,13 +7,13 @@ CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Arch_Release configuration
-CND_PLATFORM_Arch_Release=x86_64-w64-mingw32-Windows
-CND_ARTIFACT_DIR_Arch_Release=dist/Arch_Release/x86_64-w64-mingw32-Windows
-CND_ARTIFACT_NAME_Arch_Release=libbitFlip.dll
-CND_ARTIFACT_PATH_Arch_Release=dist/Arch_Release/x86_64-w64-mingw32-Windows/libbitFlip.dll
-CND_PACKAGE_DIR_Arch_Release=dist/Arch_Release/x86_64-w64-mingw32-Windows/package
-CND_PACKAGE_NAME_Arch_Release=libbitFlip.dll.tar
-CND_PACKAGE_PATH_Arch_Release=dist/Arch_Release/x86_64-w64-mingw32-Windows/package/libbitFlip.dll.tar
+CND_PLATFORM_Arch_Release=GNU-Linux
+CND_ARTIFACT_DIR_Arch_Release=dist/Arch_Release/GNU-Linux
+CND_ARTIFACT_NAME_Arch_Release=libbitFlip.so
+CND_ARTIFACT_PATH_Arch_Release=dist/Arch_Release/GNU-Linux/libbitFlip.so
+CND_PACKAGE_DIR_Arch_Release=dist/Arch_Release/GNU-Linux/package
+CND_PACKAGE_NAME_Arch_Release=libbitFlip.so.tar
+CND_PACKAGE_PATH_Arch_Release=dist/Arch_Release/GNU-Linux/package/libbitFlip.so.tar
 # Arch_Debug configuration
 CND_PLATFORM_Arch_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Arch_Debug=dist/Arch_Debug/GNU-Linux

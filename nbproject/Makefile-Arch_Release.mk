@@ -14,15 +14,15 @@ GREP=grep
 NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
-CC=x86_64-w64-mingw32-gcc
-CCC=x86_64-w64-mingw32-g++
-CXX=x86_64-w64-mingw32-g++
-FC=x86_64-w64-mingw32-gfortran
+CC=gcc
+CCC=g++
+CXX=g++
+FC=gfortran
 AS=nasm
 
 # Macros
-CND_PLATFORM=x86_64-w64-mingw32-Windows
-CND_DLIB_EXT=dll
+CND_PLATFORM=GNU-Linux
+CND_DLIB_EXT=so
 CND_CONF=Arch_Release
 CND_DISTDIR=dist
 CND_BUILDDIR=build
@@ -53,7 +53,7 @@ TESTOBJECTFILES= \
 	${TESTDIR}/tests/bitFlipTestSuite.o
 
 # C Compiler Flags
-CFLAGS=-Ofast -m64 -fopenmp -m64 -march=corei7
+CFLAGS=-Ofast -m64 -fopenmp -m64 -march=native
 
 # CC Compiler Flags
 CCFLAGS=-Ofast -m64 -fopenmp -m64 -march=native
@@ -74,12 +74,12 @@ LDLIBSOPTIONS=-lgtest
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT}: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -m64 -Ofast -fopenmp -march=native -shared
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -m64 -Ofast -fopenmp -march=native -shared -fPIC
 
 ${OBJECTDIR}/src/bitFlip.o: src/bitFlip.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -Iinclude -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
+	$(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -Iinclude -std=c++14 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 
 ${OBJECTDIR}/src/bitflipbyte.o: src/bitflipbyte.asm
 	${MKDIR} -p ${OBJECTDIR}/src
@@ -125,7 +125,7 @@ ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -Iinclude -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
+	    $(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -Iinclude -std=c++14 -fPIC  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/bitFlip.o ${OBJECTDIR}/src/bitFlip_nomain.o;\
 	fi

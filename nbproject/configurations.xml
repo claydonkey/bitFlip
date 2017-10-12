@@ -47,8 +47,8 @@
   <confs>
     <conf name="Arch_Release" type="2" platformSpecific="true">
       <toolsSet>
-        <compilerSet>default</compilerSet>
-        <platform>3</platform>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
@@ -56,7 +56,7 @@
         <cTool>
           <developmentMode>5</developmentMode>
           <stripSymbols>true</stripSymbols>
-          <commandLine>-Ofast -m64 -fopenmp -m64 -march=corei7</commandLine>
+          <commandLine>-Ofast -m64 -fopenmp -m64 -march=native</commandLine>
           <preprocessorList>
             <Elem>EXTERNALTABLE</Elem>
             <Elem>NDEBUG</Elem>
