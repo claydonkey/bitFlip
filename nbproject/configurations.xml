@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>include/BitReverseTable16.h</itemPath>
+      <itemPath>include/BitReverseTable8.h</itemPath>
       <itemPath>include/bitFlip.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -16,7 +17,7 @@
                    projectFiles="true">
       <itemPath>src/bitFlip.cpp</itemPath>
       <itemPath>src/bitflipbyte.asm</itemPath>
-      <itemPath>bitflipllloop.asm</itemPath>
+      <itemPath>src/bitflipllloop.asm</itemPath>
       <itemPath>src/bitfliplong.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -34,6 +35,9 @@
         <itemPath>tests/bitFlipTest.h</itemPath>
         <itemPath>tests/bitFlipTestSuite.cpp</itemPath>
       </logicalFolder>
+      <itemPath>CMakeLists.txt</itemPath>
+      <itemPath>tests/CMakeLists.txt</itemPath>
+      <itemPath>findBenchmark.cmake</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -54,6 +58,7 @@
           <stripSymbols>true</stripSymbols>
           <commandLine>-Ofast -m64 -fopenmp -m64 -march=corei7</commandLine>
           <preprocessorList>
+            <Elem>EXTERNALTABLE</Elem>
             <Elem>NDEBUG</Elem>
           </preprocessorList>
         </cTool>
@@ -66,6 +71,7 @@
           </incDir>
           <commandLine>-Ofast -m64 -fopenmp -m64 -march=corei7</commandLine>
           <preprocessorList>
+            <Elem>EXTERNALTABLE</Elem>
             <Elem>NDEBUG</Elem>
           </preprocessorList>
         </ccTool>
@@ -81,8 +87,6 @@
           <commandLine>-m64 -Ofast -fopenmp -march=corei7</commandLine>
         </linkerTool>
       </compileType>
-      <item path="bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
       <folder path="TestFiles">
         <cTool>
           <incDir>
@@ -102,11 +106,17 @@
           <incDir>
             <pElem>.</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>EXTERNALTABLE</Elem>
+          </preprocessorList>
         </cTool>
         <ccTool>
           <incDir>
             <pElem>.</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>EXTERNALTABLE</Elem>
+          </preprocessorList>
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
@@ -119,11 +129,15 @@
       </folder>
       <item path="include/BitReverseTable16.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/BitReverseTable8.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/bitflipbyte.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
       </item>
@@ -159,8 +173,6 @@
           <commandLine>-fopenmp -m64 -march=native</commandLine>
         </linkerTool>
       </compileType>
-      <item path="bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
       <folder path="TestFiles">
         <cTool>
           <incDir>
@@ -195,11 +207,15 @@
       </folder>
       <item path="include/BitReverseTable16.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/BitReverseTable8.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/bitflipbyte.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
       </item>
@@ -231,8 +247,6 @@
           <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
         </linkerTool>
       </compileType>
-      <item path="bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -253,11 +267,15 @@
       </folder>
       <item path="include/BitReverseTable16.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/BitReverseTable8.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/bitflipbyte.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
       </item>
@@ -291,8 +309,6 @@
           <commandLine>-Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
         </linkerTool>
       </compileType>
-      <item path="bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -310,11 +326,15 @@
       </folder>
       <item path="include/BitReverseTable16.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/BitReverseTable8.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/bitflipbyte.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
       </item>

@@ -33,8 +33,8 @@ uint8_t foo3[ARRAY_SIZE];
 uint64_t foo64[ARRAY_SIZE / 8];
 uint32_t foo32[ARRAY_SIZE / 4];
 uint16_t foo16[ARRAY_SIZE / 2];
-uint8_t BitReverseTableGen8[0xFF];
-uint8_t BitReverseTableGen16[0xFFFF];
+
+
 
 uint16_t foo16T[0xFFFF + 1];
 __attribute__ ((aligned(32))) uint8_t fooZ[ARRAY_SIZE + 32] = {};
@@ -67,10 +67,10 @@ public:
         hex16 = 0b0000110001111001;
         hex32 = 0b11010101111111100000110011111000;
         hex64 = 0b0101010111111110000011001111100000111110101000011111000000011101;
-
+#ifdef EXTERNALTABLE
         //Generate 8bit table
         for (uint16_t i = 0; i < (0xFF + 1); i++) {
-            BitReverseTableGen8[i] = bitFlipMask<uint8_t>((uint8_t&) i);
+            BitReverseTable8[i] = bitFlipMask<uint8_t>((uint8_t&) i);
 #ifdef PRINTTABLE8
             cout << "0x" << std::hex << BitReverseTableGen16 << ", ";
             if (!(i % 16)) cout << "\\" << endl;
@@ -82,14 +82,16 @@ public:
             uint16_t BRH = static_cast<uint16_t> ((bitFlipMask<uint8_t>(static_cast<uint8_t&> (i2)) & 0xff));
             uint16_t BRL = static_cast<uint16_t> (bitFlipMask<uint8_t>((uint8_t&) i)) << 8;
             uint16_t BR = BRL + BRH;
-            BitReverseTableGen16[i] = BR;
+            BitReverseTable16[i] = BR;
 
             //   cout << bitset<16>(BitReverseTable16[i]) << endl;
 #ifdef PRINTTABLE16
             cout << "0x" << std::hex << BitReverseTable16[i] << ", ";
             if (!(i % 16)) cout << "\\" << endl;
 #endif
+
         }
+#endif
     }
 };
 

@@ -1,6 +1,0 @@
-EXPORTS
-    _Z7bitFlipItENSt9enable_ifIXsrSt11is_integralIT_E5valueES2_E4typeERKS2_ @1
-    _Z8bitFliplPt @2
-    bitFlipb @3
-    bitFlipl @4
-    bitflipbyte @5 DATA
