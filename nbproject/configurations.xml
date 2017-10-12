@@ -35,10 +35,10 @@
         <itemPath>tests/bitFlipTest.h</itemPath>
         <itemPath>tests/bitFlipTestSuite.cpp</itemPath>
       </logicalFolder>
-      <itemPath>CMakeLists.txt</itemPath>
+      <itemPath>tests/CMakeLists.txt</itemPath>
       <itemPath>findBenchmark.cmake</itemPath>
     </logicalFolder>
-    <itemPath>tests/CMakeLists.txt</itemPath>
+    <itemPath>CMakeLists.txt</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
@@ -139,6 +139,8 @@
       </item>
       <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
+      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
+      </item>
       <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="tests/CMakeLists.txt" ex="false" tool="3" flavor2="0">
@@ -219,6 +221,8 @@
       </item>
       <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
+      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
+      </item>
       <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="tests/CMakeLists.txt" ex="false" tool="3" flavor2="0">
@@ -278,6 +282,8 @@
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/bitflipbyte.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
