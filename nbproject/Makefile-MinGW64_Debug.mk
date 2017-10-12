@@ -23,7 +23,7 @@ AS=nasm
 # Macros
 CND_PLATFORM=x86_64-w64-mingw32-Windows
 CND_DLIB_EXT=dll
-CND_CONF=Arch_Release
+CND_CONF=MinGW64_Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 
@@ -53,20 +53,20 @@ TESTOBJECTFILES= \
 	${TESTDIR}/tests/bitFlipTestSuite.o
 
 # C Compiler Flags
-CFLAGS=-Ofast -m64 -fopenmp -m64 -march=corei7
+CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-Ofast -m64 -fopenmp -m64 -march=native
-CXXFLAGS=-Ofast -m64 -fopenmp -m64 -march=native
+CCFLAGS=
+CXXFLAGS=
 
 # Fortran Compiler Flags
 FFLAGS=
 
 # Assembler Flags
-ASFLAGS=-f elf64
+ASFLAGS=-f win64
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lgtest
+LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -74,12 +74,12 @@ LDLIBSOPTIONS=-lgtest
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT}: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -m64 -Ofast -fopenmp -march=native -shared
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a -shared
 
 ${OBJECTDIR}/src/bitFlip.o: src/bitFlip.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -Iinclude -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
+	$(COMPILE.cc) -g -Iinclude  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 
 ${OBJECTDIR}/src/bitflipbyte.o: src/bitflipbyte.asm
 	${MKDIR} -p ${OBJECTDIR}/src
@@ -102,19 +102,19 @@ ${OBJECTDIR}/src/bitfliplong.o: src/bitfliplong.asm
 
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/tests/bitFlipTestSuite.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   -lgtest -lbenchmark -lpthread 
+	${LINK.cc} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}  -Wl,--subsystem,windows -lpthread -lbenchmark -lgtest -lshlwapi -Wl,--subsystem,windows 
 
 
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -DEXTERNALTABLE -Iinclude -I/usr/include -I. -std=c++14 -Ofast -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -g -Iinclude -I../include -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
 ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -DEXTERNALTABLE -Iinclude -I/usr/include -I. -std=c++14 -Ofast -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+	$(COMPILE.cc) -g -Iinclude -I../include -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp 
@@ -125,7 +125,7 @@ ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -Iinclude -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
+	    $(COMPILE.cc) -g -Iinclude  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/bitFlip.o ${OBJECTDIR}/src/bitFlip_nomain.o;\
 	fi

@@ -6,6 +6,9 @@ set(CMAKE_CXX_STANDARD 11)
 include(ExternalProject)
 include(../findBenchmark.cmake)
 
+ 
+
+
 find_package(GTest)
 find_package(Threads REQUIRED)
 find_package(benchmark REQUIRED)
@@ -16,7 +19,7 @@ message("-- Current build will download GTest")
 ExternalProject_Add(
         gtest
         URL https://github.com/google/googletest/archive/master.zip
-        CMAKE_ARGS            -DCMAKE_BUILD_TYPE:STRING=Release     
+        CMAKE_ARGS -DCMAKE_BUILD_TYPE:STRING=Release     
         PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
         INSTALL_COMMAND "")
 

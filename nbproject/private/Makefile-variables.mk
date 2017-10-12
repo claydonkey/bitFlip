@@ -5,5 +5,5 @@
 #
 # Arch_Release configuration
 # Arch_Debug configuration
-# Debug configuration
-# Release configuration
+# MinGW64_Debug configuration
+# MinGW64_Release configuration

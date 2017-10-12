@@ -31,7 +31,7 @@ DEFAULTCONF=Arch_Release
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=Arch_Release Arch_Debug Debug Release 
+ALLCONFS=Arch_Release Arch_Debug MinGW64_Debug MinGW64_Release 
 
 
 # build

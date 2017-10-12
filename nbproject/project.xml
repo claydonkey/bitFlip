@@ -22,11 +22,11 @@
                     <type>2</type>
                 </confElem>
                 <confElem>
-                    <name>Debug</name>
+                    <name>MinGW64_Debug</name>
                     <type>2</type>
                 </confElem>
                 <confElem>
-                    <name>Release</name>
+                    <name>MinGW64_Release</name>
                     <type>2</type>
                 </confElem>
             </confList>

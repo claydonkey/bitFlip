@@ -3,8 +3,14 @@ project(bitFlip)
 
 set(CMAKE_CXX_STANDARD 11)
 
+set(TESTAPP_ASMFORMAT "elf64" CACHE STRING "Assembly Architecture to compile to")
+set_property(CACHE TESTAPP_ASMFORMAT PROPERTY STRINGS elf64 win64)
+message(STATUS "Assm Format='${TESTAPP_ASMFORMAT}'")
+
+
 include_directories(./include)
 add_subdirectory(tests)
+
 
 IF(NOT CMAKE_BUILD_TYPE)
     SET(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build : None Debug Release RelWithDebInfo MinSizeRel Coverage." FORCE)
@@ -22,9 +28,9 @@ set(SOURCE_FILES
 
 find_program(NASM_EXE NAMES nasm)
 
-add_custom_command(OUTPUT bitflipbyte.o COMMAND ${NASM_EXE} ARGS -f elf64 -o bitflipbyte.o ${CMAKE_CURRENT_SOURCE_DIR}/src/bitflipbyte.asm)
-add_custom_command(OUTPUT bitfliplong.o COMMAND ${NASM_EXE} ARGS -f elf64 -o bitfliplong.o ${CMAKE_CURRENT_SOURCE_DIR}/src/bitfliplong.asm)
-add_custom_command(OUTPUT bitflipllloop.o COMMAND ${NASM_EXE} ARGS -f elf64 -o bitflipllloop.o ${CMAKE_CURRENT_SOURCE_DIR}/src/bitflipllloop.asm)
+add_custom_command(OUTPUT bitflipbyte.o COMMAND ${NASM_EXE} ARGS -f ${TESTAPP_ASMFORMAT} -o bitflipbyte.o ${CMAKE_CURRENT_SOURCE_DIR}/src/bitflipbyte.asm)
+add_custom_command(OUTPUT bitfliplong.o COMMAND ${NASM_EXE} ARGS -f  ${TESTAPP_ASMFORMAT} -o bitfliplong.o ${CMAKE_CURRENT_SOURCE_DIR}/src/bitfliplong.asm)
+add_custom_command(OUTPUT bitflipllloop.o COMMAND ${NASM_EXE} ARGS -f  ${TESTAPP_ASMFORMAT} -o bitflipllloop.o ${CMAKE_CURRENT_SOURCE_DIR}/src/bitflipllloop.asm)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(HEADER_FILES ./include/BitReverseTable8.h ./include/BitReverseTable16.h  ./include/bitFlip.h )

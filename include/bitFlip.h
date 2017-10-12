@@ -33,19 +33,19 @@
  */
 
 #ifndef bitFlip_H
-#define bitFlip_H
+    #define bitFlip_H
 
-#include <stdint.h>
+    #include <stdint.h>
 
-#define DISPLAY_HEIGHT  4
-#define DISPLAY_WIDTH   32
+    #define DISPLAY_HEIGHT  4
+    #define DISPLAY_WIDTH   32
 //  #define NUM_DATA_BYTES  400000000
-#define NUM_DATA_BYTES  4
+    #define NUM_DATA_BYTES  4
 
 
 
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 
 extern "C" {
     __attribute__ ((aligned(32))) static uint8_t data[NUM_DATA_BYTES + 32] = {};
@@ -67,13 +67,13 @@ extern "C" {
 
 }
 
-#include <type_traits>
-#include <stdint.h>
-#include <iostream>
-#include <limits>
-#include <cmath>
-#include "BitReverseTable16.h"
-#include "BitReverseTable8.h"
+	#include <type_traits>
+	#include <stdint.h>
+	#include <iostream>
+	#include <limits>
+	#include <cmath>
+	#include "BitReverseTable16.h"
+	#include "BitReverseTable8.h"
 
 __attribute__ ((aligned(32))) static uint8_t k1[32 * 3] = {
     0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
@@ -86,23 +86,23 @@ __attribute__ ((aligned(32))) static uint8_t k1[32 * 3] = {
 typedef __attribute__ ((aligned(32))) uint8_t aligned_uint8_t;
 
 template <typename T, size_t N> void bitFlipZ(T(&a)[N]) {
-
+	#ifndef __MINGW64__
     if ((std::numeric_limits<T>::digits == 16))
-        bitflipbyte((uint8_t*) a, (uint8_t) ceil(N / 32.0), k1);
+	bitflipbyte((uint8_t*) a, (uint8_t) ceil(N / 32.0), k1);
     else
-        if ((std::numeric_limits<T>::digits == 8))
-        bitflipbyte((uint8_t*) a, (uint8_t) ceil(N / 32.0), k1);
+	if ((std::numeric_limits<T>::digits == 8))
+	bitflipbyte((uint8_t*) a, (uint8_t) ceil(N / 32.0), k1);
+	#endif
 }
- 
 
 template <typename T>
 typename std::enable_if<std::is_integral<T>::value, T >::type bitFlipTable(T const &i) {
     if ((std::numeric_limits<T>::digits == 32))
-        return (BitReverseTable8[i & 0xff] << 24) | (BitReverseTable8[(i >> 8) & 0xff] << 16) | (BitReverseTable8[(i >> 16) & 0xff] << 8) | (BitReverseTable8[(i >> 24) & 0xff]);
+	return (BitReverseTable8[i & 0xff] << 24) | (BitReverseTable8[(i >> 8) & 0xff] << 16) | (BitReverseTable8[(i >> 16) & 0xff] << 8) | (BitReverseTable8[(i >> 24) & 0xff]);
     if ((std::numeric_limits<T>::digits == 16))
-        return (BitReverseTable16[i]);
+	return (BitReverseTable16[i]);
     if ((std::numeric_limits<T>::digits == 8))
-        return (BitReverseTable8[i]);
+	return (BitReverseTable8[i]);
 }
 
 template <typename T, size_t N> void bitFlipTableArray(T(&bits)[N]) {
@@ -116,8 +116,8 @@ template <typename T, size_t N> void bitFlipMaskArray(T(&bits)[N]) {
 template <typename T, size_t N> void bitFlipNaiveArray(T(&bits)[N]) {
     uint64_t r, i, j = 0;
     for (; j < N; j++) {
-        for (r = 0, i = 0; i < sizeof (T)*8; ++i) r |= ((bits[j] >> i) & 1) << ((sizeof (T)*8) - i - 1);
-        bits[j] = r;
+	for (r = 0, i = 0; i < sizeof (T)*8; ++i) r |= ((bits[j] >> i) & 1) << ((sizeof (T)*8) - i - 1);
+	bits[j] = r;
     }
 }
 
@@ -135,8 +135,8 @@ typename std::enable_if<std::is_integral<T>::value, uint8_t>::type bitCount(T co
     T n = i;
     uint8_t c(0);
     while (n) {
-        n = n & (n - 1);
-        c++;
+	n = n & (n - 1);
+	c++;
     }
     return c;
 }
@@ -144,8 +144,8 @@ typename std::enable_if<std::is_integral<T>::value, uint8_t>::type bitCount(T co
 template <typename T>
 typename std::enable_if<std::is_integral<T>::value, T >::type bitFlipMask(T const &bits) {
     if ((std::numeric_limits<T>::digits == 8))
-        return ( (bits * 0x202020202ULL & 0x010884422010ULL) % 1023);
+	return ( (bits * 0x202020202ULL & 0x010884422010ULL) % 1023);
 }
 
-#endif
+    #endif
 #endif /* bitFlip_H */

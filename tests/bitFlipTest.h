@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   bitFlipTest.h
  * Author: anthony
  *
@@ -12,18 +12,18 @@
  */
 
 #ifndef BITFLIPTEST_H
-#define BITFLIPTEST_H
-#include <benchmark/benchmark.h>
-#include <stdint.h>
+    #define BITFLIPTEST_H
+    #include <benchmark/benchmark.h>
+    #include <stdint.h>
 
 
-void SetUp() ;
-#ifdef __cplusplus
+void SetUp();
+    #ifdef __cplusplus
 extern "C" {
-#endif
+    #endif
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
-#endif
+    #endif
 #endif /* BITFLIPTEST_H */
 

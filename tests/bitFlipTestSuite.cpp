@@ -20,8 +20,6 @@
 using namespace std;
 
 #define ARRAY_SIZE 1000
-//#define PRINTTABLE16
-//#define PRINTTABLE8 
 uint8_t hex8;
 uint16_t t, hex16, rev1, rev2;
 uint64_t hex64;
@@ -34,8 +32,6 @@ uint64_t foo64[ARRAY_SIZE / 8];
 uint32_t foo32[ARRAY_SIZE / 4];
 uint16_t foo16[ARRAY_SIZE / 2];
 
-
-
 uint16_t foo16T[0xFFFF + 1];
 __attribute__ ((aligned(32))) uint8_t fooZ[ARRAY_SIZE + 32] = {};
 
@@ -45,13 +41,16 @@ __attribute__ ((aligned(32))) uint16_t foo16Z[ARRAY_SIZE + 32] = {};
 class TestSuite : public testing::Test {
 public:
 
-    void SetUp() {
+    void SetUp()
+    {
         for (uint32_t i = 0; i < ARRAY_SIZE; i++) {
             foo16Z[i] = fooZ[i] = foo3[i] = foo2[i] = foo1[i] = rand();
 
             if (!(i % 8) & !i == 0) {
-                foo64[(i / 8) - 1] = ((uint64_t) foo1[i - 8]) + ((uint64_t) foo1[i - 7] << 8) + ((uint64_t) foo1[i - 6] << 16) + ((uint64_t) foo1[i - 5] << 24) + \
-   ((uint64_t) foo1[i - 4] << 32) +((uint64_t) foo1[i - 3] << 40) +((uint64_t) foo1[i - 2] << 48) + ((uint64_t) foo1[i - 1] << 56);
+                foo64[(i / 8) - 1] = ((uint64_t) foo1[i - 8]) + ((uint64_t) foo1[i - 7] << 8) + \
+                        ((uint64_t) foo1[i - 6] << 16) + ((uint64_t) foo1[i - 5] << 24) + \
+   ((uint64_t) foo1[i - 4] << 32) +((uint64_t) foo1[i - 3] << 40) +((uint64_t) foo1[i - 2] << 48) + \
+                        ((uint64_t) foo1[i - 1] << 56);
             }
 
             if (!(i % 4) & !i == 0) {
@@ -95,34 +94,44 @@ public:
     }
 };
 
-void BM_bitFlip_assemb(benchmark::State& state) {
+void BM_bitFlip_assemb(benchmark::State& state)
+{
     while (state.KeepRunning())
         bitFlipZ(fooZ);
 }
 
-void BM_bitFlip_64(benchmark::State& state) {
+void BM_bitFlip_64(benchmark::State& state)
+{
+#ifndef __MINGW64__
     while (state.KeepRunning())
         bitflipllloop(foo64, ARRAY_SIZE / 8);
-    //compare with
-    bitflipllloop(foo64, ARRAY_SIZE / 8);
+#else
+    while (state.KeepRunning())
+        bitFlipNaiveArrayll(foo64, ARRAY_SIZE / 8);
+
+#endif
 }
 
-void BM_bitFlip_mask(benchmark::State& state) {
+void BM_bitFlip_mask(benchmark::State& state)
+{
     while (state.KeepRunning())
         bitFlipMaskArray<uint8_t>(foo2);
 }
 
-void BM_bitflip_naive(benchmark::State& state) {
+void BM_bitflip_naive(benchmark::State& state)
+{
     while (state.KeepRunning())
         bitFlipNaiveArray<uint8_t>(foo3);
 }
 
-void BM_bitFlip_table_16(benchmark::State& state) {
+void BM_bitFlip_table_16(benchmark::State& state)
+{
     while (state.KeepRunning())
         bitFlipTableArray<uint16_t>(foo16);
 }
 
-void BM_bitflip_table_32(benchmark::State& state) {
+void BM_bitflip_table_32(benchmark::State& state)
+{
     while (state.KeepRunning())
         bitFlipTableArray<uint32_t>(foo32);
 }
@@ -134,14 +143,54 @@ BENCHMARK(BM_bitflip_naive);
 BENCHMARK(BM_bitFlip_mask);
 BENCHMARK(BM_bitFlip_64);
 
-TEST_F(TestSuite, textPlainC) {
-    //  cout << "hex16 RValue: " << bitset<16> (bitFlipNaive(((uint16_t) 0b0000110001111001))) << endl;
-
+TEST_F(TestSuite, textPlainC)
+{
+#ifndef __MINGW64__
     uint8_t b = bitFlipZb(((uint8_t) 0b10001100));
-    //   cout << "hex8 RValue: " << bitset<8> (b) << endl;
     EXPECT_EQ(0b00110001, b);
-
+#endif
 }
+
+TEST_F(TestSuite, test_bitflip_naive)
+{
+    uint8_t b = bitFlipNaive((uint8_t) 0b01010101);
+    EXPECT_EQ(0b10101010, b);
+}
+
+TEST_F(TestSuite, testTableLookup16)
+{
+    hex16 = bitFlipTable<uint16_t>(hex16);
+    EXPECT_EQ(0b1001111000110000, hex16);
+}
+
+TEST_F(TestSuite, testTableLookup32)
+{
+    hex32 = bitFlipTable<uint32_t>(hex32);
+    EXPECT_EQ(0b00011111001100000111111110101011, hex32);
+}
+
+TEST_F(TestSuite, testTableLookup8)
+{
+    hex8 = bitFlipTable<uint8_t>(hex8);
+    EXPECT_EQ(0b10101010, hex8);
+}
+
+TEST_F(TestSuite, letsTestThoseBits)
+{
+#ifndef __MINGW64__
+    bitFlipZ(fooZ);
+#endif
+    bitFlipMaskArray<uint8_t>(foo2);
+    bitFlipNaiveArray<uint8_t>(foo3);
+#ifndef __MINGW64__
+    EXPECT_EQ(fooZ[ARRAY_SIZE - 2], foo2[ARRAY_SIZE - 2]);
+#endif
+    EXPECT_EQ(foo3[ARRAY_SIZE - 2], foo2[ARRAY_SIZE - 2]);
+    EXPECT_EQ(foo3[ARRAY_SIZE - 2], foo2[ARRAY_SIZE - 2]);
+
+    SUCCEED();
+}
+
 
 //TEST_F(TestSuite, testshortFlip) {
 //
@@ -152,53 +201,3 @@ TEST_F(TestSuite, textPlainC) {
 //    EXPECT_EQ(0b101001011100001, foo16Z[0]);
 //
 //}
-
-TEST_F(TestSuite, test_bitflip_naive) {
-
-    //  cout << "Before b: 01010101" << endl;
-
-    uint8_t b = bitFlipNaive((uint8_t) 0b01010101);
-    //   cout << "After b: " << bitset<8>(b) << endl;
-    EXPECT_EQ(0b10101010, b);
-}
-
-TEST_F(TestSuite, testTableLookup16) {
-    //    cout << "Before hex16: " << bitset<16>(hex16) << endl;
-    hex16 = bitFlipTable<uint16_t>(hex16);
-    // cout << "After hex16: " << bitset<16>(hex16) << endl;
-    EXPECT_EQ(0b1001111000110000, hex16);
-}
-
-TEST_F(TestSuite, testTableLookup32) {
-    //cout << "Before hex32: " << bitset<32>(hex32) << endl;
-
-    hex32 = bitFlipTable<uint32_t>(hex32);
-    //  cout << "After hex32: " << bitset<32>(hex32) << endl;
-    EXPECT_EQ(0b00011111001100000111111110101011, hex32);
-}
-
-TEST_F(TestSuite, testTableLookup8) {
-
-    //  cout << "Before hex8: " << bitset<8>(hex8) << endl;
-    hex8 = bitFlipTable<uint8_t>(hex8);
-    //  cout << "After hex8: " << bitset<8>(hex8) << endl;
-    EXPECT_EQ(0b10101010, hex8);
-}
-
-TEST_F(TestSuite, letsTestThoseBits) {
-
-
-    bitFlipZ(fooZ);
-    bitFlipMaskArray<uint8_t>(foo2);
-    bitFlipNaiveArray<uint8_t>(foo3);
-
-
-    EXPECT_EQ(fooZ[ARRAY_SIZE - 2], foo2[ARRAY_SIZE - 2]);
-    EXPECT_EQ(foo3[ARRAY_SIZE - 2], foo2[ARRAY_SIZE - 2]);
-    EXPECT_EQ(foo3[ARRAY_SIZE - 2], foo2[ARRAY_SIZE - 2]);
-
-
-
-    SUCCEED();
-}
-

@@ -2,3 +2,5 @@
 /tests/.idea/
 /cmake-build-debug/
 /cmake-build-release/
+/dist/
+/build/

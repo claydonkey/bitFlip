@@ -7,7 +7,7 @@
 # Macros
 TOP=`pwd`
 CND_PLATFORM=x86_64-w64-mingw32-Windows
-CND_CONF=Release
+CND_CONF=MinGW64_Release
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 CND_DLIB_EXT=dll

@@ -42,10 +42,10 @@
 
 using namespace std;
 
-int main(int argc, char** argv) {
-    ::benchmark::Initialize(&argc, argv);
-    if (::benchmark::ReportUnrecognizedArguments(argc, argv)) return 1;
-    testing::InitGoogleTest(&argc, argv);
+int main(int argc, const char** argv) {
+    ::benchmark::Initialize(&argc,  (char**)  argv);
+    if (::benchmark::ReportUnrecognizedArguments(argc,  (char**)  argv)) return 1;
+    testing::InitGoogleTest(&argc, (char**) argv);
 
    ::benchmark::RunSpecifiedBenchmarks();
     return   RUN_ALL_TESTS();

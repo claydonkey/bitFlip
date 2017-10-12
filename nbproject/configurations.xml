@@ -48,7 +48,7 @@
     <conf name="Arch_Release" type="2" platformSpecific="true">
       <toolsSet>
         <compilerSet>default</compilerSet>
-        <platform>2</platform>
+        <platform>3</platform>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
@@ -69,7 +69,7 @@
           <incDir>
             <pElem>include</pElem>
           </incDir>
-          <commandLine>-Ofast -m64 -fopenmp -m64 -march=corei7</commandLine>
+          <commandLine>-Ofast -m64 -fopenmp -m64 -march=native</commandLine>
           <preprocessorList>
             <Elem>EXTERNALTABLE</Elem>
             <Elem>NDEBUG</Elem>
@@ -84,7 +84,7 @@
           <linkerLibItems>
             <linkerLibLibItem>gtest</linkerLibLibItem>
           </linkerLibItems>
-          <commandLine>-m64 -Ofast -fopenmp -march=corei7</commandLine>
+          <commandLine>-m64 -Ofast -fopenmp -march=native</commandLine>
         </linkerTool>
       </compileType>
       <folder path="TestFiles">
@@ -139,11 +139,7 @@
       </item>
       <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
-      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
       <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="tests/CMakeLists.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -162,8 +158,11 @@
       <compileType>
         <ccTool>
           <incDir>
-            <pElem>./include</pElem>
+            <pElem>include</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>EXTERNALTABLE</Elem>
+          </preprocessorList>
         </ccTool>
         <asmTool>
           <developmentMode>0</developmentMode>
@@ -221,11 +220,7 @@
       </item>
       <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
-      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
       <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="tests/CMakeLists.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -234,21 +229,26 @@
       <item path="tests/bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
-    <conf name="Debug" type="2">
+    <conf name="MinGW64_Debug" type="2">
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+        </cTool>
         <ccTool>
           <incDir>
-            <pElem>C:/msys2/mingw64/include</pElem>
+            <pElem>include</pElem>
           </incDir>
         </ccTool>
         <asmTool>
           <developmentMode>0</developmentMode>
-          <commandlineTool>yasm</commandlineTool>
+          <commandlineTool>nasm</commandlineTool>
           <commandLine>-f win64</commandLine>
         </asmTool>
         <linkerTool>
@@ -258,19 +258,24 @@
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
-            <pElem>.</pElem>
+            <pElem>../include</pElem>
           </incDir>
         </cTool>
         <ccTool>
           <incDir>
-            <pElem>.</pElem>
+            <pElem>../include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
           <linkerLibItems>
-            <linkerLibLibItem>gtest.dll</linkerLibLibItem>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+            <linkerLibLibItem>benchmark</linkerLibLibItem>
+            <linkerLibLibItem>gtest</linkerLibLibItem>
+            <linkerLibLibItem>shlwapi</linkerLibLibItem>
+            <linkerOptionItem>-Wl,--subsystem,windows</linkerOptionItem>
           </linkerLibItems>
+          <commandLine>-Wl,--subsystem,windows</commandLine>
         </linkerTool>
       </folder>
       <item path="include/BitReverseTable16.h" ex="false" tool="3" flavor2="0">
@@ -285,11 +290,7 @@
       </item>
       <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
-      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
       <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="tests/CMakeLists.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -298,7 +299,7 @@
       <item path="tests/bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
-    <conf name="Release" type="2">
+    <conf name="MinGW64_Release" type="2">
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
@@ -307,33 +308,59 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+          <commandLine>-Ofast -m64 -fopenmp -m64 -march=native</commandLine>
+          <preprocessorList>
+            <Elem>EXTERNALTABLE</Elem>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+          <commandLine>-Ofast -m64 -fopenmp -m64 -march=native</commandLine>
+          <preprocessorList>
+            <Elem>EXTERNALTABLE</Elem>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
         </fortranCompilerTool>
         <asmTool>
           <developmentMode>5</developmentMode>
+          <commandLine>-f win64</commandLine>
         </asmTool>
         <linkerTool>
-          <commandLine>-Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
+          <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
         </linkerTool>
       </compileType>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
-            <pElem>.</pElem>
+            <pElem>../include</pElem>
           </incDir>
+          <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows</commandLine>
         </cTool>
         <ccTool>
           <incDir>
-            <pElem>.</pElem>
+            <pElem>../include</pElem>
           </incDir>
+          <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows</commandLine>
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
+          <linkerLibItems>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+            <linkerLibLibItem>benchmark</linkerLibLibItem>
+            <linkerLibLibItem>gtest</linkerLibLibItem>
+            <linkerLibLibItem>shlwapi</linkerLibLibItem>
+          </linkerLibItems>
+          <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows</commandLine>
         </linkerTool>
       </folder>
       <item path="include/BitReverseTable16.h" ex="false" tool="3" flavor2="0">
@@ -349,8 +376,6 @@
       <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="tests/CMakeLists.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>

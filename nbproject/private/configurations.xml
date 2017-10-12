@@ -5,7 +5,7 @@
     <conf name="Arch_Release" type="2" platformSpecific="true">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <platform>2</platform>
+        <platform>3</platform>
       </toolsSet>
       <dbx_gdbdebugger version="1">
         <gdb_pathmaps>
@@ -76,7 +76,7 @@
         </environment>
       </runprofile>
     </conf>
-    <conf name="Debug" type="2">
+    <conf name="MinGW64_Debug" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <platform>3</platform>
@@ -109,7 +109,7 @@
         </environment>
       </runprofile>
     </conf>
-    <conf name="Release" type="2">
+    <conf name="MinGW64_Release" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <platform>3</platform>
