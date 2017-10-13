@@ -35,7 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/src/bitFlip.o
+	${OBJECTDIR}/src/bitFlip.o \
+	${OBJECTDIR}/src/bitflipbyte.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
@@ -78,6 +79,10 @@ ${OBJECTDIR}/src/bitFlip.o: src/bitFlip.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O3 -s -DNDEBUG -DEXTERNALTABLE -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 
+${OBJECTDIR}/src/bitflipbyte.o: src/bitflipbyte.asm
+	${MKDIR} -p ${OBJECTDIR}/src
+	$(AS) $(ASFLAGS) -o ${OBJECTDIR}/src/bitflipbyte.o src/bitflipbyte.asm
+
 # Subprojects
 .build-subprojects:
 
@@ -113,6 +118,18 @@ ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 	    $(COMPILE.cc) -O3 -s -DNDEBUG -DEXTERNALTABLE -Iinclude -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/bitFlip.o ${OBJECTDIR}/src/bitFlip_nomain.o;\
+	fi
+
+${OBJECTDIR}/src/bitflipbyte_nomain.o: ${OBJECTDIR}/src/bitflipbyte.o src/bitflipbyte.asm 
+	${MKDIR} -p ${OBJECTDIR}/src
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/bitflipbyte.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    $(AS) $(ASFLAGS) -Dmain=__nomain -o ${OBJECTDIR}/src/bitflipbyte_nomain.o src/bitflipbyte.asm;\
+	else  \
+	    ${CP} ${OBJECTDIR}/src/bitflipbyte.o ${OBJECTDIR}/src/bitflipbyte_nomain.o;\
 	fi
 
 # Run Test Targets

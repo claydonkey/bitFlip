@@ -134,7 +134,7 @@ void BM_bitflip_table_32(benchmark::State& state) {
     while (state.KeepRunning())
         bitFlipTableArray<uint32_t>(foo32);
 }
-#ifndef __MINGW64__
+#ifndef NOASSMBLR
 BENCHMARK(BM_bitFlip_assemb);
 #endif
 BENCHMARK(BM_bitFlip_table_16);
