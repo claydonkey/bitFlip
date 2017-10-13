@@ -37,25 +37,15 @@
 
 #include <stdint.h>
 
-#define DISPLAY_HEIGHT  4
-#define DISPLAY_WIDTH   32
-//  #define NUM_DATA_BYTES  400000000
-#define NUM_DATA_BYTES  4
-
-
-
-
+ 
 #ifdef __cplusplus
 
 extern "C" {
-    __attribute__ ((aligned(32))) static uint8_t data[NUM_DATA_BYTES + 32] = {};
+
 
     extern void bitflipbyte(uint8_t[], uint32_t, uint8_t[]);
     extern uint16_t bitfliplong(uint64_t);
     extern void bitflipllloop(uint64_t * n, uint32_t size);
-
-    // The data to be bitflipped (+32 to avoid the quantization out of memory problem)
-
     uint16_t bitFlipNaives(uint16_t bits);
     uint64_t bitFlipNaivell(const uint64_t n);
     uint8_t bitFlipZb(uint8_t bits);
@@ -86,13 +76,11 @@ void bitFlipNaiveLambda(uint64_t * bits, uint32_t size) ;
 typedef __attribute__ ((aligned(32))) uint8_t aligned_uint8_t;
 
 template <typename T, size_t N> void bitFlipZ(T(&a)[N]) {
-#ifndef __MINGW64__
     if ((std::numeric_limits<T>::digits == 16))
         bitflipbyte((uint8_t*) a, (uint8_t) ceil(N / 32.0), k1);
     else
         if ((std::numeric_limits<T>::digits == 8))
         bitflipbyte((uint8_t*) a, (uint8_t) ceil(N / 32.0), k1);
-#endif
 }
 
 template <typename T>

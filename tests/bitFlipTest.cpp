@@ -43,11 +43,11 @@
 using namespace std;
 
 int main(int argc, const char** argv) {
-    ::benchmark::Initialize(&argc,  (char**)  argv);
-    if (::benchmark::ReportUnrecognizedArguments(argc,  (char**)  argv)) return 1;
+    ::benchmark::Initialize(&argc, (char**) argv);
+    if (::benchmark::ReportUnrecognizedArguments(argc, (char**) argv)) return 1;
     testing::InitGoogleTest(&argc, (char**) argv);
 
-   ::benchmark::RunSpecifiedBenchmarks();
-    return   RUN_ALL_TESTS();
+    ::benchmark::RunSpecifiedBenchmarks();
+    return RUN_ALL_TESTS();
 }
 

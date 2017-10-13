@@ -311,7 +311,7 @@
           <incDir>
             <pElem>include</pElem>
           </incDir>
-          <commandLine>-Ofast -m64 -fopenmp -m64 -march=native</commandLine>
+          <commandLine>-O3 -pipe -fomit-frame-pointer -m64 -mavx -fopenmp -m64 -march=native</commandLine>
           <preprocessorList>
             <Elem>EXTERNALTABLE</Elem>
             <Elem>NDEBUG</Elem>
@@ -322,7 +322,7 @@
           <incDir>
             <pElem>include</pElem>
           </incDir>
-          <commandLine>-Ofast -m64 -fopenmp -m64 -march=native</commandLine>
+          <commandLine>-O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native</commandLine>
           <preprocessorList>
             <Elem>EXTERNALTABLE</Elem>
             <Elem>NDEBUG</Elem>
@@ -333,10 +333,10 @@
         </fortranCompilerTool>
         <asmTool>
           <developmentMode>5</developmentMode>
-          <commandLine>-f win64</commandLine>
+          <commandLine>-f elf64</commandLine>
         </asmTool>
         <linkerTool>
-          <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
+          <commandLine>-O3 -mavx -pipe -fomit-frame-pointer -fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
         </linkerTool>
       </compileType>
       <folder path="TestFiles/f1">
@@ -344,13 +344,13 @@
           <incDir>
             <pElem>../include</pElem>
           </incDir>
-          <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows</commandLine>
+          <commandLine>-O3 -pipe -fomit-frame-pointer -fopenmp -m64 -mavx -march=native -Wl,--subsystem,windows</commandLine>
         </cTool>
         <ccTool>
           <incDir>
             <pElem>../include</pElem>
           </incDir>
-          <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows</commandLine>
+          <commandLine>-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows</commandLine>
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
@@ -360,7 +360,7 @@
             <linkerLibLibItem>gtest</linkerLibLibItem>
             <linkerLibLibItem>shlwapi</linkerLibLibItem>
           </linkerLibItems>
-          <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows</commandLine>
+          <commandLine>-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows</commandLine>
         </linkerTool>
       </folder>
       <item path="include/BitReverseTable16.h" ex="false" tool="3" flavor2="0">

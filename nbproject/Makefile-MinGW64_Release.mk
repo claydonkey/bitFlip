@@ -53,17 +53,17 @@ TESTOBJECTFILES= \
 	${TESTDIR}/tests/bitFlipTestSuite.o
 
 # C Compiler Flags
-CFLAGS=-Ofast -m64 -fopenmp -m64 -march=native
+CFLAGS=-O3 -pipe -fomit-frame-pointer -m64 -mavx -fopenmp -m64 -march=native
 
 # CC Compiler Flags
-CCFLAGS=-Ofast -m64 -fopenmp -m64 -march=native
-CXXFLAGS=-Ofast -m64 -fopenmp -m64 -march=native
+CCFLAGS=-O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native
+CXXFLAGS=-O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native
 
 # Fortran Compiler Flags
 FFLAGS=
 
 # Assembler Flags
-ASFLAGS=-f win64
+ASFLAGS=-f elf64
 
 # Link Libraries and Options
 LDLIBSOPTIONS=
@@ -74,7 +74,7 @@ LDLIBSOPTIONS=
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT}: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a -shared
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -O3 -mavx -pipe -fomit-frame-pointer -fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a -shared
 
 ${OBJECTDIR}/src/bitFlip.o: src/bitFlip.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
@@ -102,19 +102,19 @@ ${OBJECTDIR}/src/bitfliplong.o: src/bitfliplong.asm
 
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/tests/bitFlipTestSuite.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}  -fopenmp -m64 -march=native -Wl,--subsystem,windows -lpthread -lbenchmark -lgtest -lshlwapi 
+	${LINK.cc} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}  -O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows -lpthread -lbenchmark -lgtest -lshlwapi 
 
 
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -DEXTERNALTABLE -DNDEBUG -Iinclude -I../include -fopenmp -m64 -march=native -Wl,--subsystem,windows -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -O2 -DEXTERNALTABLE -DNDEBUG -Iinclude -I../include -O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
 ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -DEXTERNALTABLE -DNDEBUG -Iinclude -I../include -fopenmp -m64 -march=native -Wl,--subsystem,windows -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+	$(COMPILE.cc) -O2 -DEXTERNALTABLE -DNDEBUG -Iinclude -I../include -O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp 
