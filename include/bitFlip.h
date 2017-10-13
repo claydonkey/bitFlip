@@ -33,12 +33,12 @@
  */
 
 #ifndef bitFlip_H
-#define bitFlip_H
+    #define bitFlip_H
 
-#include <stdint.h>
+    #include <stdint.h>
 
- 
-#ifdef __cplusplus
+
+    #ifdef __cplusplus
 
 extern "C" {
 
@@ -57,13 +57,13 @@ extern "C" {
 
 }
 
-#include <type_traits>
-#include <stdint.h>
-#include <iostream>
-#include <limits>
-#include <cmath>
-#include "BitReverseTable16.h"
-#include "BitReverseTable8.h"
+        #include <type_traits>
+        #include <stdint.h>
+        #include <iostream>
+        #include <limits>
+        #include <cmath>
+        #include "BitReverseTable16.h"
+        #include "BitReverseTable8.h"
 
 __attribute__ ((aligned(32))) static uint8_t k1[32 * 3] = {
     0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
@@ -72,7 +72,7 @@ __attribute__ ((aligned(32))) static uint8_t k1[32 * 3] = {
 };
 
 
-void bitFlipNaiveLambda(uint64_t * bits, uint32_t size) ;
+void bitFlipNaiveLambda(uint64_t * bits, uint32_t size);
 typedef __attribute__ ((aligned(32))) uint8_t aligned_uint8_t;
 
 template <typename T, size_t N> void bitFlipZ(T(&a)[N]) {
@@ -135,5 +135,5 @@ typename std::enable_if<std::is_integral<T>::value, T >::type bitFlipMask(T cons
         return ( (bits * 0x202020202ULL & 0x010884422010ULL) % 1023);
 }
 
-#endif
+    #endif
 #endif /* bitFlip_H */

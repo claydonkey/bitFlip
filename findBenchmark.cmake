@@ -30,9 +30,9 @@ find_package_handle_standard_args(benchmark FOUND_VAR benchmark_FOUND
         REQUIRED_VARS benchmark_LIBRARY
         benchmark_INCLUDE_DIR)
 
-if(benchmark_FOUND)
+IF(benchmark_FOUND)
     set(benchmark_LIBRARIES ${benchmark_LIBRARY})
     set(benchmark_INCLUDE_DIRS ${benchmark_INCLUDE_DIR})
-endif()
+ENDIF(benchmark_FOUND)
 
 mark_as_advanced(benchmark_INCLUDE_DIR benchmark_LIBRARY)

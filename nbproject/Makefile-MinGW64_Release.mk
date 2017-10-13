@@ -63,7 +63,7 @@ CXXFLAGS=-O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native
 FFLAGS=
 
 # Assembler Flags
-ASFLAGS=-f elf64
+ASFLAGS=-f win64
 
 # Link Libraries and Options
 LDLIBSOPTIONS=

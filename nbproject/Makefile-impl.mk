@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=bitFlip
 
 # Active Configuration
-DEFAULTCONF=Arch_Release
+DEFAULTCONF=MinGW64_Release
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=Arch_Release Arch_Debug MinGW64_Debug MinGW64_Release 
+ALLCONFS=MinGW64_Release MinGW64_Debug Arch_Release Arch_Debug 
 
 
 # build

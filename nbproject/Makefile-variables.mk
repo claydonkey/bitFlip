@@ -6,6 +6,22 @@
 CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
+# MinGW64_Release configuration
+CND_PLATFORM_MinGW64_Release=x86_64-w64-mingw32-Windows
+CND_ARTIFACT_DIR_MinGW64_Release=dist/MinGW64_Release/x86_64-w64-mingw32-Windows
+CND_ARTIFACT_NAME_MinGW64_Release=libbitFlip.dll
+CND_ARTIFACT_PATH_MinGW64_Release=dist/MinGW64_Release/x86_64-w64-mingw32-Windows/libbitFlip.dll
+CND_PACKAGE_DIR_MinGW64_Release=dist/MinGW64_Release/x86_64-w64-mingw32-Windows/package
+CND_PACKAGE_NAME_MinGW64_Release=libbitFlip.dll.tar
+CND_PACKAGE_PATH_MinGW64_Release=dist/MinGW64_Release/x86_64-w64-mingw32-Windows/package/libbitFlip.dll.tar
+# MinGW64_Debug configuration
+CND_PLATFORM_MinGW64_Debug=x86_64-w64-mingw32-Windows
+CND_ARTIFACT_DIR_MinGW64_Debug=dist/MinGW64_Debug/x86_64-w64-mingw32-Windows
+CND_ARTIFACT_NAME_MinGW64_Debug=libbitFlip.dll
+CND_ARTIFACT_PATH_MinGW64_Debug=dist/MinGW64_Debug/x86_64-w64-mingw32-Windows/libbitFlip.dll
+CND_PACKAGE_DIR_MinGW64_Debug=dist/MinGW64_Debug/x86_64-w64-mingw32-Windows/package
+CND_PACKAGE_NAME_MinGW64_Debug=libbitFlip.dll.tar
+CND_PACKAGE_PATH_MinGW64_Debug=dist/MinGW64_Debug/x86_64-w64-mingw32-Windows/package/libbitFlip.dll.tar
 # Arch_Release configuration
 CND_PLATFORM_Arch_Release=GNU-Linux
 CND_ARTIFACT_DIR_Arch_Release=dist/Arch_Release/GNU-Linux
@@ -22,22 +38,6 @@ CND_ARTIFACT_PATH_Arch_Debug=dist/Arch_Debug/GNU-Linux/libbitFlip.so
 CND_PACKAGE_DIR_Arch_Debug=dist/Arch_Debug/GNU-Linux/package
 CND_PACKAGE_NAME_Arch_Debug=libbitFlip.so.tar
 CND_PACKAGE_PATH_Arch_Debug=dist/Arch_Debug/GNU-Linux/package/libbitFlip.so.tar
-# MinGW64_Debug configuration
-CND_PLATFORM_MinGW64_Debug=x86_64-w64-mingw32-Windows
-CND_ARTIFACT_DIR_MinGW64_Debug=dist/MinGW64_Debug/x86_64-w64-mingw32-Windows
-CND_ARTIFACT_NAME_MinGW64_Debug=libbitFlip.dll
-CND_ARTIFACT_PATH_MinGW64_Debug=dist/MinGW64_Debug/x86_64-w64-mingw32-Windows/libbitFlip.dll
-CND_PACKAGE_DIR_MinGW64_Debug=dist/MinGW64_Debug/x86_64-w64-mingw32-Windows/package
-CND_PACKAGE_NAME_MinGW64_Debug=libbitFlip.dll.tar
-CND_PACKAGE_PATH_MinGW64_Debug=dist/MinGW64_Debug/x86_64-w64-mingw32-Windows/package/libbitFlip.dll.tar
-# MinGW64_Release configuration
-CND_PLATFORM_MinGW64_Release=x86_64-w64-mingw32-Windows
-CND_ARTIFACT_DIR_MinGW64_Release=dist/MinGW64_Release/x86_64-w64-mingw32-Windows
-CND_ARTIFACT_NAME_MinGW64_Release=libbitFlip.dll
-CND_ARTIFACT_PATH_MinGW64_Release=dist/MinGW64_Release/x86_64-w64-mingw32-Windows/libbitFlip.dll
-CND_PACKAGE_DIR_MinGW64_Release=dist/MinGW64_Release/x86_64-w64-mingw32-Windows/package
-CND_PACKAGE_NAME_MinGW64_Release=libbitFlip.dll.tar
-CND_PACKAGE_PATH_MinGW64_Release=dist/MinGW64_Release/x86_64-w64-mingw32-Windows/package/libbitFlip.dll.tar
 #
 # include compiler specific variables
 #
