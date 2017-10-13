@@ -36,10 +36,11 @@
         <itemPath>tests/bitFlipTestSuite.cpp</itemPath>
       </logicalFolder>
       <itemPath>tests/CMakeLists.txt</itemPath>
-      <itemPath>findBenchmark.cmake</itemPath>
-      <itemPath>findShlwapi.cmake</itemPath>
+      <itemPath>cmake/modules/Findbenchmark.cmake</itemPath>
+      <itemPath>cmake/modules/Findshlwapi.cmake</itemPath>
     </logicalFolder>
     <itemPath>CMakeLists.txt</itemPath>
+    <itemPath>bitFlip-config.cmake.in</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
@@ -54,22 +55,24 @@
       </toolsSet>
       <compileType>
         <cTool>
-          <developmentMode>5</developmentMode>
+          <developmentMode>6</developmentMode>
+          <stripSymbols>true</stripSymbols>
           <incDir>
             <pElem>include</pElem>
           </incDir>
-          <commandLine>-O3 -pipe -fomit-frame-pointer -m64 -mavx -fopenmp -m64 -march=native</commandLine>
+          <commandLine>-pipe -fomit-frame-pointer -m64 -mavx -fopenmp -m64 -march=native</commandLine>
           <preprocessorList>
             <Elem>EXTERNALTABLE</Elem>
             <Elem>NDEBUG</Elem>
           </preprocessorList>
         </cTool>
         <ccTool>
-          <developmentMode>5</developmentMode>
+          <developmentMode>6</developmentMode>
+          <stripSymbols>true</stripSymbols>
           <incDir>
             <pElem>include</pElem>
           </incDir>
-          <commandLine>-O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native</commandLine>
+          <commandLine>-pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native</commandLine>
           <preprocessorList>
             <Elem>EXTERNALTABLE</Elem>
             <Elem>NDEBUG</Elem>
@@ -83,9 +86,13 @@
           <commandLine>-f win64</commandLine>
         </asmTool>
         <linkerTool>
-          <commandLine>-O3 -mavx -pipe -fomit-frame-pointer -fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
+          <stripSymbols>true</stripSymbols>
+          <linkerKpic>false</linkerKpic>
+          <commandLine>-Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
         </linkerTool>
       </compileType>
+      <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -117,12 +124,6 @@
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/bitflipbyte.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -157,6 +158,8 @@
           <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
         </linkerTool>
       </compileType>
+      <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -243,6 +246,8 @@
           <commandLine>-m64 -Ofast -fopenmp -march=native</commandLine>
         </linkerTool>
       </compileType>
+      <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
+      </item>
       <folder path="TestFiles">
         <cTool>
           <incDir>
@@ -332,6 +337,8 @@
           <commandLine>-fopenmp -m64 -march=native</commandLine>
         </linkerTool>
       </compileType>
+      <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
+      </item>
       <folder path="TestFiles">
         <cTool>
           <incDir>

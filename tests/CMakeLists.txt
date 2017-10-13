@@ -2,15 +2,17 @@ cmake_minimum_required(VERSION 3.9)
 project(TestApp)
 
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 include(ExternalProject)
-include(../findBenchmark.cmake)
-include(../findShlwapi.cmake)
 
 find_package(GTest)
 find_package(Threads REQUIRED)
 find_package(benchmark REQUIRED)
-find_package(shlwapi  NO_MODULE NO_DEFAULT_PATH)
+
+IF( MINGW)
+find_package(shlwapi REQUIRED )
+ENDIF( MINGW)
 
 IF(NOT GTest_FOUND)
 	message("-- Current build will download GTest")
@@ -40,7 +42,6 @@ message("-- Current build type is : ${CMAKE_BUILD_TYPE}")
 enable_testing()
 include(CTest)
 
-
 include_directories(${GTEST_INCLUDE_DIRS})
 
 set(GCC_BITFLIP_COMPILE_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native")
@@ -63,13 +64,14 @@ message("-- Google Benchmark Headers: ${benchmark_INCLUDE_DIRS}")
 message("-- Google Test Libraries: ${GTEST_BOTH_LIBRARIES}")
 message("-- Google Test Headers: ${GTEST_INCLUDE_DIRS}")
 
-add_library(libgtest IMPORTED STATIC GLOBAL)
-add_library(libbenchmark IMPORTED STATIC GLOBAL)
+#add_library(libgtest IMPORTED STATIC GLOBAL)
+#add_library(libbenchmark IMPORTED STATIC GLOBAL)
+#add_library(libbitFlip IMPORTED SHARED)
 
 add_executable(TestApp ${SRC_FILES} ${HEADER_FILES})
 IF(NOT GTest_FOUND)
 	add_dependencies(TestApp gtest)
 ENDIF(NOT GTest_FOUND)
-target_link_libraries(TestApp bitFlip ${GTEST_BOTH_LIBRARIES} ${benchmark_LIBRARIES} ${shlwapi_LIBRARIES})
+target_link_libraries(TestApp bitFlip  ${GTEST_BOTH_LIBRARIES} ${benchmark_LIBRARIES} ${shlwapi_LIBRARIES})
 
 add_test(TestApp TestApp)

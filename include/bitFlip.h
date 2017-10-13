@@ -36,12 +36,17 @@
     #define bitFlip_H
 
     #include <stdint.h>
-
+    #include "BitReverseTable16.h"
+    #include "BitReverseTable8.h"
 
     #ifdef __cplusplus
 
-extern "C" {
+        #include <type_traits>
+        #include <iostream>
+        #include <limits>
+        #include <cmath>
 
+extern "C" {
 
     extern void bitflipbyte(uint8_t[], uint32_t, uint8_t[]);
     extern uint16_t bitfliplong(uint64_t);
@@ -57,20 +62,14 @@ extern "C" {
 
 }
 
-        #include <type_traits>
-        #include <stdint.h>
-        #include <iostream>
-        #include <limits>
-        #include <cmath>
-        #include "BitReverseTable16.h"
-        #include "BitReverseTable8.h"
+
+
 
 __attribute__ ((aligned(32))) static uint8_t k1[32 * 3] = {
     0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
     0X00, 0X08, 0X04, 0X0C, 0X02, 0X0A, 0X06, 0X0E, 0X01, 0X09, 0X05, 0X0D, 0X03, 0X0B, 0X07, 0X0F, 0X00, 0X08, 0X04, 0X0C, 0X02, 0X0A, 0X06, 0X0E, 0X01, 0X09, 0X05, 0X0D, 0X03, 0X0B, 0X07, 0X0F,
     0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0, 0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0, 0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0, 0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0
 };
-
 
 void bitFlipNaiveLambda(uint64_t * bits, uint32_t size);
 typedef __attribute__ ((aligned(32))) uint8_t aligned_uint8_t;
