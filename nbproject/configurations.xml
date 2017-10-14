@@ -64,6 +64,7 @@
           <preprocessorList>
             <Elem>EXTERNALTABLE</Elem>
             <Elem>NDEBUG</Elem>
+            <Elem>NOASSMBLR</Elem>
           </preprocessorList>
         </cTool>
         <ccTool>
@@ -76,6 +77,7 @@
           <preprocessorList>
             <Elem>EXTERNALTABLE</Elem>
             <Elem>NDEBUG</Elem>
+            <Elem>NOASSMBLR</Elem>
           </preprocessorList>
         </ccTool>
         <fortranCompilerTool>
@@ -124,8 +126,6 @@
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/bitflipbyte.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>

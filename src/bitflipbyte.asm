@@ -11,7 +11,6 @@ bitflipbyte:
         vmovdqa     ymm3, [rdx]
         add         rdx, 20h
         vmovdqa     ymm4, [rdx]
-
 bitflipp_loop:
         vmovdqa     ymm0, [rdi]
         vpand       ymm1, ymm2, ymm0
@@ -24,4 +23,4 @@ bitflipp_loop:
         add     rdi, 20h
         dec     rsi
         jnz     bitflipp_loop
-        ret
+    ret

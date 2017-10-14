@@ -39,7 +39,7 @@
 
 #ifdef __cplusplus
 
-#ifdef __MINGW64__
+#ifdef NOASSMBLR
 
 void bitflipbyte(uint8_t[], uint32_t, uint8_t[]) {
 }
