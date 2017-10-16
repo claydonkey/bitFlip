@@ -4,15 +4,24 @@ project(bitFlip C CXX)
 include(CMakePackageConfigHelpers)
 set(CMAKE_CXX_STANDARD 11)
 
+
+
+
+set(TESTAPP_USE_ASM ${USE_ASM} CACHE BOOL 1)
+
 IF(MINGW)
 	set (ASM_FORMAT win64)
+	set(USE_ASM false)
 ELSE()
 	set (ASM_FORMAT elf64)
+	set (USE_ASM true)
 ENDIF(MINGW)
 
-set (USE_ASM true)
-set( TESTAPP_USE_ASM ${USE_ASM} CACHE BOOL 1)
 set_property(CACHE TESTAPP_USE_ASM PROPERTY STRINGS 1 0)
+
+IF(NOT TESTAPP_USE_ASM)
+	set(ASM_FLAG "-DNOASSMBLR")
+ENDIF(NOT TESTAPP_USE_ASM)
 
 set( TESTAPP_ASMFORMAT ${ASM_FORMAT} CACHE STRING "Assembly Format")
 set_property(CACHE TESTAPP_ASMFORMAT PROPERTY STRINGS elf64 win64)
@@ -32,20 +41,15 @@ set(SOURCE_FILES
 	src/bitFlip.cpp
 	)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}-O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native  ${ASM_FLAG}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native  ${ASM_FLAG}")
 
 
-IF(NOT TESTAPP_USE_ASM)
-
-	set(CMAKE_CXX_FLAGS "-DNOASSMBLR ${CMAKE_CXX_FLAGS} -Wl,--subsystem,windows,--output-def,libbitFlip.def,--out-implib,libbitFlip.dll.a")
-
-ELSE()
-
+IF(TESTAPP_USE_ASM)
 	set(BITFLIP_ASM_FILES
-		src/bitfliplong.asm
-		src/bitflipllloop.asm
-		src/bitflipbyte.asm
+		src/_bitfliplong.asm
+		src/_bitflipllloop.asm
+		src/_bitflipbyte.asm
 		)
 	find_program(NASM_EXE NAMES nasm REQUIRED)
 
@@ -58,7 +62,7 @@ ELSE()
 
 	ENDIF(CMAKE_ASM_NASM_COMPILER_LOADED)
 
-ENDIF(NOT TESTAPP_USE_ASM)
+ENDIF(TESTAPP_USE_ASM)
 
 message(STATUS "Google Test build type is : ${CMAKE_BUILD_TYPE}")
 message(STATUS "Assembler Format is ${TESTAPP_ASMFORMAT}")

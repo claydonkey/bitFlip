@@ -15,10 +15,10 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>src/_bitflipbyte.asm</itemPath>
+      <itemPath>src/_bitflipllloop.asm</itemPath>
+      <itemPath>src/_bitfliplong.asm</itemPath>
       <itemPath>src/bitFlip.cpp</itemPath>
-      <itemPath>src/bitflipbyte.asm</itemPath>
-      <itemPath>src/bitflipllloop.asm</itemPath>
-      <itemPath>src/bitfliplong.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -145,11 +145,13 @@
           <incDir>
             <pElem>include</pElem>
           </incDir>
+          <commandLine>-mavx2 -m64 -fopenmp -m64 -march=native</commandLine>
         </cTool>
         <ccTool>
           <incDir>
             <pElem>include</pElem>
           </incDir>
+          <commandLine>-mavx2 -m64 -fopenmp -m64 -march=native</commandLine>
         </ccTool>
         <asmTool>
           <developmentMode>0</developmentMode>
@@ -157,7 +159,7 @@
           <commandLine>-f win64</commandLine>
         </asmTool>
         <linkerTool>
-          <commandLine>-fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
+          <commandLine>-mavx2 -fopenmp -m64 -march=native -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a</commandLine>
         </linkerTool>
       </compileType>
       <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
@@ -167,11 +169,13 @@
           <incDir>
             <pElem>../include</pElem>
           </incDir>
+          <commandLine>-fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows</commandLine>
         </cTool>
         <ccTool>
           <incDir>
             <pElem>../include</pElem>
           </incDir>
+          <commandLine>-fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows</commandLine>
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
@@ -182,7 +186,7 @@
             <linkerLibLibItem>shlwapi</linkerLibLibItem>
             <linkerOptionItem>-Wl,--subsystem,windows</linkerOptionItem>
           </linkerLibItems>
-          <commandLine>-Wl,--subsystem,windows</commandLine>
+          <commandLine>-fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows -Wl,--subsystem,windows</commandLine>
         </linkerTool>
       </folder>
       <item path="include/BitReverseTable16.h" ex="false" tool="3" flavor2="0">
@@ -191,13 +195,13 @@
       </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/_bitflipbyte.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/_bitflipllloop.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/_bitfliplong.asm" ex="false" tool="4" flavor2="0">
+      </item>
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/bitflipbyte.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -296,13 +300,13 @@
       </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/_bitflipbyte.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/_bitflipllloop.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/_bitfliplong.asm" ex="false" tool="4" flavor2="0">
+      </item>
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/bitflipbyte.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -379,13 +383,13 @@
       </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/_bitflipbyte.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/_bitflipllloop.asm" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="src/_bitfliplong.asm" ex="false" tool="4" flavor2="0">
+      </item>
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/bitflipbyte.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="src/bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
-      <item path="src/bitfliplong.asm" ex="false" tool="4" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>

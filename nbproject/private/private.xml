@@ -2,17 +2,24 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <data xmlns="http://www.netbeans.org/ns/make-project-private/1">
         <activeConfTypeElem>2</activeConfTypeElem>
-        <activeConfIndexElem>0</activeConfIndexElem>
+        <activeConfIndexElem>1</activeConfIndexElem>
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/mir/Makefile</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/mir/bitFlip.h</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/mir/tests/mirtest.cpp</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/mir/bitflipbyte.asm</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/mir/mir.cpp</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/mir/mirtestsuite.cpp</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/tests/bitFlipTestSuite.cpp</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/src/bitflipllloop.asm</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/src/bitfliplong.asm</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/tests/CMakeLists.txt</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/CMakeLists.txt</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/src/bitflipbyte.asm</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/cmake/Modules/Findshlwapi.cmake</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/bitFlip-config.cmake.in</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/src/bitFlip.cpp</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/tests/bitFlipTest.cpp</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/cmake/Modules/Findbenchmark.cmake</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/include/bitFlip.h</file>
+            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/tests/bitFlipTest.h</file>
         </group>
     </open-files>
 </project-private>

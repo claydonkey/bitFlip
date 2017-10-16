@@ -41,10 +41,10 @@
 
 #ifdef NOASSMBLR
 
-void bitflipbyte(uint8_t[], uint32_t, uint8_t[]) {
+void _bitflipbyte(uint8_t[], uint32_t, uint8_t[]) {
 }
 
-void bitflipllloop(uint64_t * n, uint32_t size) {
+void _bitflipllloop(uint64_t * n, uint32_t size) {
 }
 #endif
 
@@ -73,10 +73,10 @@ extern "C" {
 
     __attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
 
-    uint8_t bitFlipZb(uint8_t bits) {
+    uint8_t bitFlipAVX(uint8_t bits) {
         uint8_t r = 0;
         c[0] = bits;
-        bitFlipZ<uint8_t> (c);
+        bitFlipAVXArray<uint8_t> (c);
         r = c[0];
         __attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
         return r;
@@ -103,7 +103,6 @@ extern "C" {
     }
 
     __m256 multiply_and_add(__m256 a, __m256 b, __m256 c) {
-
         return _mm256_fmadd_ps(a, b, c);
     }
 

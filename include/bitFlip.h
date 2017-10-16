@@ -48,12 +48,12 @@
 
 extern "C" {
 
-    extern void bitflipbyte(uint8_t[], uint32_t, uint8_t[]);
-    extern uint16_t bitfliplong(uint64_t);
-    extern void bitflipllloop(uint64_t * n, uint32_t size);
+    extern void _bitflipbyte(uint8_t[], uint32_t, uint8_t[]);
+    extern uint16_t _bitfliplong(uint64_t);
+    extern void _bitflipllloop(uint64_t * n, uint32_t size);
     uint16_t bitFlipNaives(uint16_t bits);
     uint64_t bitFlipNaivell(const uint64_t n);
-    uint8_t bitFlipZb(uint8_t bits);
+    uint8_t bitFlipAVX(uint8_t bits);
     void bitFlipNaiveArrayll(uint64_t * n, uint32_t size);
     void bitFlipTableArrayl(uint32_t * bits, uint32_t size);
     void bitFlipTableArrays(uint16_t * bits, uint32_t size);
@@ -71,12 +71,12 @@ __attribute__ ((aligned(32))) static uint8_t k1[32 * 3] = {
 void bitFlipNaiveLambda(uint64_t * bits, uint32_t size);
 typedef __attribute__ ((aligned(32))) uint8_t aligned_uint8_t;
 
-template <typename T, size_t N> void bitFlipZ(T(&a)[N]) {
+template <typename T, size_t N> void bitFlipAVXArray(T(&a)[N]) {
     if ((std::numeric_limits<T>::digits == 16))
-        bitflipbyte((uint8_t*) a, (uint8_t) ceil(N / 32.0), k1);
+        _bitflipbyte((uint8_t*) a, (uint8_t) ceil(N / 32.0), k1);
     else
         if ((std::numeric_limits<T>::digits == 8))
-        bitflipbyte((uint8_t*) a, (uint8_t) ceil(N / 32.0), k1);
+        _bitflipbyte((uint8_t*) a, (uint8_t) ceil(N / 32.0), k1);
 }
 
 template <typename T>

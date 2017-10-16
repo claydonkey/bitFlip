@@ -1,17 +1,17 @@
 bits 64
-global bitflipbyte
+global _bitflipbyte
 
 section .data
 
 section .text
 
-bitflipbyte:
+_bitflipbyte:
         vmovdqa     ymm2, [rdx]
         add         rdx, 20h
         vmovdqa     ymm3, [rdx]
         add         rdx, 20h
         vmovdqa     ymm4, [rdx]
-bitflipp_loop:
+_bitflipp_loop:
         vmovdqa     ymm0, [rdi]
         vpand       ymm1, ymm2, ymm0
         vpandn      ymm0, ymm2, ymm0
@@ -22,5 +22,5 @@ bitflipp_loop:
         vmovdqa     [rdi], ymm0
         add     rdi, 20h
         dec     rsi
-        jnz     bitflipp_loop
+        jnz     _bitflipp_loop
     ret
