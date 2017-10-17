@@ -1,5 +1,5 @@
 bits 64
-global bitfliplong
+global _bitfliplong
 
 section .data
 

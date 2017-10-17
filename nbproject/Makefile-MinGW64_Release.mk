@@ -18,7 +18,7 @@ CC=x86_64-w64-mingw32-gcc
 CCC=x86_64-w64-mingw32-g++
 CXX=x86_64-w64-mingw32-g++
 FC=x86_64-w64-mingw32-gfortran
-AS=nasm
+AS=as
 
 # Macros
 CND_PLATFORM=x86_64-w64-mingw32-Windows
