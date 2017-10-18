@@ -5,8 +5,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 include(ExternalProject)
-
-
 find_package(GTest)
 find_package(Threads REQUIRED)
 find_package(benchmark)
@@ -30,7 +28,8 @@ IF(NOT GTest_FOUND)
 
 	set(GTEST_INCLUDE_DIRS ${CMAKE_CURRENT_BINARY_DIR}/gtest/src/gtest/googletest/include)
 	set(GTEST_BOTH_LIBRARIES ${GTEST_LIB_DIR}/libgtest.a ${GTEST_LIB_DIR}/libgtest_main.a)
-
+ELSE()
+    #message(STATUS "Found: gtest")
 ENDIF(NOT GTest_FOUND)
 
 IF(NOT benchmark_FOUND)
@@ -77,16 +76,15 @@ set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_BITFLIP_LINK_FLAGS}
 file(GLOB INC_FILES ../include/*.h)
 file(GLOB SRC_FILES *.cpp)
 
-
 #set(HEADER_FILES ${INC_FILES} ${benchmark_INCLUDE_DIR}/benchmark/benchmark.h)
-message(STATUS "Google Benchmark Libraries: ${benchmark_LIBRARIES}")
-message(STATUS "Google Benchmark Headers: ${benchmark_INCLUDE_DIRS}")
-message(STATUS "Google Test Libraries: ${GTEST_BOTH_LIBRARIES}")
-message(STATUS "Google Test Headers: ${GTEST_INCLUDE_DIRS}")
+#message(STATUS "Google Benchmark Libraries: ${benchmark_LIBRARIES}")
+#message(STATUS "Google Benchmark Headers: ${benchmark_INCLUDE_DIRS}")
+#message(STATUS "Google Test Libraries: ${GTEST_BOTH_LIBRARIES}")
+#message(STATUS "Google Test Headers: ${GTEST_INCLUDE_DIRS}")
 
-add_library(libgtest IMPORTED STATIC GLOBAL)
-add_library(libbenchmark IMPORTED STATIC GLOBAL)
-add_library(libbitFlip IMPORTED SHARED)
+#add_library(libgtest IMPORTED STATIC GLOBAL)
+#add_library(libbenchmark IMPORTED STATIC GLOBAL)
+#add_library(libbitFlip IMPORTED SHARED)
 
 
 add_executable(TestApp ${SRC_FILES} ${HEADER_FILES})

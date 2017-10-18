@@ -4,9 +4,6 @@ project(bitFlip C CXX)
 include(CMakePackageConfigHelpers)
 set(CMAKE_CXX_STANDARD 11)
 
-
-
-
 set(TESTAPP_USE_ASM ${USE_ASM} CACHE BOOL 1)
 
 IF(MINGW)
@@ -21,6 +18,9 @@ set_property(CACHE TESTAPP_USE_ASM PROPERTY STRINGS 1 0)
 
 IF(NOT TESTAPP_USE_ASM)
 	set(ASM_FLAG "-DNOASSMBLR")
+        message("Current build will not build assembler files.")
+ELSE()
+        message(STATUS "Current build includes assembler files.")
 ENDIF(NOT TESTAPP_USE_ASM)
 
 set( TESTAPP_ASMFORMAT ${ASM_FORMAT} CACHE STRING "Assembly Format")
@@ -32,7 +32,6 @@ add_subdirectory(tests)
 IF(NOT CMAKE_BUILD_TYPE)
 	SET(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build : None Debug Release RelWithDebInfo MinSizeRel Coverage." FORCE)
 ENDIF(NOT CMAKE_BUILD_TYPE)
-
 
 set(SOURCE_FILES
 	include/bitFlip.h
@@ -47,13 +46,23 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx -m6
 
 IF(TESTAPP_USE_ASM)
 	set(BITFLIP_ASM_FILES
-		src/_bitfliplong.asm
-		src/_bitflipllloop.asm
 		src/_bitflipbyte.asm
 		)
+IF(UNIX)
+set(BITFLIP_ASM_FILES ${BITFLIP_ASM_FILES}
+		src/_bitflipllloop.asm
+)
+ENDIF(UNIX)
+
 	find_program(NASM_EXE NAMES nasm REQUIRED)
 
 	enable_language(ASM_NASM)
+
+IF(UNIX)
+    SET(CMAKE_ASM_NASM_FLAGS ${CMAKE_ASM_NASM_FLAGS}  "")
+ELSE(UNIX)
+    SET(CMAKE_ASM_NASM_FLAGS  ${CMAKE_ASM_NASM_FLAGS} "-dWIN64")
+ENDIF(UNIX)
 	#set(CMAKE_ASM_NASM_FLAGS "${CMAKE_ASM_NASM_FLAGS}  -f  ${TESTAPP_ASMFORMAT}")
 	IF(CMAKE_ASM_NASM_COMPILER_LOADED)
 

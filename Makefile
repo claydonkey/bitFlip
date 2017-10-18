@@ -43,7 +43,7 @@
 #
 # NOCDDL
 
- 
+
 # Environment
 MKDIR=mkdir
 CP=cp
@@ -54,7 +54,7 @@ CCADMIN=CCadmin
 build: .build-post
 
 .build-pre:
-# Add your pre 'build' code here...
+	@echo "HERE $(CND_BASEDIR)"
 
 .build-post: .build-impl
 # Add your post 'build' code here...
@@ -84,6 +84,7 @@ clobber: .clobber-post
 all: .all-post
 
 .all-pre:
+
 # Add your pre 'all' code here...
 
 .all-post: .all-impl

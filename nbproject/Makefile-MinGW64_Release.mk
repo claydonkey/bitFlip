@@ -18,7 +18,7 @@ CC=x86_64-w64-mingw32-gcc
 CCC=x86_64-w64-mingw32-g++
 CXX=x86_64-w64-mingw32-g++
 FC=x86_64-w64-mingw32-gfortran
-AS=as
+AS=nasm
 
 # Macros
 CND_PLATFORM=x86_64-w64-mingw32-Windows
@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/src/_bitflipbyte.o \
 	${OBJECTDIR}/src/bitFlip.o
 
 # Test Directory
@@ -60,7 +61,7 @@ CXXFLAGS=-pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native
 FFLAGS=
 
 # Assembler Flags
-ASFLAGS=-f win64
+ASFLAGS=-f win64 -dYESASSEMBLR -dWIN64
 
 # Link Libraries and Options
 LDLIBSOPTIONS=
@@ -73,10 +74,14 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT}: ${OBJECTF
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -Wl,--subsystem,windows,--output-def,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.def,--out-implib,${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.dll.a -shared -s
 
+${OBJECTDIR}/src/_bitflipbyte.o: src/_bitflipbyte.asm
+	${MKDIR} -p ${OBJECTDIR}/src
+	$(AS) $(ASFLAGS) -o ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm
+
 ${OBJECTDIR}/src/bitFlip.o: src/bitFlip.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DNOASSMBLR -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 
 # Subprojects
 .build-subprojects:
@@ -93,14 +98,26 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/tests/bitFlip
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DNOASSMBLR -Iinclude -I../include -O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -I../include -O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
 ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DNOASSMBLR -Iinclude -I../include -O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -I../include -O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native -Wl,--subsystem,windows -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
+
+${OBJECTDIR}/src/_bitflipbyte_nomain.o: ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm 
+	${MKDIR} -p ${OBJECTDIR}/src
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/_bitflipbyte.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    $(AS) $(ASFLAGS) -Dmain=__nomain -o ${OBJECTDIR}/src/_bitflipbyte_nomain.o src/_bitflipbyte.asm;\
+	else  \
+	    ${CP} ${OBJECTDIR}/src/_bitflipbyte.o ${OBJECTDIR}/src/_bitflipbyte_nomain.o;\
+	fi
 
 ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
@@ -110,7 +127,7 @@ ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DNOASSMBLR -Iinclude -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
+	    $(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/bitFlip.o ${OBJECTDIR}/src/bitFlip_nomain.o;\
 	fi

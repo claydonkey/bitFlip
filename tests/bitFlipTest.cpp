@@ -43,11 +43,14 @@
 using namespace std;
 
 int main(int argc, const char** argv) {
+#ifndef NOBENCHMARK
     ::benchmark::Initialize(&argc, (char**) argv);
     if (::benchmark::ReportUnrecognizedArguments(argc, (char**) argv)) return 1;
+#endif
     testing::InitGoogleTest(&argc, (char**) argv);
-
+#ifndef NOBENCHMARK
     ::benchmark::RunSpecifiedBenchmarks();
+#endif
     return RUN_ALL_TESTS();
 }
 

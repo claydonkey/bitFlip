@@ -45,21 +45,28 @@
         #include <iostream>
         #include <limits>
         #include <cmath>
-
+        #include <immintrin.h>
 extern "C" {
 
     extern void _bitflipbyte(uint8_t[], uint32_t, uint8_t[]);
-    extern uint16_t _bitfliplong(uint64_t);
     extern void _bitflipllloop(uint64_t * n, uint32_t size);
     uint16_t bitFlipNaives(uint16_t bits);
     uint64_t bitFlipNaivell(const uint64_t n);
     uint8_t bitFlipAVX(uint8_t bits);
+    uint64_t bitFlipMask(uint64_t bits);
+
+    int16_t popcnt16(uint16_t i);
+    int32_t popcnt32(uint32_t i);
+
     void bitFlipNaiveArrayll(uint64_t * n, uint32_t size);
     void bitFlipTableArrayl(uint32_t * bits, uint32_t size);
     void bitFlipTableArrays(uint16_t * bits, uint32_t size);
     void bitFlipMaskArrayb(uint8_t * bits, uint32_t size);
     void bitFlipNaiveArrayb(uint8_t * bits, uint32_t size);
-
+    typedef uint16_t v4si __attribute__ ((vector_size(16)));
+    typedef __attribute__ ((aligned(32))) uint8_t aligned_uint8_t;
+    v4si builtinSwap(v4si x);
+    v4si builtinSwap2();
 }
 
 __attribute__ ((aligned(32))) static uint8_t k1[32 * 3] = {
@@ -68,8 +75,9 @@ __attribute__ ((aligned(32))) static uint8_t k1[32 * 3] = {
     0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0, 0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0, 0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0, 0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0
 };
 
+int16_t bitCount16(uint16_t i);
+
 void bitFlipNaiveLambda(uint64_t * bits, uint32_t size);
-typedef __attribute__ ((aligned(32))) uint8_t aligned_uint8_t;
 
 template <typename T, size_t N> void bitFlipAVXArray(T(&a)[N]) {
     if ((std::numeric_limits<T>::digits == 16))
@@ -94,6 +102,11 @@ template <typename T, size_t N> void bitFlipTableArray(T(&bits)[N]) {
 }
 
 template <typename T, size_t N> void bitFlipMaskArray(T(&bits)[N]) {
+    //for 16bit ints only
+    for (uint32_t i = 0; i < N; i++) bits[i] = ((bits[i] * 0x202020202ULL & 0x010884422010ULL) % 1023);
+}
+
+template <typename T, size_t N> void bitCount16Array(T(&bits)[N]) {
     for (uint32_t i = 0; i < N; i++) bits[i] = ((bits[i] * 0x202020202ULL & 0x010884422010ULL) % 1023);
 }
 
@@ -113,9 +126,10 @@ typename std::enable_if<std::is_integral<T>::value, T >::type bitFlipNaive(T con
     for (; c < s; c++) r |= ((i >> c) & 1) << (s - c - 1);
     return r;
 }
+//The Wegner function
 
 template <typename T>
-typename std::enable_if<std::is_integral<T>::value, uint8_t>::type bitCount(T const &i) {
+typename std::enable_if<std::is_integral<T>::value, uint8_t>::type popcntWegner(T const &i) {
     T n = i;
     uint8_t c(0);
     while (n) {
@@ -123,6 +137,15 @@ typename std::enable_if<std::is_integral<T>::value, uint8_t>::type bitCount(T co
         c++;
     }
     return c;
+}
+
+template <typename T>
+typename std::enable_if<std::is_integral<T>::value, T >::type popcntIntrinsic(T const &i) {
+    if ((std::numeric_limits<T>::digits == 32))
+        return _mm_popcnt_u32(i);
+    if ((std::numeric_limits<T>::digits == 64))
+        return _mm_popcnt_u64(i);
+
 }
 
 template <typename T>
