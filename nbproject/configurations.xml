@@ -38,11 +38,27 @@
       <itemPath>cmake/modules/Findbenchmark.cmake</itemPath>
       <itemPath>cmake/modules/Findshlwapi.cmake</itemPath>
     </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f1" displayName="Gtest" projectFiles="true" kind="TEST">
+      </logicalFolder>
+      <itemPath>tests/CMakeLists.txt</itemPath>
+    </logicalFolder>
     <itemPath>CMakeLists.txt</itemPath>
     <itemPath>bitFlip-config.cmake.in</itemPath>
+    <itemPath>bitFlip.scala</itemPath>
     <itemPath>cmake</itemPath>
   </logicalFolder>
   <sourceRootList>
+    <Elem>.</Elem>
     <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
@@ -94,6 +110,8 @@
         </linkerTool>
       </compileType>
       <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="bitFlip.scala" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cmake" ex="false" tool="3" flavor2="0">
       </item>
@@ -173,6 +191,8 @@
         </linkerTool>
       </compileType>
       <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="bitFlip.scala" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cmake" ex="false" tool="3" flavor2="0">
       </item>
@@ -265,6 +285,8 @@
       </compileType>
       <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="bitFlip.scala" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cmake" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles">
@@ -315,8 +337,6 @@
       </item>
       <item path="src/_bitflipbyte.asm" ex="false" tool="4" flavor2="0">
       </item>
-      <item path="src/_bitflipllloop.asm" ex="false" tool="4" flavor2="0">
-      </item>
       <item path="src/bitFlip.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
@@ -355,6 +375,8 @@
         </linkerTool>
       </compileType>
       <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="bitFlip.scala" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cmake" ex="false" tool="3" flavor2="0">
       </item>

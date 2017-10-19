@@ -35,10 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/src/bitFlip.o \
-	${OBJECTDIR}/src/bitflipbyte.o \
-	${OBJECTDIR}/src/bitflipllloop.o \
-	${OBJECTDIR}/src/bitfliplong.o
+	${OBJECTDIR}/src/_bitflipbyte.o \
+	${OBJECTDIR}/src/bitFlip.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
@@ -76,22 +74,14 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT}: ${OBJECTF
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -m64 -Ofast -fopenmp -march=native -shared -fPIC
 
+${OBJECTDIR}/src/_bitflipbyte.o: src/_bitflipbyte.asm
+	${MKDIR} -p ${OBJECTDIR}/src
+	$(AS) $(ASFLAGS) -o ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm
+
 ${OBJECTDIR}/src/bitFlip.o: src/bitFlip.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -Iinclude -std=c++14 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
-
-${OBJECTDIR}/src/bitflipbyte.o: src/bitflipbyte.asm
-	${MKDIR} -p ${OBJECTDIR}/src
-	$(AS) $(ASFLAGS) -o ${OBJECTDIR}/src/bitflipbyte.o src/bitflipbyte.asm
-
-${OBJECTDIR}/src/bitflipllloop.o: src/bitflipllloop.asm
-	${MKDIR} -p ${OBJECTDIR}/src
-	$(AS) $(ASFLAGS) -o ${OBJECTDIR}/src/bitflipllloop.o src/bitflipllloop.asm
-
-${OBJECTDIR}/src/bitfliplong.o: src/bitfliplong.asm
-	${MKDIR} -p ${OBJECTDIR}/src
-	$(AS) $(ASFLAGS) -o ${OBJECTDIR}/src/bitfliplong.o src/bitfliplong.asm
 
 # Subprojects
 .build-subprojects:
@@ -117,6 +107,18 @@ ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp
 	$(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -DEXTERNALTABLE -Iinclude -I/usr/include -I. -std=c++14 -Ofast -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
 
+${OBJECTDIR}/src/_bitflipbyte_nomain.o: ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm 
+	${MKDIR} -p ${OBJECTDIR}/src
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/_bitflipbyte.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    $(AS) $(ASFLAGS) -Dmain=__nomain -o ${OBJECTDIR}/src/_bitflipbyte_nomain.o src/_bitflipbyte.asm;\
+	else  \
+	    ${CP} ${OBJECTDIR}/src/_bitflipbyte.o ${OBJECTDIR}/src/_bitflipbyte_nomain.o;\
+	fi
+
 ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/bitFlip.o`; \
@@ -128,42 +130,6 @@ ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 	    $(COMPILE.cc) -s -DEXTERNALTABLE -DNDEBUG -Iinclude -std=c++14 -fPIC  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/bitFlip.o ${OBJECTDIR}/src/bitFlip_nomain.o;\
-	fi
-
-${OBJECTDIR}/src/bitflipbyte_nomain.o: ${OBJECTDIR}/src/bitflipbyte.o src/bitflipbyte.asm 
-	${MKDIR} -p ${OBJECTDIR}/src
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/bitflipbyte.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    $(AS) $(ASFLAGS) -Dmain=__nomain -o ${OBJECTDIR}/src/bitflipbyte_nomain.o src/bitflipbyte.asm;\
-	else  \
-	    ${CP} ${OBJECTDIR}/src/bitflipbyte.o ${OBJECTDIR}/src/bitflipbyte_nomain.o;\
-	fi
-
-${OBJECTDIR}/src/bitflipllloop_nomain.o: ${OBJECTDIR}/src/bitflipllloop.o src/bitflipllloop.asm 
-	${MKDIR} -p ${OBJECTDIR}/src
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/bitflipllloop.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    $(AS) $(ASFLAGS) -Dmain=__nomain -o ${OBJECTDIR}/src/bitflipllloop_nomain.o src/bitflipllloop.asm;\
-	else  \
-	    ${CP} ${OBJECTDIR}/src/bitflipllloop.o ${OBJECTDIR}/src/bitflipllloop_nomain.o;\
-	fi
-
-${OBJECTDIR}/src/bitfliplong_nomain.o: ${OBJECTDIR}/src/bitfliplong.o src/bitfliplong.asm 
-	${MKDIR} -p ${OBJECTDIR}/src
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/bitfliplong.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    $(AS) $(ASFLAGS) -Dmain=__nomain -o ${OBJECTDIR}/src/bitfliplong_nomain.o src/bitfliplong.asm;\
-	else  \
-	    ${CP} ${OBJECTDIR}/src/bitfliplong.o ${OBJECTDIR}/src/bitfliplong_nomain.o;\
 	fi
 
 # Run Test Targets

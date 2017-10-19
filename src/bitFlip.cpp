@@ -44,7 +44,7 @@ void _bitflipbyte(uint8_t[], uint32_t, uint8_t[]) {
 }
 #endif
 
-#if defined (__MINGW32__)
+#if defined (__MINGW32__) || defined (__unix__)
 void _bitflipllloop(uint64_t * bits, uint32_t size) {
     for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipNaive<uint64_t>(bits[i]);
 }

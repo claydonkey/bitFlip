@@ -4,22 +4,23 @@ project(bitFlip C CXX)
 include(CMakePackageConfigHelpers)
 set(CMAKE_CXX_STANDARD 11)
 
-set(TESTAPP_USE_ASM ${USE_ASM} CACHE BOOL 1)
+
 
 IF(MINGW)
 	set (ASM_FORMAT win64)
 	set(USE_ASM false)
-ELSE()
+ELSE(MINGW)
 	set (ASM_FORMAT elf64)
 	set (USE_ASM true)
 ENDIF(MINGW)
 
+set(TESTAPP_USE_ASM ${USE_ASM} CACHE BOOL 1)
 set_property(CACHE TESTAPP_USE_ASM PROPERTY STRINGS 1 0)
 
 IF(NOT TESTAPP_USE_ASM)
 	set(ASM_FLAG "-DNOASSMBLR")
         message("Current build will not build assembler files.")
-ELSE()
+ELSE(NOT TESTAPP_USE_ASM)
         message(STATUS "Current build includes assembler files.")
 ENDIF(NOT TESTAPP_USE_ASM)
 
@@ -48,11 +49,11 @@ IF(TESTAPP_USE_ASM)
 	set(BITFLIP_ASM_FILES
 		src/_bitflipbyte.asm
 		)
-IF(UNIX)
-set(BITFLIP_ASM_FILES ${BITFLIP_ASM_FILES}
-		src/_bitflipllloop.asm
-)
-ENDIF(UNIX)
+#IF(UNIX)
+#set(BITFLIP_ASM_FILES ${BITFLIP_ASM_FILES}
+#		src/_bitflipllloop.asm
+#)
+#ENDIF(UNIX)
 
 	find_program(NASM_EXE NAMES nasm REQUIRED)
 
