@@ -3,6 +3,7 @@
 %else
 
 %ifdef WIN64
+%idefine rip rel $
 %define ARG3 r8
 %define ARG2  rdx
 %define ARG1  rcx
@@ -17,6 +18,7 @@ global _bitflipllloop
 section .data
 
 section .text
+%ifndef WIN64
     _bitflipllloop:
         mov    eax,esi
         test   rax,rax
@@ -47,5 +49,38 @@ section .text
     _bitflipllloopreturn:
         repz ret
         nop    DWORD  [rax+0x0]
+%else
+_bitflipllloop:
+           push   rbx
+           test   edx,edx
+           je    _bitflipllloopreturn
+           lea    eax, [rdx - 1h]
+           lea    r8, [rip]
+           lea    r10, [rcx + rax * 4 + 4h]
+           mov    edx, DWORD  [rcx]
+           add    rcx, 4h
+           movzx  eax, dl
+           mov    r9d, edx
+           movzx  ebx, dh
+           shr    edx, 10h
+           movzx  eax, BYTE  [r8 + rax * 1]
+           shr    r9d, 18h
+           movzx  edx, dl
+           movzx  r9d, BYTE  [r8 + r9 * 1]
+           movzx  edx, BYTE  [r8 + rdx * 1]
+           shl    eax,18h
+           or     eax, r9d
+           movzx  r9d, BYTE  [r8 + rbx * 1]
+           shl    edx, 8h
+           shl    r9d, 10h
+           or     eax, r9d
+           or     eax, edx
+           mov    DWORD  [rcx - 4h], eax
+           cmp    r10, rcx
+           jne    _bitflipllloop + 14h
+    _bitflipllloopreturn:
+           pop    rbx
+           ret
+           nop    DWORD  [rax]
 %endif
-;_bitflipllloop
+%endif

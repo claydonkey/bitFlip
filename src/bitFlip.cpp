@@ -34,79 +34,59 @@
 #include <math.h>
 #include <omp.h>
 #include "bitFlip.h"
-#include "BitReverseTable16.h"
+#include "bitFlipTables.h"
 #include <immintrin.h>
 
 #ifdef __cplusplus
 
 #ifdef NOASSMBLR
+
 void _bitflipbyte(uint8_t[], uint32_t, uint8_t[]) {
 }
 #endif
 
 #if defined (__MINGW32__) || defined (__unix__)
+
 void _bitflipllloop(uint64_t * bits, uint32_t size) {
-    for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipNaive<uint64_t>(bits[i]);
+    for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipNaive<uint64_t>(bits[i]);
 }
 #endif
 
-void bitFlipNaiveLambda(uint64_t * bits, uint32_t size) {
 
-    uint64_t r = 0;
-    uint8_t c = 0;
-    const uint8_t s = sizeof (uint64_t)*8;
-    for (uint32_t i = 0; i < size; i++) bits[i] = [&] (uint64_t i) -> uint64_t {
-            r = 0;
-            for (c = 0; c < s; c++) r |= ((i >> c) & 1) << (s - c - 1);
-            return r;
-        }(bits[i]);
-
-}
 //8 bit only
 
-uint64_t bitFlipMask(uint8_t bits) {
+uint8_t flipMask(uint8_t bits) {
     return (bits * 0x202020202ULL & 0x010884422010ULL) % 1023;
 }
 
 extern "C" {
 
-    uint16_t bitFlipNaives(const uint16_t bits) {
-        return bitFlipNaive<uint16_t> (bits);
+    uint16_t flipNaives(const uint16_t bits) {
+        return bits::flipNaive<uint16_t> (bits);
     }
 
-    uint64_t bitFlipNaivell(const uint64_t bits) {
-        return bitFlipNaive<uint64_t> (bits);
+    uint64_t flipNaivell(const uint64_t bits) {
+        return bits::flipNaive<uint64_t> (bits);
     }
 
-    __attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
-
-    uint8_t bitFlipAVX(uint8_t bits) {
-        uint8_t r = 0;
-        c[0] = bits;
-        bitFlipAVXArray<uint8_t> (c);
-        r = c[0];
-        //__attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
-        return r;
+    void flipNaiveArrayll(uint64_t * bits, uint32_t size) {
+        for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipNaive<uint64_t>(bits[i]);
     }
 
-    void bitFlipNaiveArrayll(uint64_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipNaive<uint64_t>(bits[i]);
+    void flipTableArrayl(uint32_t * bits, uint32_t size) {
+        for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipTable<uint32_t>(bits[i]);
     }
 
-    void bitFlipTableArrayl(uint32_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipTable<uint32_t>(bits[i]);
+    void flipTableArrays(uint16_t * bits, uint32_t size) {
+        for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipTable<uint16_t>(bits[i]);
     }
 
-    void bitFlipTableArrays(uint16_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipTable<uint16_t>(bits[i]);
+    void flipMaskArrayb(uint8_t * bits, uint32_t size) {
+        for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipMask<uint8_t> (bits[i]);
     }
 
-    void bitFlipMaskArrayb(uint8_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipMask<uint8_t> (bits[i]);
-    }
-
-    void bitFlipNaiveArrayb(uint8_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bitFlipNaive<uint8_t> (bits[i]);
+    void flipNaiveArrayb(uint8_t * bits, uint32_t size) {
+        for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipNaive<uint8_t> (bits[i]);
     }
 
     __m256 multiply_and_add(__m256 a, __m256 b, __m256 c) {
@@ -114,7 +94,6 @@ extern "C" {
     }
 
     v4si builtinSwap(v4si x) {
-
         static const v4si m = {7u, 6u, 5u, 4u, 3u, 2u, 1u, 0u};
         return __builtin_shuffle(x, m);
     }

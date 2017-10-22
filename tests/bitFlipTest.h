@@ -11,9 +11,11 @@
  * Created on 09 October 2017, 19:46
  */
 
-#ifndef BITFLIPTEST_H
-    #define BITFLIPTEST_H
+#ifndef flipTEST_H
+    #define flipTEST_H
+    #ifndef NOBENCHMARK
     #include <benchmark/benchmark.h>
+    #endif
     #include <stdint.h>
 
 
@@ -25,5 +27,5 @@ extern "C" {
     #ifdef __cplusplus
 }
     #endif
-#endif /* BITFLIPTEST_H */
+#endif /* flipTEST_H */
 

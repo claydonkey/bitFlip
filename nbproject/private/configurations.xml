@@ -2,7 +2,7 @@
 <configurationDescriptor version="100">
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="MinGW64_Release" type="2">
+    <conf name="MinGW64_Release" type="3">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <platform>3</platform>
@@ -35,7 +35,7 @@
         </environment>
       </runprofile>
     </conf>
-    <conf name="MinGW64_Debug" type="2">
+    <conf name="MinGW64_Debug" type="3">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <platform>3</platform>

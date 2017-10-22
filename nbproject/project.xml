@@ -16,11 +16,11 @@
             <confList>
                 <confElem>
                     <name>MinGW64_Release</name>
-                    <type>2</type>
+                    <type>3</type>
                 </confElem>
                 <confElem>
                     <name>MinGW64_Debug</name>
-                    <type>2</type>
+                    <type>3</type>
                 </confElem>
                 <confElem>
                     <name>Arch_Release</name>

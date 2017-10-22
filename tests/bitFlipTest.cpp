@@ -26,16 +26,18 @@
  */
 
 /*
- * File:   bitFliptest.cpp
+ * File:   fliptest.cpp
  * Author: Anthony Campbell
  *
  * Created on 06 October 2017, 16:07
  */
-
+#include <gtest/gtest.h>
+#ifndef NOBENCHMARK
+#include <benchmark/benchmark.h>
+#endif
 #include <stdlib.h>
 #include <iostream>
-#include <gtest/gtest.h>
-#include <benchmark/benchmark.h>
+
 #include "bitFlipTest.h"
 #include "bitFlip.h"
 
