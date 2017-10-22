@@ -4,18 +4,39 @@ project(bitFlip C CXX)
 include(CMakePackageConfigHelpers)
 set(CMAKE_CXX_STANDARD 11)
 
-
-
 IF(MINGW)
 	set (ASM_FORMAT win64)
-	set(USE_ASM false)
+	set(USE_ASM true)
 ELSE(MINGW)
 	set (ASM_FORMAT elf64)
 	set (USE_ASM true)
 ENDIF(MINGW)
 
+set (USE_TABLEHEADERS  true)
+set (USE_BENCHMARK  true)
+
 set(TESTAPP_USE_ASM ${USE_ASM} CACHE BOOL 1)
 set_property(CACHE TESTAPP_USE_ASM PROPERTY STRINGS 1 0)
+
+set(TESTAPP_USE_TABLEHEADERS ${USE_TABLEHEADERS} CACHE BOOL 1)
+set_property(CACHE TESTAPP_USE_TABLEHEADERS PROPERTY STRINGS 1 0)
+
+set(TESTAPP_USE_BENCHMARK ${USE_BENCHMARK} CACHE BOOL 1)
+set_property(CACHE TESTAPP_USE_BENCHMARK PROPERTY STRINGS 1 0)
+
+IF( TESTAPP_USE_TABLEHEADERS)
+	set(TABLE_FLAG "-DTABLEHEADERS")
+        message(STATUS "Current build will use table headers.")
+ELSE(TESTAPP_USE_TABLEHEADERS)
+        message(STATUS "Current build will not use table headers.")
+ENDIF(TESTAPP_USE_TABLEHEADERS)
+
+IF( TESTAPP_USE_BENCHMARK)
+	        message(STATUS "Current build will run benchmarks.")
+ELSE(TESTAPP_USE_BENCHMARK)
+set(BENCHMARK_FLAG "-DNOBENCHMARK")
+        message(STATUS "Current build will not run benchmarks.")
+ENDIF(TESTAPP_USE_BENCHMARK)
 
 IF(NOT TESTAPP_USE_ASM)
 	set(ASM_FLAG "-DNOASSMBLR")
@@ -34,15 +55,21 @@ IF(NOT CMAKE_BUILD_TYPE)
 	SET(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build : None Debug Release RelWithDebInfo MinSizeRel Coverage." FORCE)
 ENDIF(NOT CMAKE_BUILD_TYPE)
 
-set(SOURCE_FILES
+set(HEADER_FILES
 	include/bitFlip.h
-	include/BitReverseTable16.h
-	include/BitReverseTable8.h
+	include/bitFlipTables.h
+      include/bitFlipAVX.h
+      include/typeDeduce.h
+ )
+
+set(SOURCE_FILES
+	${HEADER_FILES}
 	src/bitFlip.cpp
+      src/bitFlipAVX.cpp
 	)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native  ${ASM_FLAG}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native  ${ASM_FLAG}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -O3 -pipe -fomit-frame-pointer -mavx2 -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx2 -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
 
 
 IF(TESTAPP_USE_ASM)
@@ -78,7 +105,7 @@ message(STATUS "Google Test build type is : ${CMAKE_BUILD_TYPE}")
 message(STATUS "Assembler Format is ${TESTAPP_ASMFORMAT}")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(HEADER_FILES ./include/BitReverseTable8.h ./include/BitReverseTable16.h  ./include/bitFlip.h )
+
 
 #CREATE LIBRARY
 add_library(bitFlip SHARED ${BITFLIP_ASM_FILES} ${SOURCE_FILES} ${HEADER_FILES})

@@ -28,8 +28,7 @@ IF(NOT GTest_FOUND)
 
 	set(GTEST_INCLUDE_DIRS ${CMAKE_CURRENT_BINARY_DIR}/gtest/src/gtest/googletest/include)
 	set(GTEST_BOTH_LIBRARIES ${GTEST_LIB_DIR}/libgtest.a ${GTEST_LIB_DIR}/libgtest_main.a)
-ELSE()
-    #message(STATUS "Found: gtest")
+
 ENDIF(NOT GTest_FOUND)
 
 IF(NOT benchmark_FOUND)
@@ -62,8 +61,9 @@ message(STATUS "Library Build type is : ${CMAKE_BUILD_TYPE}")
 include_directories(${benchmark_INCLUDE_DIR})
 include_directories(${GTEST_INCLUDE_DIRS})
 
-set(GCC_BITFLIP_COMPILE_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native ${ASM_FLAG}")
-set(GCC_BITFLIP_LINK_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native ${ASM_FLAG}")
+
+set(GCC_BITFLIP_COMPILE_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx2 -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG} ${ASM_FLAG}")
+set(GCC_BITFLIP_LINK_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx2 -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG} ${ASM_FLAG}")
 
 IF(MINGW)
 	set(GCC_BITFLIP_COMPILE_FLAGS "${GCC_BITFLIP_COMPILE_FLAGS}  -Wl,--subsystem,windows")
@@ -73,32 +73,33 @@ ENDIF(MINGW)
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_BITFLIP_COMPILE_FLAGS}" )
 set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_BITFLIP_LINK_FLAGS}" )
 
-file(GLOB INC_FILES ../include/*.h)
-file(GLOB SRC_FILES *.cpp)
-
-#set(HEADER_FILES ${INC_FILES} ${benchmark_INCLUDE_DIR}/benchmark/benchmark.h)
-#message(STATUS "Google Benchmark Libraries: ${benchmark_LIBRARIES}")
-#message(STATUS "Google Benchmark Headers: ${benchmark_INCLUDE_DIRS}")
-#message(STATUS "Google Test Libraries: ${GTEST_BOTH_LIBRARIES}")
-#message(STATUS "Google Test Headers: ${GTEST_INCLUDE_DIRS}")
-
-#add_library(libgtest IMPORTED STATIC GLOBAL)
-#add_library(libbenchmark IMPORTED STATIC GLOBAL)
-#add_library(libbitFlip IMPORTED SHARED)
+file(GLOB INC_FILES ../include/*.h bitFlipTest.h)
+file(GLOB SRC_FILES  bitFlipTest.cpp bitFlipTestSuite.cpp)
 
 
-add_executable(TestApp ${SRC_FILES} ${HEADER_FILES})
+add_executable(TestApp ${SRC_FILES} ${INC_FILES} )
+
+file(GLOB SRC_FILES  Console.cpp)
+add_executable(TestConsole ${SRC_FILES}  ${INC_FILES}  )
+
+
 IF(MINGW)
 add_custom_command(TARGET TestApp POST_BUILD
 COMMAND ${CMAKE_COMMAND} -E copy_if_different     "../libbitFlip.dll"        $<TARGET_FILE_DIR:TestApp>
 )
 ENDIF(MINGW)
+
 IF(NOT benchmark_FOUND)
 	add_dependencies(TestApp benchmark)
 ENDIF(NOT  benchmark_FOUND)
+
 IF(NOT GTest_FOUND)
 	add_dependencies(TestApp gtest)
 ENDIF(NOT GTest_FOUND)
+
+target_include_directories(TestConsole PUBLIC ../include)
+target_include_directories(TestApp PUBLIC ../include)
+target_link_libraries(TestConsole bitFlip )
 target_link_libraries(TestApp bitFlip  ${GTEST_BOTH_LIBRARIES} ${benchmark_LIBRARIES} ${shlwapi_LIBRARIES})
 
 add_test(TestApp TestApp)
