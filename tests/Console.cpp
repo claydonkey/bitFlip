@@ -115,7 +115,8 @@ int main(int argc, const char** argv) {
     for (INTTYPE i = 0; i < (arraystep * BUFFERCNT); i = i + arraystep) {
 
         bits::AVX<INTTYPE> p(&input[i]);
-        cout << std::setfill('0') << std::setw(2) << i << "\n" <<    p;
+        p.mBinaryDisplay = false;
+        cout << std::setfill('0') << std::setw(2) << i << "\n" << p;
 
     }
     return 0;

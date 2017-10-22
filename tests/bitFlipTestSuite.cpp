@@ -148,12 +148,12 @@ void BM_Flip_IntrinsicAVX64i256(benchmark::State& state) {
 
 void BM_Flip_AVX(benchmark::State& state) {
     while (state.KeepRunning())
-        flipAVXArray(foo8);
+        bits::flipAVXArray(foo8);
 }
 
 void BM_Flip_AVX16(benchmark::State& state) {
     while (state.KeepRunning())
-        flipAVXArray(fooZ16);
+        bits::flipAVXArray(fooZ16);
 }
 
 void BM_Flip_NaiveArrayll(benchmark::State& state) {
@@ -234,7 +234,7 @@ TEST_F(TestSuite, testFlipIntrinsicAVX) {
     cout << "rhex64 " << std::bitset<64>(rhex64) << endl;
     cout << "flipout " << std::bitset<64>(res[0]) << endl;
 }
-
+/*
 TEST_F(TestSuite, testFlipIntrinsic256AVX) {
 
 
@@ -249,10 +249,11 @@ TEST_F(TestSuite, testFlipIntrinsic256AVX) {
     cout << "rhex64 " << std::bitset<64>(rhex64) << endl;
     cout << "flipout " << res[0] << endl;
 }
+ */
 #endif
 
 TEST_F(TestSuite, testFlipAVX) {
-    EXPECT_EQ(rhex8, flipAVX(hex8));
+    EXPECT_EQ(rhex8, flipAVX8(hex8));
 }
 
 /*
@@ -262,7 +263,7 @@ TEST_F(TestSuite, testFlipAVX16) {
     uint32_t rrange = rand() % ARRAY_SIZE;
 
     flipNaiveArray(foo16b);
-    flipAVXArray(fooZ16);
+    bits::flipAVXArray(fooZ16);
     EXPECT_EQ(foo16b[rrange], fooZ16[rrange]);
 }
  */
@@ -275,14 +276,14 @@ TEST_F(TestSuite, testAVXArray1) {
     uint8_t foo8c[ARRAY_SIZE];
     std::copy(std::begin(foo8), std::end(foo8), std::begin(foo8c));
 
-    flipAVXArray(fooZ);
+    bits::flipAVXArray(fooZ);
 
     //std::cout << "decltype(i) is " << type_name<decltype(flipNaive<uint8_t>)>() << '\n';
     //std::cout << "decltype(i) is " << type_name<decltype(foo8c)>() << '\n';
 
-    flipArray(foo8, flipNaive<uint8_t>);
-    flipArray(foo8b, flipTable<uint8_t>);
-    flipArray(foo8c, flipMask<uint8_t>);
+    bits::flipArray(foo8, flipNaive<uint8_t>);
+    bits::flipArray(foo8b, flipTable<uint8_t>);
+    bits::flipArray(foo8c, flipMask<uint8_t>);
 
     uint32_t rrange = rand() % ARRAY_SIZE;
     EXPECT_EQ(foo8b[rrange], foo8[rrange]);
@@ -296,9 +297,9 @@ TEST_F(TestSuite, testAVXArray2) {
     uint8_t foo8b[ARRAY_SIZE];
     std::copy(std::begin(foo8), std::end(foo8), std::begin(foo8b));
 
-    flipAVXArray(fooZ);
-    flipNaiveArray(foo8);
-    flipTableArray(foo8b);
+    bits::flipAVXArray(fooZ);
+    bits::flipNaiveArray(foo8);
+    bits::flipTableArray(foo8b);
 
     uint32_t rrange = rand() % ARRAY_SIZE;
     EXPECT_EQ(foo8b[rrange], foo8[rrange]);

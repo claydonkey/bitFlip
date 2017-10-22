@@ -74,8 +74,16 @@ extern "C" {
             std::cout << std::bitset<64>(val[i]) << std::endl;
         std::cout << std::endl;
     }
+    __attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
 
-
+    uint8_t flipAVX8(uint8_t bits) {
+        uint8_t r = 0;
+        c[0] = bits;
+        bits::flipAVXArray<uint8_t> (c);
+        r = c[0];
+        //__attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
+        return r;
+    }
 
 #ifdef __cplusplus
 }
@@ -89,29 +97,20 @@ namespace bits {
 
         __m256i arg = *ag;
 
-        acc1 = _mm256_and_si256(bits::ia1, arg1); // acc1 = arg1 and ia1
-        arg1 = _mm256_andnot_si256(bits::ia1, arg1); //arg1 = arg1 and not ia1
+        acc1 = _mm256_and_si256(ia1, arg1); // acc1 = arg1 and ia1
+        arg1 = _mm256_andnot_si256(ia1, arg1); //arg1 = arg1 and not ia1
         arg1 = _mm256_srli_epi32(arg1, 4); //shift arg1 4h
-        arg1 = _mm256_shuffle_epi8(bits::ia2, arg1); //arg1 = shuf arg1 and ia2
-        acc1 = _mm256_shuffle_epi8(bits::ia3, acc1); // acc1 =  shuf acc1 and ia3
+        arg1 = _mm256_shuffle_epi8(ia2, arg1); //arg1 = shuf arg1 and ia2
+        acc1 = _mm256_shuffle_epi8(ia3, acc1); // acc1 =  shuf acc1 and ia3
 
-      //  return _mm256_or_si256(acc1, arg1);
+        //  return _mm256_or_si256(acc1, arg1);
 
 
-              return _mm256_shuffle_epi8(_mm256_or_si256(acc1, arg1), io64);
+        return _mm256_shuffle_epi8(_mm256_or_si256(acc1, arg1), io64);
 
     }
-}
-__attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
 
-uint8_t flipAVX(uint8_t bits) {
-    uint8_t r = 0;
-    c[0] = bits;
-    bits::flipAVXArray<uint8_t> (c);
-    r = c[0];
-    //__attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
-    return r;
-}
-namespace bits {
-   
+
+
+
 }

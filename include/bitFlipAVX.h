@@ -61,7 +61,7 @@ extern "C" {
     void print256_32(__m256i var);
     void print256_64(__m256i var);
 
-    uint8_t flipAVX(uint8_t bits);
+    uint8_t flipAVX8(uint8_t bits);
 
     #ifdef __cplusplus
 }
@@ -184,12 +184,15 @@ namespace bits {
     template<class S>
     class AVX {
     public:
+
         explicit AVX(__m256i v) : var(v) {
             m256i = true;
         };
+
         explicit AVX(S * a) : arr(a) {
             m256i = false;
         };
+        int mBinaryDisplay = 0;
     private:
         __m256i var;
         S * arr;
@@ -206,14 +209,21 @@ namespace bits {
             p.var = bits::flipAVX(p.arr);
 
         T * val = (T *) & p.var;
-        for (int i = 0; i < 4; i++)
-            s << std::bitset<64>(val[i]) << std::endl;
 
-        return s;
-    };
+        for (int i = 0; i < 4; i++) {
+            switch (p.mBinaryDisplay) {
+                case 1:
+                    s << std::bitset<TS>(val[i]) << std::endl;
+                    break;
+                case 0:
+                    s << val[i] << std::endl;
+                    break;
+            }
+            return s;
+        }
 
+    }
 }
-
     #endif
 #endif /* BITREVERSEAVX_H */
 
