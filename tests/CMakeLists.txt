@@ -62,8 +62,8 @@ include_directories(${benchmark_INCLUDE_DIR})
 include_directories(${GTEST_INCLUDE_DIRS})
 
 
-set(GCC_BITFLIP_COMPILE_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx2 -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG} ${ASM_FLAG}")
-set(GCC_BITFLIP_LINK_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx2 -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG} ${ASM_FLAG}")
+set(GCC_BITFLIP_COMPILE_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG} ${ASM_FLAG}")
+set(GCC_BITFLIP_LINK_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG} ${ASM_FLAG}")
 
 IF(MINGW)
 	set(GCC_BITFLIP_COMPILE_FLAGS "${GCC_BITFLIP_COMPILE_FLAGS}  -Wl,--subsystem,windows")
@@ -76,11 +76,10 @@ set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_BITFLIP_LINK_FLAGS}
 file(GLOB INC_FILES ../include/*.h bitFlipTest.h)
 file(GLOB SRC_FILES  bitFlipTest.cpp bitFlipTestSuite.cpp)
 
-
 add_executable(TestApp ${SRC_FILES} ${INC_FILES} )
 
-file(GLOB SRC_FILES  Console.cpp)
-add_executable(TestConsole ${SRC_FILES}  ${INC_FILES}  )
+file(GLOB SRC_FILES  flipBits.cpp)
+add_executable(flipBits ${SRC_FILES}  ${INC_FILES}  )
 
 
 IF(MINGW)
@@ -97,9 +96,9 @@ IF(NOT GTest_FOUND)
 	add_dependencies(TestApp gtest)
 ENDIF(NOT GTest_FOUND)
 
-target_include_directories(TestConsole PUBLIC ../include)
+target_include_directories(flipBits PUBLIC ../include)
 target_include_directories(TestApp PUBLIC ../include)
-target_link_libraries(TestConsole bitFlip )
+target_link_libraries(flipBits bitFlip)
 target_link_libraries(TestApp bitFlip  ${GTEST_BOTH_LIBRARIES} ${benchmark_LIBRARIES} ${shlwapi_LIBRARIES})
 
 add_test(TestApp TestApp)

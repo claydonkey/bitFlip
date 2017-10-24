@@ -49,16 +49,16 @@ TESTFILES= \
 
 # Test Object Files
 TESTOBJECTFILES= \
-	${TESTDIR}/tests/Console.o \
 	${TESTDIR}/tests/bitFlipTest.o \
-	${TESTDIR}/tests/bitFlipTestSuite.o
+	${TESTDIR}/tests/bitFlipTestSuite.o \
+	${TESTDIR}/tests/flipBits.o
 
 # C Compiler Flags
-CFLAGS=-mavx2 -m64 -fopenmp -m64 -march=native
+CFLAGS=-O3 -g -mavx2 -m64 -fopenmp -m64 -march=native
 
 # CC Compiler Flags
-CCFLAGS=-O3 -mavx2 -m64 -fopenmp -m64 -march=native
-CXXFLAGS=-O3 -mavx2 -m64 -fopenmp -m64 -march=native
+CCFLAGS=-O3 -g -mavx2 -m64 -fopenmp -m64 -march=native
+CXXFLAGS=-O3 -g -mavx2 -m64 -fopenmp -m64 -march=native
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -100,7 +100,7 @@ ${OBJECTDIR}/src/bitFlipAVX.o: src/bitFlipAVX.cpp
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
-${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/Console.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/flipBits.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS}   
 
@@ -109,10 +109,10 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip: ${TESTDIR}/tests/bitFlipTest
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip $^ ${LDLIBSOPTIONS}   -lbenchmark -lgtest -lshlwapi -lpthread -lm 
 
 
-${TESTDIR}/tests/Console.o: tests/Console.cpp 
+${TESTDIR}/tests/flipBits.o: tests/flipBits.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -DYESASSMBLR -Iinclude -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/Console.o tests/Console.cpp
+	$(COMPILE.cc) -DYESASSMBLR -Iinclude -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/flipBits.o tests/flipBits.cpp
 
 
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 

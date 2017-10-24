@@ -68,8 +68,8 @@ set(SOURCE_FILES
       src/bitFlipAVX.cpp
 	)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -O3 -pipe -fomit-frame-pointer -mavx2 -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx2 -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
 
 
 IF(TESTAPP_USE_ASM)

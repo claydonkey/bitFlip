@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0mD:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\src\main\scala\bitFlip.scala:41:34: ';' expected but ')' found.[0m
+[0m[[0m[31merror[0m] [0m[0m  ( arg(0).toInt) to arg(1).toInt).map((n) => (println(BigInt(n.toBinaryString.reverse, 2))))[0m
+[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

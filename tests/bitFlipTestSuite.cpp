@@ -48,6 +48,7 @@ uint16_t foo16T[0xFFFF + 1];
 
 __attribute__ ((aligned(32))) uint8_t fooZ[ARRAY_SIZE + 32] = {};
 __attribute__ ((aligned(32))) uint16_t fooZ16[(ARRAY_SIZE / 2) + 16] = {};
+__attribute__ ((aligned(32))) uint32_t fooZ32[(ARRAY_SIZE / 4) + 8] = {};
 __attribute__ ((aligned(32))) uint64_t fooZ64[(ARRAY_SIZE / 8) + 4] = {};
 
 __m256i flipin[ARRAY_SIZE / 32];
@@ -58,62 +59,62 @@ __m256i flipout[ARRAY_SIZE / 32];
 class TestSuite : public testing::Test {
 public:
 
-    void SetUp() {
+  void SetUp() {
 
-        srand(time(NULL));
+	srand(time(NULL));
 
-        for (uint32_t i = 0; i < ARRAY_SIZE; i++) {
-            foo8[i] = fooZ[i] = foo3[i] = foo2[i] = rand();
+	for (uint32_t i = 0; i < ARRAY_SIZE; i++) {
+	  foo8[i] = fooZ[i] = foo3[i] = foo2[i] = rand();
 
-            if (!(i % 8) & !i == 0) {
-                flipin[i / 4 / 8][(i / 8) % 4] = fooZ64[(i / 8)] = foo64[(i / 8)] = ((uint64_t) foo8[i - 8]) + ((uint64_t) foo8[i - 7] << 8) + \
+	  if (!(i % 8) & !i == 0) {
+		flipin[i / 4 / 8][(i / 8) % 4] = fooZ64[(i / 8)] = foo64[(i / 8)] = ((uint64_t) foo8[i - 8]) + ((uint64_t) foo8[i - 7] << 8) + \
                 ((uint64_t) foo8[i - 6] << 16) + ((uint64_t) foo8[i - 5] << 24) + ((uint64_t) foo8[i - 4] << 32) + \
                 ((uint64_t) foo8[i - 3] << 40) +((uint64_t) foo8[i - 2] << 48) + ((uint64_t) foo8[i - 1] << 56);
-            }
+	  }
 
-            if (!(i % 4) & !i == 0) {
-                foo32[(i / 4)] = ((uint64_t) foo8[i - 4]) + ((uint64_t) foo8[i - 3] << 8) + ((uint64_t) foo8[i - 2] << 16) + ((uint64_t) foo8[i - 1] << 24);
-            }
+	  if (!(i % 4) & !i == 0) {
+		fooZ32[(i / 4)] = foo32[(i / 4)] = ((uint64_t) foo8[i - 4]) + ((uint64_t) foo8[i - 3] << 8) + ((uint64_t) foo8[i - 2] << 16) + ((uint64_t) foo8[i - 1] << 24);
+	  }
 
-            if (!(i % 2) & !i == 0) {
-                fooZ16[(i / 2)] = foo16[(i / 2)] = ((uint64_t) foo8[i - 2]) + ((uint64_t) foo8[i - 1] << 8);
-            }
-        }
+	  if (!(i % 2) & !i == 0) {
+		fooZ16[(i / 2)] = foo16[(i / 2)] = ((uint64_t) foo8[i - 2]) + ((uint64_t) foo8[i - 1] << 8);
+	  }
+	}
 
-        fooZ[0] = foo8[0] = foo3[0] = foo2[0] = hex8 = rand();
-        rhex8 = flipNaive<uint8_t>(hex8);
-        fooZ16[0] = foo16[0] = hex16 = rand();
-        rhex16 = flipNaive<uint16_t>(hex16);
-        foo32[0] = hex32 = ((uint32_t) rand() << 16) | rand();
-        rhex32 = flipNaive<uint32_t>(hex32);
-        flipin[0][0] = fooZ64[0] = foo64[0] = hex64 = ((uint64_t) rand() << 32) | rand();
-        rhex64 = flipNaive<uint64_t>(hex64);
+	fooZ[0] = foo8[0] = foo3[0] = foo2[0] = hex8 = rand();
+	rhex8 = flipNaive<uint8_t>(hex8);
+	fooZ16[0] = foo16[0] = hex16 = rand();
+	rhex16 = flipNaive<uint16_t>(hex16);
+	fooZ32[0] = foo32[0] = hex32 = ((uint32_t) rand() << 16) | rand();
+	rhex32 = flipNaive<uint32_t>(hex32);
+	flipin[0][0] = fooZ64[0] = foo64[0] = hex64 = ((uint64_t) rand() << 32) | rand();
+	rhex64 = flipNaive<uint64_t>(hex64);
 #ifndef TABLEHEADERS
-        //Generate 8bit table
-        for (uint16_t i = 0; i <= 0xFF; i++) {
-            bitFlipTable8[i] = flipMask<uint8_t>((uint8_t&) i);
+	//Generate 8bit table
+	for (uint16_t i = 0; i <= 0xFF; i++) {
+	  bitFlipTable8[i] = flipMask<uint8_t>((uint8_t&) i);
 #ifdef PRINTTABLE8
-            cout << "0x" << std::hex << bitFlipTable8[i] << ", ";
-            if (!(i % 16)) cout << "\\" << endl;
+	  cout << "0x" << std::hex << bitFlipTable8[i] << ", ";
+	  if (!(i % 16)) cout << "\\" << endl;
 #endif
-        }
-        //Generate 1bit table
-        for (uint64_t i = 0x00; i <= 0xFFFF; i++) {
-            uint8_t i2 = static_cast<uint8_t> (i >> 8);
-            uint16_t BRH = static_cast<uint16_t> ((flipMask<uint8_t>(static_cast<uint8_t&> (i2)) & 0xff));
-            uint16_t BRL = static_cast<uint16_t> (flipMask<uint8_t>((uint8_t&) i)) << 8;
-            uint16_t BR = BRL + BRH;
-            bitFlipTable16[i] = BR;
+	}
+	//Generate 1bit table
+	for (uint64_t i = 0x00; i <= 0xFFFF; i++) {
+	  uint8_t i2 = static_cast<uint8_t> (i >> 8);
+	  uint16_t BRH = static_cast<uint16_t> ((flipMask<uint8_t>(static_cast<uint8_t&> (i2)) & 0xff));
+	  uint16_t BRL = static_cast<uint16_t> (flipMask<uint8_t>((uint8_t&) i)) << 8;
+	  uint16_t BR = BRL + BRH;
+	  bitFlipTable16[i] = BR;
 
-            //   cout << bitset<16>(bitFlipTable16[i]) << endl;
+	  //   cout << bitset<16>(bitFlipTable16[i]) << endl;
 #ifdef PRINTTABLE16
-            cout << "0x" << std::hex << bitFlipTable16[i] << ", ";
-            if (!(i % 16)) cout << "\\" << endl;
+	  cout << "0x" << std::hex << bitFlipTable16[i] << ", ";
+	  if (!(i % 16)) cout << "\\" << endl;
 #endif
 
-        }
+	}
 #endif
-    }
+  }
 };
 /*---------------------------------------------------------------------------------------      flip Counters      ---------------------------------------------------------------------------------------*/
 
@@ -123,84 +124,104 @@ public:
 #define INTTYPE uint64_t
 
 void BM_Flip_IntrinsicAVX64(benchmark::State& state) {
-    constexpr uint16_t intsize = sizeof (INTTYPE);
-    constexpr uint16_t arrsize = 32 * intsize;
-
-    while (state.KeepRunning()) {
-
-        for (INTTYPE i = 0; i < (arrsize * BUFFERCNT); i = i + arrsize) {
-            flipout[i / arrsize] = bits::flipAVX(&fooZ64[i]);
-        }
-    }
+  constexpr uint16_t intsize = sizeof (INTTYPE);
+  constexpr uint16_t arrsize = 32 / intsize;
+  while (state.KeepRunning()) {
+	for (INTTYPE i = 0; i < ARRAY_SIZE / 8; i += arrsize)
+	  flipout[i / arrsize] = bits::flipAVX(&fooZ64[i]);
+  }
 }
 
 void BM_Flip_IntrinsicAVX64i256(benchmark::State& state) {
-    constexpr uint16_t intsize = sizeof (INTTYPE);
-    constexpr uint16_t arrsize = 32 * intsize;
+  constexpr uint16_t intsize = sizeof (INTTYPE);
+  while (state.KeepRunning()) {
+	for (INTTYPE i = 0; i < ARRAY_SIZE / 32; i += 1) {
+	  flipout[i] = bits::flipAVX256(&flipin[i]);
+	}
+  }
+}
 
-    while (state.KeepRunning()) {
+void BM_Flip_IntrinsicAVXClass(benchmark::State& state) {
+  auto avx = bits::AVX<uint64_t>(fooZ64);
+  while (state.KeepRunning()) {
+	auto arr = avx.flip();
+  }
+}
 
-        for (INTTYPE i = 0; i < (arrsize * BUFFERCNT); i = i + arrsize) {
-            flipout[i / arrsize] = bits::flipAVX256(&flipin[i]);
-        }
-    }
+void BM_Flip_IntrinsicAVXVectorClass(benchmark::State& state) {
+
+  std::vector<uint64_t> vec64(std::begin(fooZ64), std::end(fooZ64));
+  std::vector<uint32_t> vec32(std::begin(fooZ32), std::end(fooZ32));
+  auto avx = bits::AVX<uint32_t>(vec32);
+  while (state.KeepRunning()) {
+	auto arr = avx.flipVec();
+  }
 }
 
 void BM_Flip_AVX(benchmark::State& state) {
-    while (state.KeepRunning())
-        bits::flipAVXArray(foo8);
+  while (state.KeepRunning())
+	bits::flipAVXArray(foo8);
 }
 
 void BM_Flip_AVX16(benchmark::State& state) {
-    while (state.KeepRunning())
-        bits::flipAVXArray(fooZ16);
+  while (state.KeepRunning())
+	bits::flipAVXArray(fooZ16);
 }
 
 void BM_Flip_NaiveArrayll(benchmark::State& state) {
-    while (state.KeepRunning())
-        flipNaiveArrayll(foo64, ARRAY_SIZE / 8);
+  while (state.KeepRunning())
+	flipNaiveArrayll(foo64, ARRAY_SIZE / 8);
 }
 
 void BM_Flip_NaiveLambda(benchmark::State& state) {
-    while (state.KeepRunning())
-        flipNaiveLambdaArray(foo64);
+  while (state.KeepRunning())
+	flipNaiveLambdaArray(foo64);
 }
 
 void BM_Flip_lloop(benchmark::State& state) {
-    while (state.KeepRunning())
-        _bitflipllloop(foo64, ARRAY_SIZE / 8);
+  while (state.KeepRunning())
+	_bitflipllloop(foo64, ARRAY_SIZE / 8);
 }
 
 void BM_Flip_Mask(benchmark::State& state) {
-    while (state.KeepRunning())
-        flipMaskArray<uint8_t>(foo2);
+  while (state.KeepRunning())
+	flipMaskArray<uint8_t>(foo2);
 }
 
 void BM_Flip_Naive(benchmark::State& state) {
-    while (state.KeepRunning())
-        flipNaiveArray<uint8_t>(foo3);
+  while (state.KeepRunning())
+	flipNaiveArray<uint8_t>(foo3);
+}
+
+void BM_Flip_Naive64(benchmark::State& state) {
+  while (state.KeepRunning())
+	flipNaiveArray<uint64_t>(foo64);
 }
 
 void BM_Flip_Table16(benchmark::State& state) {
-    while (state.KeepRunning())
-        flipTableArray<uint16_t>(foo16);
+  while (state.KeepRunning())
+	flipTableArray<uint16_t>(foo16);
 }
 
 void BM_Flip_Table32(benchmark::State& state) {
-    while (state.KeepRunning())
-        flipTableArray<uint32_t>(foo32);
+  while (state.KeepRunning())
+	flipTableArray<uint32_t>(foo32);
 }
 
 
 #ifndef NOASSMBLR
 BENCHMARK(BM_Flip_AVX);
 BENCHMARK(BM_Flip_AVX16);
+#endif
 BENCHMARK(BM_Flip_IntrinsicAVX64);
 BENCHMARK(BM_Flip_IntrinsicAVX64i256);
-#endif
+BENCHMARK(BM_Flip_IntrinsicAVXClass);
+BENCHMARK(BM_Flip_IntrinsicAVXVectorClass);
+
 BENCHMARK(BM_Flip_Table16);
 BENCHMARK(BM_Flip_Table32);
 BENCHMARK(BM_Flip_Naive);
+BENCHMARK(BM_Flip_Naive64);
 BENCHMARK(BM_Flip_Mask);
 #ifndef NOASSMBLR
 BENCHMARK(BM_Flip_lloop);
@@ -212,132 +233,155 @@ BENCHMARK(BM_Flip_NaiveLambda);
 /*--------------------------------------------------------------------------------------- Begin TESTS ---------------------------------------------------------------------------------------*/
 
 TEST_F(TestSuite, testFlipNaiveArray) {
-    flipNaiveArray(foo8);
-    EXPECT_EQ(rhex8, foo8[0]);
+  flipNaiveArray(foo8);
+  EXPECT_EQ(rhex8, foo8[0]);
 }
 
 TEST_F(TestSuite, testFlipNaive) {
-    EXPECT_EQ(rhex8, flipNaive(hex8));
+  EXPECT_EQ(rhex8, flipNaive(hex8));
 }
 
 #ifndef NOAVX
 
 TEST_F(TestSuite, testFlipIntrinsicAVX) {
-
-
-    cout << "flipin " << std::bitset<64>(hex64) << endl;
-
-    __m256i res = bits::flipAVX(&hex64);
-
-    EXPECT_EQ(bits::get256(&rhex64)[0], res[0]);
-
-    cout << "rhex64 " << std::bitset<64>(rhex64) << endl;
-    cout << "flipout " << std::bitset<64>(res[0]) << endl;
+  __m256i res = bits::flipAVX(&hex64);
+  EXPECT_EQ(bits::get256(&rhex64)[0], res[0]);
 }
+
 /*
 TEST_F(TestSuite, testFlipIntrinsic256AVX) {
 
 
-    __m256i res = bits::flipAVX256(&flipin[0]);
+	__m256i res = bits::flipAVX256(&flipin[0]);
 
-    cout << "hex64 " << std::bitset<64>(hex64) << endl;
-    cout << "flipin " << std::bitset<64>(flipin[0][0]) << endl;
+	cout << "hex64 " << std::bitset<64>(hex64) << endl;
+	cout << "flipin " << std::bitset<64>(flipin[0][0]) << endl;
 
-    EXPECT_EQ(hex64, flipin[0][0]);
-    EXPECT_EQ(rhex64, res[0]);
+	EXPECT_EQ(hex64, flipin[0][0]);
+	EXPECT_EQ(rhex64, res[0]);
 
-    cout << "rhex64 " << std::bitset<64>(rhex64) << endl;
-    cout << "flipout " << res[0] << endl;
+	cout << "rhex64 " << std::bitset<64>(rhex64) << endl;
+	cout << "flipout " << res[0] << endl;
 }
  */
+typedef uint64_t returnArray[128];
+#define INTTYPE uint64_t
+
+TEST_F(TestSuite, testFlipIntrinsicArrayAVX) {
+
+  constexpr uint16_t intsize = sizeof (INTTYPE);
+  constexpr uint16_t arrsize = 32 / intsize;
+  uint32_t val = rand() % ARRAY_SIZE / 8;
+
+  for (INTTYPE i = 0; i < (ARRAY_SIZE / 8); i += arrsize)
+	flipout[i / arrsize] = bits::flipAVX(&fooZ64[i]);
+
+  EXPECT_EQ(flipout[val / 4][val % 4], bits::flipNaiveLambda(fooZ64[val]));
+}
+
+TEST_F(TestSuite, testFlipIntrinsicClassAVX) {
+  uint32_t val = rand() % ARRAY_SIZE / 8;
+  uint64_t * ffoo = bits::AVX<uint64_t> (fooZ64).flip();
+  EXPECT_EQ(bits::flipNaiveLambda(fooZ64[val]), ffoo[val]);
+}
+
+TEST_F(TestSuite, testFlipIntrinsicVectorClassAVX) {
+  uint32_t val = rand() % ARRAY_SIZE / 8;
+  std::vector<uint64_t> vec(std::begin(fooZ64), std::end(fooZ64));
+  auto vfoo = *bits::AVX<uint64_t> (vec).flipVec();
+  EXPECT_EQ(bits::flipNaiveLambda(fooZ64[val]), vfoo[val]);
+}
+
+
+
 #endif
 
 TEST_F(TestSuite, testFlipAVX) {
-    EXPECT_EQ(rhex8, flipAVX8(hex8));
+  EXPECT_EQ(rhex8, flipAVX8(hex8));
 }
 
 /*
 TEST_F(TestSuite, testFlipAVX16) {
-    uint16_t foo16b[ARRAY_SIZE / 2];
-    std::copy(std::begin(foo16), std::end(foo16), std::begin(foo16b));
-    uint32_t rrange = rand() % ARRAY_SIZE;
+	uint16_t foo16b[ARRAY_SIZE / 2];
+	std::copy(std::begin(foo16), std::end(foo16), std::begin(foo16b));
+	uint32_t rrange = rand() % ARRAY_SIZE;
 
-    flipNaiveArray(foo16b);
-    bits::flipAVXArray(fooZ16);
-    EXPECT_EQ(foo16b[rrange], fooZ16[rrange]);
+	flipNaiveArray(foo16b);
+	bits::flipAVXArray(fooZ16);
+	EXPECT_EQ(foo16b[rrange], fooZ16[rrange]);
 }
  */
 
 #ifndef NOASSMBLR
 
 TEST_F(TestSuite, testAVXArray1) {
-    uint8_t foo8b[ARRAY_SIZE];
-    std::copy(std::begin(foo8), std::end(foo8), std::begin(foo8b));
-    uint8_t foo8c[ARRAY_SIZE];
-    std::copy(std::begin(foo8), std::end(foo8), std::begin(foo8c));
+  uint8_t foo8b[ARRAY_SIZE];
+  std::copy(std::begin(foo8), std::end(foo8), std::begin(foo8b));
+  uint8_t foo8c[ARRAY_SIZE];
+  std::copy(std::begin(foo8), std::end(foo8), std::begin(foo8c));
 
-    bits::flipAVXArray(fooZ);
+  bits::flipAVXArray(fooZ);
 
-    //std::cout << "decltype(i) is " << type_name<decltype(flipNaive<uint8_t>)>() << '\n';
-    //std::cout << "decltype(i) is " << type_name<decltype(foo8c)>() << '\n';
+  //std::cout << "decltype(i) is " << type_name<decltype(flipNaive<uint8_t>)>() << '\n';
+  //std::cout << "decltype(i) is " << type_name<decltype(foo8c)>() << '\n';
 
-    bits::flipArray(foo8, flipNaive<uint8_t>);
-    bits::flipArray(foo8b, flipTable<uint8_t>);
-    bits::flipArray(foo8c, flipMask<uint8_t>);
+  bits::flipArray(foo8, flipNaive<uint8_t>);
+  bits::flipArray(foo8b, flipTable<uint8_t>);
+  bits::flipArray(foo8c, flipMask<uint8_t>);
 
-    uint32_t rrange = rand() % ARRAY_SIZE;
-    EXPECT_EQ(foo8b[rrange], foo8[rrange]);
-    EXPECT_EQ(foo8b[rrange], foo8c[rrange]);
-    EXPECT_EQ(fooZ[rrange], foo8[rrange]);
-    EXPECT_EQ(fooZ[rrange], foo8b[rrange]);
-    EXPECT_EQ(fooZ[rrange], foo8c[rrange]);
+  uint32_t rrange = rand() % ARRAY_SIZE;
+  EXPECT_EQ(foo8b[rrange], foo8[rrange]);
+  EXPECT_EQ(foo8b[rrange], foo8c[rrange]);
+  EXPECT_EQ(fooZ[rrange], foo8[rrange]);
+  EXPECT_EQ(fooZ[rrange], foo8b[rrange]);
+  EXPECT_EQ(fooZ[rrange], foo8c[rrange]);
 }
 
 TEST_F(TestSuite, testAVXArray2) {
-    uint8_t foo8b[ARRAY_SIZE];
-    std::copy(std::begin(foo8), std::end(foo8), std::begin(foo8b));
+  uint8_t foo8b[ARRAY_SIZE];
+  std::copy(std::begin(foo8), std::end(foo8), std::begin(foo8b));
 
-    bits::flipAVXArray(fooZ);
-    bits::flipNaiveArray(foo8);
-    bits::flipTableArray(foo8b);
+  bits::flipAVXArray(fooZ);
+  bits::flipNaiveArray(foo8);
+  bits::flipTableArray(foo8b);
 
-    uint32_t rrange = rand() % ARRAY_SIZE;
-    EXPECT_EQ(foo8b[rrange], foo8[rrange]);
-    EXPECT_EQ(fooZ[rrange], foo8[rrange]);
+  uint32_t rrange = rand() % ARRAY_SIZE;
+  EXPECT_EQ(foo8b[rrange], foo8[rrange]);
+  EXPECT_EQ(fooZ[rrange], foo8[rrange]);
 }
 #endif
 
 TEST_F(TestSuite, testLambda64) {
-    hex64 = flipNaiveLambda(hex64);
-    EXPECT_EQ(rhex64, hex64);
+  hex64 = flipNaiveLambda(hex64);
+  EXPECT_EQ(rhex64, hex64);
 }
 
 TEST_F(TestSuite, testSwap) {
-    v4si x = {0x1234, 0x5678, 0xAAAA, 0xBBBB, 0xCCCC, 0xDDDD, 0xEEEE, 0xFFFF};
-    v4si a = {0xFFFF, 0xEEEE, 0xDDDD, 0xCCCC, 0xBBBB, 0xAAAA, 0x5678, 0x1234};
-    v4si y = builtinSwap(x);
-    // EXPECT_EQ(a, y);
+  v4si x = {0x1234, 0x5678, 0xAAAA, 0xBBBB, 0xCCCC, 0xDDDD, 0xEEEE, 0xFFFF};
+  v4si a = {0xFFFF, 0xEEEE, 0xDDDD, 0xCCCC, 0xBBBB, 0xAAAA, 0x5678, 0x1234};
+  v4si y = builtinSwap(x);
+  // EXPECT_EQ(a, y);
 }
 
 TEST_F(TestSuite, test_bitflipllloop) {
-    _bitflipllloop(foo64, ARRAY_SIZE / 8);
-    EXPECT_EQ(rhex64, foo64[0]);
+  _bitflipllloop(foo64, ARRAY_SIZE / 8);
+  EXPECT_EQ(rhex64, foo64[0]);
 }
 
 TEST_F(TestSuite, testTableLookup16) {
-    EXPECT_EQ(rhex16, flipTable<uint16_t>(hex16));
+  EXPECT_EQ(rhex16, flipTable<uint16_t>(hex16));
 }
 
 TEST_F(TestSuite, testTableLookup32) {
-    EXPECT_EQ(rhex32, flipTable<uint32_t>(hex32));
+  EXPECT_EQ(rhex32, flipTable<uint32_t>(hex32));
 }
 
 TEST_F(TestSuite, testTableLookup8) {
-    EXPECT_EQ(rhex8, flipTable<uint8_t>(hex8));
+  EXPECT_EQ(rhex8, flipTable<uint8_t>(hex8));
 }
 
 TEST_F(TestSuite, testFlipMask) {
-    EXPECT_EQ(rhex8, flipMask(hex8));
+  EXPECT_EQ(rhex8, flipMask(hex8));
 }
 
 /*--------------------------------------------------------------------------------------- Bit Population Counters ---------------------------------------------------------------------------------------*/
@@ -346,15 +390,15 @@ TEST_F(TestSuite, testFlipMask) {
 #ifndef NOBENCHMARK
 
 void BM_popcntWegner(benchmark::State& state) {
-    while (state.KeepRunning())
-        for (i = 0; i < ARRAY_SIZE / 4; i++)
-            popcntWegner<uint32_t>(foo32[i]);
+  while (state.KeepRunning())
+	for (i = 0; i < ARRAY_SIZE / 4; i++)
+	  popcntWegner<uint32_t>(foo32[i]);
 }
 
 void BM_popcntIntrinsic(benchmark::State& state) {
-    while (state.KeepRunning())
-        for (i = 0; i < ARRAY_SIZE / 4; i++)
-            popcntIntrinsic<uint32_t>(foo32[i]);
+  while (state.KeepRunning())
+	for (i = 0; i < ARRAY_SIZE / 4; i++)
+	  popcntIntrinsic<uint32_t>(foo32[i]);
 }
 
 BENCHMARK(BM_popcntWegner);
@@ -364,35 +408,35 @@ BENCHMARK(BM_popcntIntrinsic);
 /*---------------------------------------------------------------------------------------            Begin TESTS            ---------------------------------------------------------------------------------------*/
 
 TEST_F(TestSuite, testpopcntWegner) {
-    uint32_t bits = 0b01101101010010100110110101001010;
-    EXPECT_EQ(16, popcntWegner<uint32_t>(bits));
-    bits = 0b0110110101001010;
-    EXPECT_EQ(8, popcntWegner<uint16_t>(bits));
+  uint32_t bits = 0b01101101010010100110110101001010;
+  EXPECT_EQ(16, popcntWegner<uint32_t>(bits));
+  bits = 0b0110110101001010;
+  EXPECT_EQ(8, popcntWegner<uint16_t>(bits));
 }
 
 TEST_F(TestSuite, testpopcnt16) {
-    EXPECT_EQ(popcntWegner<uint16_t>(hex16), popcnt16(hex16));
+  EXPECT_EQ(popcntWegner<uint16_t>(hex16), popcnt16(hex16));
 }
 
 TEST_F(TestSuite, testpopcnt32) {
-    EXPECT_EQ(popcntWegner<uint32_t>(hex32), popcnt32(hex32));
+  EXPECT_EQ(popcntWegner<uint32_t>(hex32), popcnt32(hex32));
 }
 
 TEST_F(TestSuite, testpopcntIntrinsics) {
-    EXPECT_EQ(popcntWegner<uint32_t>(hex32), popcntIntrinsic<uint32_t>(hex32));
-    EXPECT_EQ(popcntWegner<uint64_t>(hex64), popcntIntrinsic<uint64_t>(hex64));
+  EXPECT_EQ(popcntWegner<uint32_t>(hex32), popcntIntrinsic<uint32_t>(hex32));
+  EXPECT_EQ(popcntWegner<uint64_t>(hex64), popcntIntrinsic<uint64_t>(hex64));
 }
 
 TEST_F(TestSuite, testpopcntIntrinsic) {
-    uint16_t a, b;
-    for (i = 0; i < ARRAY_SIZE / 4; i++) {
-        a = popcntIntrinsic<uint32_t>(foo32[i]);
-        b = popcntWegner<uint32_t>(foo32[i]);
+  uint16_t a, b;
+  for (i = 0; i < ARRAY_SIZE / 4; i++) {
+	a = popcntIntrinsic<uint32_t>(foo32[i]);
+	b = popcntWegner<uint32_t>(foo32[i]);
 
-        // std::cout << "(" << std::setfill('0') << std::setw(5) << i << ") COUNT: " << std::setfill('0') << std::setw(2) << a << " - " << std::bitset<32>(b) << std::endl;
-        EXPECT_EQ(a, b);
-    }
-    SUCCEED();
+	// std::cout << "(" << std::setfill('0') << std::setw(5) << i << ") COUNT: " << std::setfill('0') << std::setw(2) << a << " - " << std::bitset<32>(b) << std::endl;
+	EXPECT_EQ(a, b);
+  }
+  SUCCEED();
 }
 
 

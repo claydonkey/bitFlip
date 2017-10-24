@@ -26,8 +26,6 @@
  */
 
 #include <iostream>
-#include "bitFlip.h"
-#include "bitFlipAVX.h"
 #include <stdlib.h>
 #include <stdint.h>
 #include <cerrno>
@@ -36,89 +34,70 @@
 #include <math.h>
 #include <omp.h>
 #include  <iomanip>
+#include <vector>
+
+#include "bitFlip.h"
+#include "bitFlipAVX.h"
+#include "Console.h"
+#include "cxxopts.hpp"
 
 using namespace std;
 
-int main(int argc, const char** argv) {
+cxxopts::Options options("BitFlip", "Produce a range of Bit Reversed Integers");
 
+int main(int argc, char** argv) {
 
-    bool upper = false;
+    std::vector < std::uint64_t>vRange{0, 0};
+    uint8_t mBytes = 1;
+    uint8_t mDisplay = 1;
     char * pEnd;
     const char *nptr;
-    uint32_t range[2] = {0, 0};
+    uint16_t base = 10;
+    uint64_t range[2] = {0, 0};
     /*
         argc = 3;
         const char * argvN[3] = {"1", "10", "128"};
         const char ** pargvN = argvN;
         argv = pargvN;
      */
-    if (argc > 2) {
 
-        errno = 0;
-        pEnd = NULL;
-        nptr = argv[2];
+    options.add_options()
+            ("d,Display", "Display Type", cxxopts::value<uint8_t>(mDisplay))
+            ("b,Base", "Integer Length", cxxopts::value<uint8_t>(mBytes))
+            ("help", "Print help")
+            ("positional", "The range to display ([From] To)", cxxopts::value<std::vector < std::uint64_t >> (vRange));
 
-        range[1] = strtol(nptr, &pEnd, 10);
+    options.parse(argc, argv);
 
-        if (nptr == pEnd) {
-            printf(" number: %lu  invalid  (no digits found, 0 returned)\n", range[1]);
-            return 0;
-        }
-        upper = true;
-
+    if (options.count("help")) {
+        std::cout << options.help({"", "Group"}) << std::endl;
+        exit(0);
     }
 
-    if (argc > 1) {
+    options.parse_positional({"lower", "upper", "positional"});
 
-        errno = 0;
-        pEnd = NULL;
-        nptr = argv[1];
 
-        range[0] = strtol(nptr, &pEnd, 10);
-
-        if (nptr == pEnd) {
-            printf(" number: %lu  invalid  (no digits found, 0 returned)\n", range[0]);
-            return 0;
-        }
-
-        if (upper && (range[1] < range[0])) {
-            printf("number range: %lu is less than %lu (range reversed) \n", range[1], range[0]);
-            swap(range[1], range[0]);
-        }
-
-    } else {
-        fprintf(stderr, "\n Error: insufficient input. Usage: %s int [int]\n\n", argv[0]);
-        return 0;
+    if (options.count("lower")) {
+        std::cout << "lower = " << options["lower"].as<std::string>() << std::endl;
     }
 
-#define INTTYPE uint64_t
-
-    const uint16_t intsize = sizeof (INTTYPE);
-    const uint16_t arraystep = 256 / (8 * intsize);
-    INTTYPE BUFFERCNT = ceil((range[1] - range[0]) / arraystep) + 1;
-
-    std::cout << "Range size :" << (range[1] - range[0])
-            << "\nBUFFERCNT: " << BUFFERCNT << ".\nArray step size: "
-            << arraystep << ".\nByte-count of Integer: " << intsize
-            << ".\nArray Size: " << (BUFFERCNT * arraystep) << std::endl;
-
-    __attribute__ ((aligned(32))) INTTYPE input[arraystep * BUFFERCNT ];
-    INTTYPE j;
-    for (INTTYPE i = range[0], j = 0; i <= range[1]; i++, j++) {
-        input[j] = i;
-        std::cout << std::setfill('0') << std::setw(6) << input[j] << " ";
-        if (!((i + 1) % 16) && i != 0) std::cout << endl;
+    if (options.count("upper")) {
+        std::cout << "upper = " << options["upper"].as<std::string>() << std::endl;
     }
 
-    std::cout << endl;
+    range[0] = vRange[0];
+    range[1] = vRange[1];
 
-    for (INTTYPE i = 0; i < (arraystep * BUFFERCNT); i = i + arraystep) {
 
-        bits::AVX<INTTYPE> p(&input[i]);
-        p.mBinaryDisplay = false;
-        cout << std::setfill('0') << std::setw(2) << i << "\n" << p;
 
+    if ((range[1] < range[0])) {
+        printf("number range: %lu is less than %lu (range reversed) \n", range[1], range[0]);
+        swap(range[1], range[0]);
     }
+
+    printFlipByte<uint8_t>(mDisplay, range);
+
+
     return 0;
 
 }

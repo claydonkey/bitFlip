@@ -34,8 +34,10 @@
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
-      <logicalFolder name="f2" displayName="Console" projectFiles="true" kind="TEST">
-        <itemPath>tests/Console.cpp</itemPath>
+      <logicalFolder name="f2" displayName="flipBits" projectFiles="true" kind="TEST">
+        <itemPath>tests/cxxopts.hpp</itemPath>
+        <itemPath>tests/flipBits.cpp</itemPath>
+        <itemPath>tests/flipBits.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Gtest" projectFiles="true" kind="TEST">
         <itemPath>tests/bitFlipTest.cpp</itemPath>
@@ -155,13 +157,17 @@
       </item>
       <item path="src/bitFlipAVX.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="tests/Console.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/cxxopts.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/flipBits.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/flipBits.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="MinGW64_Debug" type="3">
@@ -175,7 +181,7 @@
           <incDir>
             <pElem>include</pElem>
           </incDir>
-          <commandLine>-mavx2 -m64 -fopenmp -m64 -march=native</commandLine>
+          <commandLine>-O3 -g -mavx2 -m64 -fopenmp -m64 -march=native</commandLine>
           <preprocessorList>
             <Elem>YESASSMBLR</Elem>
           </preprocessorList>
@@ -185,7 +191,7 @@
           <incDir>
             <pElem>include</pElem>
           </incDir>
-          <commandLine>-O3 -mavx2 -m64 -fopenmp -m64 -march=native</commandLine>
+          <commandLine>-O3 -g -mavx2 -m64 -fopenmp -m64 -march=native</commandLine>
           <preprocessorList>
             <Elem>YESASSMBLR</Elem>
           </preprocessorList>
@@ -250,13 +256,17 @@
       </item>
       <item path="src/main/scala/bitFlip.scala" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tests/Console.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/cxxopts.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/flipBits.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/flipBits.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Arch_Release" type="2" platformSpecific="true">
@@ -350,13 +360,17 @@
       </item>
       <item path="src/main/scala/bitFlip.scala" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tests/Console.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/cxxopts.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/flipBits.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/flipBits.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Arch_Debug" type="2" platformSpecific="true">
@@ -432,13 +446,17 @@
       </item>
       <item path="src/bitFlipAVX.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="tests/Console.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="tests/bitFlipTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/bitFlipTest.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/cxxopts.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/flipBits.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/flipBits.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
