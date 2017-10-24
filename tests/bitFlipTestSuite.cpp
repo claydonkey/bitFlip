@@ -288,7 +288,7 @@ TEST_F(TestSuite, testFlipIntrinsicClassAVX) {
 TEST_F(TestSuite, testFlipIntrinsicVectorClassAVX) {
   uint32_t val = rand() % ARRAY_SIZE / 8;
   std::vector<uint64_t> vec(std::begin(fooZ64), std::end(fooZ64));
-  auto vfoo = *bits::AVX<uint64_t> (vec).flipVec();
+  auto vfoo = bits::AVX<uint64_t> (vec).flipVec();
   EXPECT_EQ(bits::flipNaiveLambda(fooZ64[val]), vfoo[val]);
 }
 

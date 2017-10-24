@@ -326,7 +326,23 @@ namespace bits {
 	_Size(_Step * ceil((double) vec.size() / _Step)),
 	_InVec(vec),
 	_Length(vec.size()),
-	_AlignAlloc(false) {
+	_AlignAlloc(true) {
+
+	#if defined (__MINGW64__)
+	  _Input = static_cast<T*> (_aligned_malloc(_IntSize * _Size, 32));
+	  _Output = static_cast<T*> (_aligned_malloc(_IntSize * _Size, 32));
+	#else
+	  _Input = static_cast<T*> (_aligned_malloc(_IntSize * _Size), 32);
+	  _Output = static_cast<T*> (_aligned_malloc(_IntSize * _Size, 32));
+	#endif
+
+	  uint64_t i = 0;
+	  for (auto val : _InVec) {
+		_Input[i] = val;
+		i++;
+	  }
+	  //  memcpy(&_Input, &_InVec, _IntSize * _Size);
+
 	  outputHeader(mH);
 	  Initialized = true;
 	}
@@ -385,8 +401,6 @@ namespace bits {
 		_Input = NULL;
 	#endif
 	  }
-
-
 	}
 
 	const std::vector<T> flipVec() {
