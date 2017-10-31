@@ -28,38 +28,132 @@ bitFlip uses a number of different approaches to flip those bits
 
 bitFlip has both a cmake installer and makefiles.
 The cmake installation will detect if you require google benchmark and gtest and will download and installed if required
+
+### cmake
+```
+$ mkdir cmake-build-release
+$ cd cmake-build-release
+$ cmake ..
+cmake .. --help-usagecmake -L | awk '{if(f)print} /-- Cache values/{f=1}'
+Specify --help for usage, or press the help button on the CMake GUI.
+CMAKE_BUILD_TYPE:STRING=Release
+CMAKE_GNUtoMS:BOOL=OFF
+CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/bitFlip
+NASM_EXE:FILEPATH=C:/msys2/mingw64/bin/nasm.exe
+TESTAPP_ASMFORMAT:STRING=win64
+TESTAPP_USE_ASM:BOOL=true
+TESTAPP_USE_BENCHMARK:BOOL=true
+TESTAPP_USE_TABLEHEADERS:BOOL=true
+benchmark_ROOT_DIR:PATH=
+shlwapi_ROOT_DIR:PATH=
+
+```
+
+example:
 ```
 mkdir cmake-build-release
 cmake .. -G 'MSYS Makefiles'
 make
 ```
 
-##### Command line utility
+### make
+```
+$ make help
+This makefile supports the following configurations:
+    MinGW64_Release MinGW64_Debug Arch_Release Arch_Debug
+
+and the following targets:
+    build  (default target)
+    clean
+    clobber
+    all
+    help
+
+Makefile Usage:
+    make [CONF=<CONFIGURATION>] [SUB=no] build
+    make [CONF=<CONFIGURATION>] [SUB=no] clean
+    make [SUB=no] clobber
+    make [SUB=no] all
+    make help
+```
+
+example (for MinGW):
+```
+$ make CONF=MinGW64_Release
+```
+
+##### Commandline executable
 
 ```
 tests/./flipbits --help
 ```
+example:
+
+```
+tests/./flipBits.exe  -o test.txt -f I 0 100
+```
+
+saves as flipped decimal representations to test.txt
 
 ##### Benchmark/Tests
 
 ```
 tests/./TestApp
+
 ```
 
 ##### Just for fun - Scala
 Prints out bit flipped integers (as large as BigInt) from a range [FROM] [TO]
 
 to run:
+open sbt and execute:
+sbt:bitflip> run [FROM] [TO]
+
+##### Scala example:
+
 ```
-sbt console
-run [FROM] [TO]
+$ sbt
+Listening for transport dt_socket at address: 5005
+[info] ...
+sbt:bitflip> run 1000000000010 1000000000020
 
+```
 
-### Results
+output:
+
+```
+[debug] Waiting for thread run-main-0 to terminate.
+...
+1000000000010-->343742425879
+1000000000011-->893498239767
+1000000000012-->206303472407
+1000000000013-->756059286295
+1000000000014-->481181379351
+1000000000015-->1030937193239
+1000000000016-->34504780567
+1000000000017-->584260594455
+1000000000018-->309382687511
+1000000000019-->859138501399
+1000000000020-->171943734039
+
+[debug]         Thread run-main-0 exited.
+
+```
+
+##### An apple for apples command using the compiled command:
+
+```
+$ tests/./flipBits -f I 1000000000010 1000000000020
+
+```
+
+### Benchmark Results
 
 Google Benchmark to iterate over 10240 byte reversals
 
+
 ```
+
 ----------------------------------------------------------------------
 Benchmark                               Time           CPU Iterations
 ----------------------------------------------------------------------
@@ -80,6 +174,7 @@ BM_Flip_NaiveLambda                 25991 ns      26088 ns      26353
 BM_popcntWegner                     33511 ns      32993 ns      20364
 BM_popcntIntrinsic                      1 ns          1 ns  560000000
 
+```
 
 ### Development
 
