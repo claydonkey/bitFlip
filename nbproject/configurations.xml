@@ -43,6 +43,7 @@
         <itemPath>tests/bitFlipTest.cpp</itemPath>
         <itemPath>tests/bitFlipTest.h</itemPath>
         <itemPath>tests/bitFlipTestSuite.cpp</itemPath>
+        <itemPath>tests/bitFlipTestSuite.h</itemPath>
       </logicalFolder>
       <itemPath>tests/CMakeLists.txt</itemPath>
       <itemPath>cmake/modules/Findbenchmark.cmake</itemPath>
@@ -60,6 +61,7 @@
                    kind="TEST_LOGICAL_FOLDER">
     </logicalFolder>
     <itemPath>CMakeLists.txt</itemPath>
+    <itemPath>README.md</itemPath>
     <itemPath>bitFlip-config.cmake.in</itemPath>
     <itemPath>cmake</itemPath>
   </logicalFolder>
@@ -107,11 +109,14 @@
         </fortranCompilerTool>
         <asmTool>
           <developmentMode>5</developmentMode>
+          <commandlineTool>nasm</commandlineTool>
           <commandLine>-f win64 -dYESASSEMBLR -dWIN64</commandLine>
         </asmTool>
         <archiverTool>
         </archiverTool>
       </compileType>
+      <item path="README.md" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cmake" ex="false" tool="3" flavor2="0">
@@ -119,7 +124,7 @@
       <folder path="TestFiles/f1">
         <linkerTool>
           <linkerLibItems>
-            <linkerOptionItem>`pkg-config --libs benchmark`</linkerOptionItem>
+            <linkerLibLibItem>benchmark</linkerLibLibItem>
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
             <linkerLibStdlibItem>Mathematics</linkerLibStdlibItem>
             <linkerLibLibItem>shlwapi</linkerLibLibItem>
@@ -163,6 +168,8 @@
       </item>
       <item path="tests/bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="tests/bitFlipTestSuite.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tests/cxxopts.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/flipBits.cpp" ex="false" tool="1" flavor2="0">
@@ -204,14 +211,20 @@
         <archiverTool>
         </archiverTool>
       </compileType>
+      <item path="README.md" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cmake" ex="false" tool="3" flavor2="0">
       </item>
+      <folder path="TestFiles">
+        <ccTool>
+          <commandLine>-g -O3</commandLine>
+        </ccTool>
+      </folder>
       <folder path="TestFiles/f1">
         <ccTool>
           <preprocessorList>
-            <Elem>NOBENCHMARK</Elem>
             <Elem>TABLEHEADERS</Elem>
           </preprocessorList>
         </ccTool>
@@ -262,6 +275,8 @@
       </item>
       <item path="tests/bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="tests/bitFlipTestSuite.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tests/cxxopts.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/flipBits.cpp" ex="false" tool="1" flavor2="0">
@@ -311,6 +326,8 @@
           <commandLine>-m64 -Ofast -fopenmp -march=native</commandLine>
         </linkerTool>
       </compileType>
+      <item path="README.md" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cmake" ex="false" tool="3" flavor2="0">
@@ -366,6 +383,8 @@
       </item>
       <item path="tests/bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="tests/bitFlipTestSuite.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tests/cxxopts.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/flipBits.cpp" ex="false" tool="1" flavor2="0">
@@ -401,6 +420,8 @@
           <commandLine>-fopenmp -m64 -march=native</commandLine>
         </linkerTool>
       </compileType>
+      <item path="README.md" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="bitFlip-config.cmake.in" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cmake" ex="false" tool="3" flavor2="0">
@@ -451,6 +472,8 @@
       <item path="tests/bitFlipTest.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/bitFlipTestSuite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/bitFlipTestSuite.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/cxxopts.hpp" ex="false" tool="3" flavor2="0">
       </item>

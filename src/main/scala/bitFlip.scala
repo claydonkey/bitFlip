@@ -36,7 +36,7 @@ package com.claydonkey
 
 object main extends App {
   val arg = Option(args).getOrElse(Array[String]("100"))
-  (arg(0).toInt to arg(1).toInt).map((n) =>
-    (println(n + "-->" + BigInt(n.toBinaryString.reverse, 2))))
+  (BigInt(arg(0)) to BigInt(arg(1))).map((n) =>
+    (println(n + "-->" + BigInt(n.toString(2) reverse, 2))))
 }
 

@@ -12,20 +12,20 @@
  */
 
 #ifndef flipTEST_H
-    #define flipTEST_H
-    #ifndef NOBENCHMARK
+  #define flipTEST_H
+  #ifndef NOBENCHMARK
     #include <benchmark/benchmark.h>
-    #endif
-    #include <stdint.h>
+  #endif
+  #include <stdint.h>
 
 
 void SetUp();
-    #ifdef __cplusplus
+  #ifdef __cplusplus
 extern "C" {
-    #endif
+  #endif
 
-    #ifdef __cplusplus
+  #ifdef __cplusplus
 }
-    #endif
+  #endif
 #endif /* flipTEST_H */
 

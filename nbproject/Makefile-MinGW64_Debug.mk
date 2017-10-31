@@ -112,19 +112,19 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip: ${TESTDIR}/tests/bitFlipTest
 ${TESTDIR}/tests/flipBits.o: tests/flipBits.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -DYESASSMBLR -Iinclude -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/flipBits.o tests/flipBits.cpp
+	$(COMPILE.cc) -DYESASSMBLR -Iinclude -I. -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/flipBits.o tests/flipBits.cpp
 
 
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -DYESASSMBLR -DNOBENCHMARK -DTABLEHEADERS -Iinclude -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -DYESASSMBLR -DTABLEHEADERS -Iinclude -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
 ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -DYESASSMBLR -DNOBENCHMARK -DTABLEHEADERS -Iinclude -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+	$(COMPILE.cc) -DYESASSMBLR -DTABLEHEADERS -Iinclude -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/src/_bitflipbyte_nomain.o: ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm 

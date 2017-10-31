@@ -39,6 +39,7 @@
 #include <iostream>
 
 #include "bitFlipTest.h"
+#include "bitFlipTestSuite.h"
 #include "bitFlip.h"
 
 
@@ -46,13 +47,15 @@ using namespace std;
 
 int main(int argc, const char** argv) {
 #ifndef NOBENCHMARK
-    ::benchmark::Initialize(&argc, (char**) argv);
-    if (::benchmark::ReportUnrecognizedArguments(argc, (char**) argv)) return 1;
+  ::benchmark::Initialize(&argc, (char**) argv);
+  if (::benchmark::ReportUnrecognizedArguments(argc, (char**) argv)) return 1;
+
 #endif
-    testing::InitGoogleTest(&argc, (char**) argv);
+  testing::InitGoogleTest(&argc, (char**) argv);
 #ifndef NOBENCHMARK
-    ::benchmark::RunSpecifiedBenchmarks();
+  setup();
+  ::benchmark::RunSpecifiedBenchmarks();
 #endif
-    return RUN_ALL_TESTS();
+  return RUN_ALL_TESTS();
 }
 

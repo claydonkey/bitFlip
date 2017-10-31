@@ -106,7 +106,7 @@ ${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/flipBits.o ${OBJECTFILES:%.o=%_nomain.
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/tests/bitFlipTestSuite.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip $^ ${LDLIBSOPTIONS}   `pkg-config --libs benchmark` -lpthread  -lm  -lshlwapi -lgtest   
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip $^ ${LDLIBSOPTIONS}   -lbenchmark -lpthread -lm -lshlwapi -lgtest 
 
 
 ${TESTDIR}/tests/flipBits.o: tests/flipBits.cpp 
