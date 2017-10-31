@@ -1,13 +1,19 @@
- # bitFlip
+# bitFlip
 
-bitFlip is a library that has the sole purpose of reversing the order of bits in an integer.
-It comes with benchmarking and unit tests
-In order to use it:
+bitFlip is a C++ library that has a singular purpose:
 
-  - your machine must be i386-64 or AMD
-  - +support intel avx extensions
+The fast reversal of the order of bits in an arbitrary std::integer.
+
+It was created to evaluate and benchmark different approaches to this simple task
+
++ benchmarked with google benchmark
++ unit tested with gtest
+
+In order to use it you must have:
+
+  - a machine that has a processor that supports intel avx extensions
   - a version of nasm installed
-  - a compiler that supports Intel intrinsics
+  - a gcc compiler that supports Intel intrinsics
 
 Advanced Vector Extensions as defined by Wikipedia on the [Wikipedia Article][wiki]
 
@@ -19,9 +25,9 @@ Advanced Vector Extensions as defined by Wikipedia on the [Wikipedia Article][wi
 bitFlip uses a number of different approaches to flip those bits
 
 * [Assembly] - win32 / elf. Compile with nasm - this routine is the fastest - just
-* [Intel Implicit AVX] - using the handy gcc routines
+* [Intel Implicit AVX] - Using the handy gcc routines
 * [Naive approaches] - A fun way to visualize a solution (also nice and terse)
-* [Lambda Syntax] - just gotta try it out
+* [Lambda Syntax] - Just gotta try it out
 * [Scala equivalent] - Look at the sveltness of the code - and the tardiness.
 
 ### Installation
