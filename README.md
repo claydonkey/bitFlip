@@ -30,6 +30,10 @@ bitFlip uses a number of different approaches to flip those bits
 * [Lambda Syntax] - Just gotta try it out
 * [Scala equivalent] - Look at the sveltness of the code - and the tardiness.
 
+### NB population counter
+As a way to see how fast avx instruction can be. I also include the popcnt instruction which requires no lashing together of assmebly.
+This is benchmarked at
+
 ### Installation
 
 bitFlip has both a cmake installer and makefiles.
