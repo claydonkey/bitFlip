@@ -52,9 +52,6 @@ void _bitflipllloop(uint64_t * bits, uint32_t size) {
 }
 #endif
 
-
-//8 bit only
-
 uint8_t flipMask(uint8_t bits) {
     return (bits * 0x202020202ULL & 0x010884422010ULL) % 1023;
 }

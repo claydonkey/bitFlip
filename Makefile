@@ -54,7 +54,7 @@ CCADMIN=CCadmin
 build: .build-post
 
 .build-pre:
-	 
+	tools/get_version.sh
 
 .build-post: .build-impl
 # Add your post 'build' code here...

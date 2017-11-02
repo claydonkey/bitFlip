@@ -33,17 +33,17 @@
  */
 
 #ifndef BITFLIPTESTSUITE_H
-	#define BITFLIPTESTSUITE_H
-	#include <gtest/gtest.h>
-	#ifndef NOBENCHMARK
-		#include <benchmark/benchmark.h>
-	#endif
+  #define BITFLIPTESTSUITE_H
+  #include <gtest/gtest.h>
+  #ifndef NOBENCHMARK
+	#include <benchmark/benchmark.h>
+  #endif
 
 void setup();
 
 class TestSuite : public testing::Test {
 public:
-	void SetUp();
+  void SetUp();
 };
 #endif /* BITFLIPTESTSUITE_H */
 

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="com.claydonkey"
+		module="bitflip$sources_2.10"
+		revision="1.0.1"
+		conf="test"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
+		date="20171101150143"/>
+	<dependencies>
+		<module organisation="com.storm-enroute" name="scalameter-core_2.10">
+			<revision name="0.9-SNAPSHOT" status="integration" pubdate="20170911044138" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://scalameter.github.io/" downloaded="false" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="4">
+				<license name="BSD-style" url="http://opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="3230" time="0" location="C:\Users\anthony\.ivy2\cache\com.storm-enroute\scalameter-core_2.10\ivy-0.9-SNAPSHOT.xml" searched="true" origin-is-local="false" origin-location="https://oss.sonatype.org/content/repositories/snapshots/com/storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/scalameter-core_2.10-0.9-SNAPSHOT.pom"/>
+				<caller organisation="com.claydonkey" name="bitflip$sources_2.10" conf="test, compile, runtime" rev="0.9-SNAPSHOT" rev-constraint-default="0.9-SNAPSHOT" rev-constraint-dynamic="0.9-SNAPSHOT" callerrev="1.0.1"/>
+				<artifacts>
+					<artifact name="scalameter-core_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="34136" time="0" location="C:\Users\anthony\.ivy2\cache\com.storm-enroute\scalameter-core_2.10\srcs\scalameter-core_2.10-0.9-SNAPSHOT-sources.jar">
+						<origin-location is-local="false" location="https://oss.sonatype.org/content/repositories/snapshots/com/storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/scalameter-core_2.10-0.9-SNAPSHOT-sources.jar"/>
+					</artifact>
+					<artifact name="scalameter-core_2.10" type="jar" ext="jar" status="no" details="" size="408301" time="0" location="C:\Users\anthony\.ivy2\cache\com.storm-enroute\scalameter-core_2.10\jars\scalameter-core_2.10-0.9-SNAPSHOT.jar">
+						<origin-location is-local="false" location="https://oss.sonatype.org/content/repositories/snapshots/com/storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/scalameter-core_2.10-0.9-SNAPSHOT.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.ow2.asm" name="asm">
+			<revision name="5.0.4" status="release" pubdate="20150515160455" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="7">
+				<metadata-artifact status="no" details="" size="3795" time="0" location="C:\Users\anthony\.ivy2\cache\org.ow2.asm\asm\ivy-5.0.4.xml" searched="false" origin-is-local="false" origin-location="http://localhost:8081/nexus/content/repositories/central/org/ow2/asm/asm/5.0.4/asm-5.0.4.pom"/>
+				<caller organisation="com.claydonkey" name="bitflip$sources_2.10" conf="test, compile, runtime" rev="5.0.4" rev-constraint-default="5.0.4" rev-constraint-dynamic="5.0.4" callerrev="1.0.1"/>
+				<artifacts>
+					<artifact name="asm" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="1039794" time="0" location="C:\Users\anthony\.ivy2\cache\org.ow2.asm\asm\srcs\asm-5.0.4-sources.jar">
+						<origin-location is-local="false" location="http://localhost:8081/nexus/content/repositories/central/org/ow2/asm/asm/5.0.4/asm-5.0.4-sources.jar"/>
+					</artifact>
+					<artifact name="asm" type="jar" ext="jar" status="no" details="" size="53297" time="0" location="C:\Users\anthony\.ivy2\cache\org.ow2.asm\asm\jars\asm-5.0.4.jar">
+						<origin-location is-local="false" location="http://localhost:8081/nexus/content/repositories/central/org/ow2/asm/asm/5.0.4/asm-5.0.4.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.commons" name="commons-lang3">
+			<revision name="3.4" status="release" pubdate="20150403133112" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://commons.apache.org/proper/commons-lang/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="6">
+				<metadata-artifact status="no" details="" size="11528" time="0" location="C:\Users\anthony\.ivy2\cache\org.apache.commons\commons-lang3\ivy-3.4.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.pom"/>
+				<caller organisation="com.claydonkey" name="bitflip$sources_2.10" conf="test, compile, runtime" rev="3.4" rev-constraint-default="3.4" rev-constraint-dynamic="3.4" callerrev="1.0.1"/>
+				<artifacts>
+					<artifact name="commons-lang3" type="jar" ext="jar" status="no" details="" size="434678" time="0" location="C:\Users\anthony\.ivy2\cache\org.apache.commons\commons-lang3\jars\commons-lang3-3.4.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar"/>
+					</artifact>
+					<artifact name="commons-lang3" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="487156" time="0" location="C:\Users\anthony\.ivy2\cache\org.apache.commons\commons-lang3\srcs\commons-lang3-3.4-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.commons" name="commons-math3">
+			<revision name="3.2" status="release" pubdate="20130402203128" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://commons.apache.org/proper/commons-math/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="5">
+				<metadata-artifact status="no" details="" size="9517" time="0" location="C:\Users\anthony\.ivy2\cache\org.apache.commons\commons-math3\ivy-3.2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/commons/commons-math3/3.2/commons-math3-3.2.pom"/>
+				<caller organisation="com.claydonkey" name="bitflip$sources_2.10" conf="test, compile, runtime" rev="3.2" rev-constraint-default="3.2" rev-constraint-dynamic="3.2" callerrev="1.0.1"/>
+				<artifacts>
+					<artifact name="commons-math3" type="jar" ext="jar" status="no" details="" size="1692782" time="0" location="C:\Users\anthony\.ivy2\cache\org.apache.commons\commons-math3\jars\commons-math3-3.2.jar">
+						<origin-location is-local="false" location="UNKNOWN"/>
+					</artifact>
+					<artifact name="commons-math3" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="2005074" time="0" location="C:\Users\anthony\.ivy2\cache\org.apache.commons\commons-math3\srcs\commons-math3-3.2-sources.jar">
+						<origin-location is-local="false" location="http://localhost:8081/nexus/content/repositories/central/org/apache/commons/commons-math3/3.2/commons-math3-3.2-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scalatest" name="scalatest_2.10">
+			<revision name="3.0.4" status="release" pubdate="20170817172402" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scalatest.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="3">
+				<license name="the Apache License, ASL Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="4497" time="0" location="C:\Users\anthony\.ivy2\cache\org.scalatest\scalatest_2.10\ivy-3.0.4.xml" searched="false" origin-is-local="false" origin-location="http://think-station:8081/nexus/content/repositories/central/org/scalatest/scalatest_2.10/3.0.4/scalatest_2.10-3.0.4.pom"/>
+				<caller organisation="com.claydonkey" name="bitflip$sources_2.10" conf="test, compile, runtime" rev="3.0.4" rev-constraint-default="3.0.4" rev-constraint-dynamic="3.0.4" callerrev="1.0.1"/>
+				<artifacts>
+					<artifact name="scalatest_2.10" type="jar" ext="jar" status="no" details="" size="10529132" time="0" location="C:\Users\anthony\.ivy2\cache\org.scalatest\scalatest_2.10\jars\scalatest_2.10-3.0.4.jar">
+						<origin-location is-local="false" location="http://think-station:8081/nexus/content/repositories/central/org/scalatest/scalatest_2.10/3.0.4/scalatest_2.10-3.0.4.jar"/>
+					</artifact>
+					<artifact name="scalatest_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="1643808" time="0" location="C:\Users\anthony\.ivy2\cache\org.scalatest\scalatest_2.10\srcs\scalatest_2.10-3.0.4-sources.jar">
+						<origin-location is-local="false" location="http://think-station:8081/nexus/content/repositories/central/org/scalatest/scalatest_2.10/3.0.4/scalatest_2.10-3.0.4-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scalactic" name="scalactic_2.10">
+			<revision name="3.0.4" status="release" pubdate="20170817172148" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scalatest.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="1">
+				<license name="the Apache License, ASL Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="2875" time="0" location="C:\Users\anthony\.ivy2\cache\org.scalactic\scalactic_2.10\ivy-3.0.4.xml" searched="false" origin-is-local="false" origin-location="http://think-station:8081/nexus/content/repositories/central/org/scalactic/scalactic_2.10/3.0.4/scalactic_2.10-3.0.4.pom"/>
+				<caller organisation="com.claydonkey" name="bitflip$sources_2.10" conf="test, compile, runtime" rev="3.0.4" rev-constraint-default="3.0.4" rev-constraint-dynamic="3.0.4" callerrev="1.0.1"/>
+				<artifacts>
+					<artifact name="scalactic_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="201082" time="0" location="C:\Users\anthony\.ivy2\cache\org.scalactic\scalactic_2.10\srcs\scalactic_2.10-3.0.4-sources.jar">
+						<origin-location is-local="false" location="http://think-station:8081/nexus/content/repositories/central/org/scalactic/scalactic_2.10/3.0.4/scalactic_2.10-3.0.4-sources.jar"/>
+					</artifact>
+					<artifact name="scalactic_2.10" type="jar" ext="jar" status="no" details="" size="718805" time="0" location="C:\Users\anthony\.ivy2\cache\org.scalactic\scalactic_2.10\jars\scalactic_2.10-3.0.4.jar">
+						<origin-location is-local="false" location="http://think-station:8081/nexus/content/repositories/central/org/scalactic/scalactic_2.10/3.0.4/scalactic_2.10-3.0.4.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-reflect">
+			<revision name="2.10.6" status="release" pubdate="20150918103538" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.6/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="2">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html    "/>
+				<metadata-artifact status="no" details="" size="2870" time="0" location="C:\Users\anthony\.ivy2\cache\org.scala-lang\scala-reflect\ivy-2.10.6.xml" searched="false" origin-is-local="false" origin-location="http://localhost:8081/nexus/content/repositories/central/org/scala-lang/scala-reflect/2.10.6/scala-reflect-2.10.6.pom"/>
+				<caller organisation="com.claydonkey" name="bitflip$sources_2.10" conf="test, compile, runtime" rev="2.10.6" rev-constraint-default="2.10.6" rev-constraint-dynamic="2.10.6" callerrev="1.0.1" extra-info.apiURL="http://www.scala-lang.org/api/2.10.6/"/>
+				<artifacts>
+					<artifact name="scala-reflect" type="jar" ext="jar" status="no" details="" size="3206180" time="0" location="C:\Users\anthony\.ivy2\cache\org.scala-lang\scala-reflect\jars\scala-reflect-2.10.6.jar">
+						<origin-location is-local="false" location="http://localhost:8081/nexus/content/repositories/central/org/scala-lang/scala-reflect/2.10.6/scala-reflect-2.10.6.jar"/>
+					</artifact>
+					<artifact name="scala-reflect" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="435463" time="0" location="C:\Users\anthony\.ivy2\cache\org.scala-lang\scala-reflect\srcs\scala-reflect-2.10.6-sources.jar">
+						<origin-location is-local="false" location="http://think-station:8081/nexus/content/repositories/central/org/scala-lang/scala-reflect/2.10.6/scala-reflect-2.10.6-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.10.6" status="release" pubdate="20150918103528" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.6/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="0">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2701" time="0" location="C:\Users\anthony\.ivy2\cache\org.scala-lang\scala-library\ivy-2.10.6.xml" searched="false" origin-is-local="false" origin-location="http://localhost:8081/nexus/content/repositories/central/org/scala-lang/scala-library/2.10.6/scala-library-2.10.6.pom"/>
+				<caller organisation="com.claydonkey" name="bitflip$sources_2.10" conf="test, compile, runtime" rev="2.10.6" rev-constraint-default="2.10.6" rev-constraint-dynamic="2.10.6" callerrev="1.0.1" extra-info.apiURL="http://www.scala-lang.org/api/2.10.6/"/>
+				<artifacts>
+					<artifact name="scala-library" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="1065535" time="0" location="C:\Users\anthony\.ivy2\cache\org.scala-lang\scala-library\srcs\scala-library-2.10.6-sources.jar">
+						<origin-location is-local="false" location="http://think-station:8081/nexus/content/repositories/central/org/scala-lang/scala-library/2.10.6/scala-library-2.10.6-sources.jar"/>
+					</artifact>
+					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="7132001" time="0" location="C:\Users\anthony\.ivy2\cache\org.scala-lang\scala-library\jars\scala-library-2.10.6.jar">
+						<origin-location is-local="false" location="http://localhost:8081/nexus/content/repositories/central/org/scala-lang/scala-library/2.10.6/scala-library-2.10.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

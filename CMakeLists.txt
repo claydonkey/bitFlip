@@ -55,18 +55,22 @@ IF(NOT CMAKE_BUILD_TYPE)
 	SET(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build : None Debug Release RelWithDebInfo MinSizeRel Coverage." FORCE)
 ENDIF(NOT CMAKE_BUILD_TYPE)
 
+execute_process(COMMAND bash -c "${CMAKE_SOURCE_DIR}/tools/get_version.sh")
+set_directory_properties(PROPERTIES  ADDITIONAL_MAKE_CLEAN_FILES "${CMAKE_SOURCE_DIR}/include/bitFlipVersion.h")
+
 set(HEADER_FILES
 	include/bitFlip.h
 	include/bitFlipTables.h
-      include/bitFlipAVX.h
-      include/typeDeduce.h
+	include/bitFlipAVX.h
+	include/typeDeduce.h
+	include/bitFlipVersion.h
  )
 
 set(SOURCE_FILES
 	${HEADER_FILES}
 	src/bitFlip.cpp
-      src/bitFlipAVX.cpp
-	)
+	src/bitFlipAVX.cpp
+)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
@@ -75,7 +79,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx -m6
 IF(TESTAPP_USE_ASM)
 	set(BITFLIP_ASM_FILES
 		src/_bitflipbyte.asm
-		)
+	)
 #IF(UNIX)
 #set(BITFLIP_ASM_FILES ${BITFLIP_ASM_FILES}
 #		src/_bitflipllloop.asm

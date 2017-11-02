@@ -1,0 +1,420 @@
+[0m[[0mdebug[0m] [0m:: resolving dependencies :: com.claydonkey#bitflip$sources_2.10;1.0.1[0m
+[0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool][0m
+[0m[[0mdebug[0m] [0m	validate = true[0m
+[0m[[0mdebug[0m] [0m	refresh = false[0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'compile'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.10.6 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@54282499[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.10.6[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.10.6 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m	[2.10.6] org.scala-lang#scala-library;2.10.6[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.scalactic#scalactic_2.10;3.0.4 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@1014a6d6[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scalactic#scalactic_2.10;3.0.4[0m
+[0m[[0mdebug[0m] [0m	found org.scalactic#scalactic_2.10;3.0.4 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-reflect;2.10.6 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@96bded3[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-reflect;2.10.6[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-reflect;2.10.6 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m	[2.10.6] org.scala-lang#scala-reflect;2.10.6[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [test][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.scalatest#scalatest_2.10;3.0.4 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@71336574[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scalatest#scalatest_2.10;3.0.4[0m
+[0m[[0mdebug[0m] [0m	found org.scalatest#scalatest_2.10;3.0.4 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@40074961[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0minfo[0m] [0mResolving com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT ...[0m
+[0m[[0mdebug[0m] [0msbt-chain-delegate: Checking cache for: sbt.ivyint.MergedDescriptors@40074961[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0mdebug[0m] [0m		tried C:\Users\anthony\.ivy2\local\com.storm-enroute\scalameter-core_2.10\0.9-SNAPSHOT\ivys\ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0mdebug[0m] [0m		tried C:\Users\anthony\.activator\repository\com.storm-enroute\scalameter-core_2.10\0.9-SNAPSHOT\ivys\ivy.xml[0m
+[0m[[0mdebug[0m] [0m	activator-launcher-local: no ivy file found for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0mdebug[0m] [0m		tried C:\activator-dist-1.3.10\repository\com.storm-enroute\scalameter-core_2.10\0.9-SNAPSHOT\ivys\ivy.xml[0m
+[0m[[0mdebug[0m] [0m	activator-local: no ivy file found for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0mdebug[0m] [0m		tried http://127.0.0.1:8081/nexus/content/groups/public/com.storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	public-repositories: no ivy file found for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0mdebug[0m] [0m	maven-metadata not available: http://think-station:8081/nexus/content/repositories/central/com/storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/maven-metadata.xml[0m
+[0m[[0mdebug[0m] [0m		tried http://think-station:8081/nexus/content/repositories/central/com/storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/scalameter-core_2.10-0.9-SNAPSHOT.pom[0m
+[0m[[0mdebug[0m] [0m	maven-proxy-releases: no ivy file found for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0mdebug[0m] [0m		tried http://think-station:8081/nexus/content/repositories/snapshots/com.storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	my-ivy-proxy-snapshots: no ivy file found for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0mdebug[0m] [0m		tried http://127.0.0.1:8081/nexus/content/repositories/repo-typesafe/com.storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	repo-typesafe: no ivy file found for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0mdebug[0m] [0m	maven-metadata not available: https://oss.sonatype.org/content/repositories/releases/com/storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/maven-metadata.xml[0m
+[0m[[0mdebug[0m] [0m		tried https://oss.sonatype.org/content/repositories/releases/com/storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/scalameter-core_2.10-0.9-SNAPSHOT.pom[0m
+[0m[[0mdebug[0m] [0m	Sonatype OSS Releases: no ivy file found for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0mdon't use cache for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT: changing=true[0m
+[0m[[0mdebug[0m] [0m		tried https://oss.sonatype.org/content/repositories/snapshots/com/storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/scalameter-core_2.10-0.9-SNAPSHOT.pom[0m
+[0m[[0mdebug[0m] [0m	Sonatype OSS Snapshots: found md file for com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0m		=> https://oss.sonatype.org/content/repositories/snapshots/com/storm-enroute/scalameter-core_2.10/0.9-SNAPSHOT/scalameter-core_2.10-0.9-SNAPSHOT.pom (0.9-SNAPSHOT)[0m
+[0m[[0mdebug[0m] [0m	default-cache: revision in cache (not updated): com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT[0m
+[0m[[0mdebug[0m] [0m	found com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.apache.commons#commons-math3;3.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@71ac27d1[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.apache.commons#commons-math3;3.2[0m
+[0m[[0mdebug[0m] [0m	found org.apache.commons#commons-math3;3.2 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.apache.commons#commons-lang3;3.4 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@66104863[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.apache.commons#commons-lang3;3.4[0m
+[0m[[0mdebug[0m] [0m	found org.apache.commons#commons-lang3;3.4 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.ow2.asm#asm;5.0.4 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@1a685fb8[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.ow2.asm#asm;5.0.4[0m
+[0m[[0mdebug[0m] [0m	found org.ow2.asm#asm;5.0.4 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'provided'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [provided][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'optional'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [optional][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'compile-internal'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [compile-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [provided][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile-internal->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime-internal'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [runtime-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime-internal->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test-internal'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [test-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [test][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [runtime->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [provided][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [test-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalactic#scalactic_2.10;3.0.4 [test-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [test-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scalatest#scalatest_2.10;3.0.4 [test-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT [test-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-math3;3.2 [test-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.apache.commons#commons-lang3;3.4 [test-internal->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test-internal->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test-internal->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test-internal->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.ow2.asm#asm;5.0.4 [test-internal->master][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'plugin'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [plugin][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'sources'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [sources][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'docs'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [docs][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'pom'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [pom][0m
+[0m[[0mdebug[0m] [0mresolving dependencies for configuration 'scala-tool'[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.claydonkey#bitflip$sources_2.10;1.0.1 [scala-tool][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [scala-tool->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [scala-tool->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [scala-tool->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-library;2.10.6 [scala-tool->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [scala-tool->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [scala-tool->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [scala-tool->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-reflect;2.10.6 [scala-tool->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-compiler;2.10.6 [scala-tool->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-compiler;2.10.6 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#scala-compiler;2.10.6 {scala-tool=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-compiler;2.10.6[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-compiler;2.10.6 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-compiler;2.10.6 [scala-tool->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-compiler;2.10.6 [scala-tool->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#scala-compiler;2.10.6 [scala-tool->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#jline;2.10.6 [scala-tool->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#jline;2.10.6 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#jline;2.10.6 {scala-tool=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#jline;2.10.6[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#jline;2.10.6 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#jline;2.10.6 [scala-tool->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#jline;2.10.6 [scala-tool->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.scala-lang#jline;2.10.6 [scala-tool->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.fusesource.jansi#jansi;1.4 [scala-tool->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.fusesource.jansi#jansi;1.4 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.fusesource.jansi#jansi;1.4 {scala-tool=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.fusesource.jansi#jansi;1.4[0m
+[0m[[0mdebug[0m] [0m	found org.fusesource.jansi#jansi;1.4 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.fusesource.jansi#jansi;1.4 [scala-tool->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.fusesource.jansi#jansi;1.4 [scala-tool->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.claydonkey#bitflip$sources_2.10;1.0.1->org.fusesource.jansi#jansi;1.4 [scala-tool->master][0m
+[0m[[0mdebug[0m] [0m	resolved ivy file produced in cache[0m
+[0m[[0mdebug[0m] [0m:: downloading artifacts ::[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-library;2.10.6!scala-library.jar(src)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-library;2.10.6!scala-library.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalactic#scalactic_2.10;3.0.4!scalactic_2.10.jar(src)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalactic#scalactic_2.10;3.0.4!scalactic_2.10.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-reflect;2.10.6!scala-reflect.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-reflect;2.10.6!scala-reflect.jar(src)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalatest#scalatest_2.10;3.0.4!scalatest_2.10.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalatest#scalatest_2.10;3.0.4!scalatest_2.10.jar(src)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT!scalameter-core_2.10.jar(src)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.storm-enroute#scalameter-core_2.10;0.9-SNAPSHOT!scalameter-core_2.10.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.apache.commons#commons-math3;3.2!commons-math3.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.apache.commons#commons-math3;3.2!commons-math3.jar(src)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.apache.commons#commons-lang3;3.4!commons-lang3.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.apache.commons#commons-lang3;3.4!commons-lang3.jar(src)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.ow2.asm#asm;5.0.4!asm.jar(src)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.ow2.asm#asm;5.0.4!asm.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-compiler;2.10.6!scala-compiler.jar(src)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.10.6!jline.jar(src)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar(src)[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 188ms :: artifacts dl 7ms[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 compile produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 runtime produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 test produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 provided produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 optional produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 compile-internal produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 runtime-internal produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 test-internal produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 plugin produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 sources produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 docs produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 pom produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-pom.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.claydonkey#bitflip$sources_2.10;1.0.1 scala-tool produced in D:\Users\anthony\Documents\Minnow\Source\CPP\bitFlip\target\resolution-cache\reports\com.claydonkey-bitflip$sources_2.10-scala-tool.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (188ms resolve - 7ms download)[0m

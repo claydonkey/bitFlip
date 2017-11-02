@@ -26,9 +26,10 @@ bitFlip uses a number of different approaches to flip those bits
 
 * [Assembly] - win32 / elf. Compile with nasm - this routine is the fastest - just
 * [Intel Implicit AVX] - Using the handy gcc routines
-* [Naive approaches] - A fun way to visualize a solution (also nice and terse)
+* [Naive approach] - A fun way to visualize a solution (also nice and terse)
+* [Table approach] - Let's see how the compiler optimizes these
 * [Lambda Syntax] - Just gotta try it out
-* [Scala equivalent] - Look at the sveltness of the code - and the tardiness.
+* [Scala equivalent] - Look at the sveltness of the code - and the how fairs the JVM?
 
 ### NB population counter
 As a way to see how fast avx instruction can be. I also include the popcnt instruction which requires no lashing together of assmebly.
@@ -183,6 +184,18 @@ BM_Flip_NaiveArrayll                25985 ns      26088 ns      26353
 BM_Flip_NaiveLambda                 25991 ns      26088 ns      26353
 BM_popcntWegner                     33511 ns      32993 ns      20364
 BM_popcntIntrinsic                      1 ns          1 ns  560000000
+
+```
+
+ScalaTest Execution times to iterate 10240
+
+```
+[info] - bitFlip inline benchmark with warming
+[info] Run completed in 6 seconds, 165 milliseconds.
+[info] Total number of tests run: 1
+[info] Suites: completed 1, aborted 0
+[info] Tests: succeeded 1, failed 0, canceled 0, ignored 0, pending 0
+[info] All tests passed.
 
 ```
 

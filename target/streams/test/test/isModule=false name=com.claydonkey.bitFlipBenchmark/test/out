@@ -1,0 +1,3 @@
+[0m[[0minfo[0m] [0m[32mbitFlipBenchmark:[0m[0m
+[0m[[0minfo[0m] [0m[32m- bitFlip inline benchmark with warming using String and BigInt[0m[0m
+[0m[[0minfo[0m] [0m[32m- bitFlip inline benchmark with warming Naive approach[0m[0m
