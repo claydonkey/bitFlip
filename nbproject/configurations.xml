@@ -8,6 +8,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>include/aligned_alloc.h</itemPath>
       <itemPath>include/bitFlip.h</itemPath>
       <itemPath>include/bitFlipAVX.h</itemPath>
       <itemPath>include/bitFlipTables.h</itemPath>
@@ -124,6 +125,11 @@
       <item path="cmake" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
+        <ccTool>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+        </ccTool>
         <linkerTool>
           <linkerLibItems>
             <linkerLibLibItem>benchmark</linkerLibLibItem>
@@ -150,6 +156,8 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </folder>
+      <item path="include/aligned_alloc.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/bitFlipAVX.h" ex="false" tool="3" flavor2="0">
@@ -265,6 +273,8 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </folder>
+      <item path="include/aligned_alloc.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/bitFlipAVX.h" ex="false" tool="3" flavor2="0">
@@ -381,6 +391,8 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </folder>
+      <item path="include/aligned_alloc.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/bitFlipAVX.h" ex="false" tool="3" flavor2="0">
@@ -481,6 +493,8 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </folder>
+      <item path="include/aligned_alloc.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/bitFlipAVX.h" ex="false" tool="3" flavor2="0">

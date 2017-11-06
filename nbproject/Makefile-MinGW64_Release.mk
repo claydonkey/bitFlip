@@ -14,10 +14,10 @@ GREP=grep
 NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
-CC=x86_64-w64-mingw32-gcc
-CCC=x86_64-w64-mingw32-g++
-CXX=x86_64-w64-mingw32-g++
-FC=x86_64-w64-mingw32-gfortran
+CC=gcc
+CCC=g++
+CXX=g++
+FC=gfortran
 AS=nasm
 
 # Macros
@@ -118,13 +118,13 @@ ${TESTDIR}/tests/flipBits.o: tests/flipBits.cpp
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -Iinclude -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
 ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -Iinclude -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/src/_bitflipbyte_nomain.o: ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm 

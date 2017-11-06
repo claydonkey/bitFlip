@@ -72,8 +72,20 @@ set(SOURCE_FILES
 	src/bitFlipAVX.cpp
 )
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
+set(GCC_BITFLIP_COMPILE_C_FLAGS "${CMAKE_C_FLAGS}  -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
+set(GCC_BITFLIP_COMPILE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native  ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
+set(GCC_BITFLIP_LINK_FLAGS  "${GCC_BITFLIP_LINK_FLAGS} -O3 -pipe -fomit-frame-pointer -mavx -m64 -fopenmp -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG}  ${ASM_FLAG}")
+
+
+IF(MINGW)
+	set(GCC_BITFLIP_COMPILE_CXX_FLAGS "${GCC_BITFLIP_COMPILE_CXX_FLAGS} -static-libstdc++ ")#   -Wl,--subsystem,windows")
+	set(GCC_BITFLIP_COMPILE_C_FLAGS "${GCC_BITFLIP_COMPILE_C_FLAGS} -static-libgcc  ")#  -Wl,--subsystem,windows")
+	set(GCC_BITFLIP_LINK_FLAGS "${GCC_BITFLIP_LINK_FLAGS}   -Wl,--subsystem,windows")
+ENDIF(MINGW)
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_BITFLIP_COMPILE_C_FLAGS}" )
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_BITFLIP_COMPILE_CXX_FLAGS}" )
+set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_BITFLIP_LINK_FLAGS}" )
 
 
 IF(TESTAPP_USE_ASM)

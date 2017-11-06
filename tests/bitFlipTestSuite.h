@@ -39,11 +39,15 @@
 	#include <benchmark/benchmark.h>
   #endif
 
+#include <vector>
+#include "aligned_alloc.h"
+
 void setup();
 
 class TestSuite : public testing::Test {
 public:
   void SetUp();
 };
+
 #endif /* BITFLIPTESTSUITE_H */
 

@@ -38,7 +38,7 @@ extern "C" {
 
   __attribute__ ((aligned(32))) uint8_t c[1 + 32] = {};
 
-  void print256_8(__m256i var) {
+  void print256_8(__m256i var) noexcept{
 	uint8_t *val = reinterpret_cast<uint8_t*> (& var);
 
 	std::cout <<
@@ -50,7 +50,7 @@ extern "C" {
 	std::cout << std::endl;
   }
 
-  void print256_16(__m256i var) {
+  void print256_16(__m256i var) noexcept{
 	uint16_t *val = reinterpret_cast<uint16_t*> (& var);
 
 	std::cout <<
@@ -62,7 +62,7 @@ extern "C" {
 	std::cout << std::endl;
   }
 
-  void print256_32(__m256i var) {
+  void print256_32(__m256i var) noexcept{
 	uint32_t *val = reinterpret_cast<uint32_t*> (& var);
 
 	std::cout <<
@@ -74,7 +74,7 @@ extern "C" {
 	std::cout << std::endl;
   }
 
-  void print256_64(__m256i var) {
+  void print256_64(__m256i var) noexcept{
 	uint64_t *val = reinterpret_cast<uint64_t*> (& var);
 
 	std::cout
@@ -85,7 +85,7 @@ extern "C" {
 	std::cout << std::endl;
   }
 
-  uint8_t flipAVX8(uint8_t bits) {
+  uint8_t flipAVX8(uint8_t bits) noexcept{
 	uint8_t r = 0;
 	c[0] = bits;
 	bits::flipAVXArray<uint8_t> (c);
@@ -98,7 +98,7 @@ extern "C" {
 #endif
 namespace bits {
 
-  __m256i flipAVX256(__m256i * ag) {
+  __m256i flipAVX256(__m256i * ag) noexcept{
 	__m256i acc1;
 	__m256i arg1;
 
