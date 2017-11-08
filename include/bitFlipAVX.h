@@ -33,31 +33,32 @@
  */
 
 #ifndef INCLUDE_BITFLIPAVX_H_
-#define INCLUDE_BITFLIPAVX_H_
+  #define INCLUDE_BITFLIPAVX_H_
 
-#include <stdint.h>
-#include <immintrin.h>
-#include <cmath>
-#include <type_traits>
-#include <typeinfo>
-#include <memory>
-#include <string>
-#include <cstring>
-#include <cstdlib>
-#include <iostream>
-#include <iomanip>
-#include <bitset>
-#include <limits>
-#include <tuple>
-#include <vector>
-#include <algorithm>
-#include <utility>
-#include "bitFlip.h"
-#include "aligned_alloc.h"
+  #include <stdint.h>
+  #include <immintrin.h>
+  #include <cmath>
+  #include <type_traits>
+  #include <typeinfo>
+  #include <memory>
+  #include <string>
+  #include <cstring>
+  #include <cstdlib>
+  #include <iostream>
+  #include <iomanip>
+  #include <bitset>
+  #include <limits>
+  #include <tuple>
+  #include <vector>
+  #include <algorithm>
+  #include <utility>
+  #include <condition_variable>
+  #include "bitFlip.h"
+  #include "aligned_alloc.h"
 
-#ifdef __cplusplus
+  #ifdef __cplusplus
 extern "C" {
-#endif
+  #endif
 
   void print256_8(__m256i var) noexcept;
   void print256_16(__m256i var) noexcept;
@@ -66,71 +67,71 @@ extern "C" {
 
   uint8_t flipAVX8(uint8_t bits) noexcept;
 
-#ifdef __cplusplus
+  #ifdef __cplusplus
 }
 namespace bits {
 
-  __attribute__((aligned(32))) static uint8_t k1[32 * 3] = {
-    0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
-    0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
-    0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
-    0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
-    0X00, 0X08, 0X04, 0X0C, 0X02, 0X0A, 0X06, 0X0E,
-    0X01, 0X09, 0X05, 0X0D, 0X03, 0X0B, 0X07, 0X0F,
-    0X00, 0X08, 0X04, 0X0C, 0X02, 0X0A, 0X06, 0X0E,
-    0X01, 0X09, 0X05, 0X0D, 0X03, 0X0B, 0X07, 0X0F,
-    0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0,
-    0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0,
-    0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0,
-    0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0
+  __attribute__ ((aligned(32))) static uint8_t k1[32 * 3] = {
+	0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
+	0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
+	0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
+	0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
+	0X00, 0X08, 0X04, 0X0C, 0X02, 0X0A, 0X06, 0X0E,
+	0X01, 0X09, 0X05, 0X0D, 0X03, 0X0B, 0X07, 0X0F,
+	0X00, 0X08, 0X04, 0X0C, 0X02, 0X0A, 0X06, 0X0E,
+	0X01, 0X09, 0X05, 0X0D, 0X03, 0X0B, 0X07, 0X0F,
+	0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0,
+	0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0,
+	0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0,
+	0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0
   };
 
 
-  __attribute__((aligned(32))) static const uint8_t a1[32] = {
-    0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
-    0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
-    0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
-    0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F
+  __attribute__ ((aligned(32))) static const uint8_t a1[32] = {
+	0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
+	0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
+	0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F,
+	0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F, 0X0F
   };
-  __attribute__((aligned(32))) static const uint8_t a2[32] = {
-    0X00, 0X08, 0X04, 0X0C, 0X02, 0X0A, 0X06, 0X0E,
-    0X01, 0X09, 0X05, 0X0D, 0X03, 0X0B, 0X07, 0X0F,
-    0X00, 0X08, 0X04, 0X0C, 0X02, 0X0A, 0X06, 0X0E,
-    0X01, 0X09, 0X05, 0X0D, 0X03, 0X0B, 0X07, 0X0F
+  __attribute__ ((aligned(32))) static const uint8_t a2[32] = {
+	0X00, 0X08, 0X04, 0X0C, 0X02, 0X0A, 0X06, 0X0E,
+	0X01, 0X09, 0X05, 0X0D, 0X03, 0X0B, 0X07, 0X0F,
+	0X00, 0X08, 0X04, 0X0C, 0X02, 0X0A, 0X06, 0X0E,
+	0X01, 0X09, 0X05, 0X0D, 0X03, 0X0B, 0X07, 0X0F
   };
-  __attribute__((aligned(32))) static const uint8_t a3[32] = {
-    0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0,
-    0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0,
-    0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0,
-    0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0
-  };
-
-  __attribute__((aligned(32))) static const uint8_t o256[32] = {
-    31, 30, 29, 28, 27, 26, 25, 24,
-    23, 22, 21, 20, 19, 18, 17, 16,
-    15, 14, 13, 12, 11, 10, 9, 8,
-    7, 6, 5, 4, 3, 2, 1, 0
+  __attribute__ ((aligned(32))) static const uint8_t a3[32] = {
+	0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0,
+	0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0,
+	0X00, 0X80, 0X40, 0XC0, 0X20, 0XA0, 0X60, 0XE0,
+	0X10, 0X90, 0X50, 0XD0, 0X30, 0XB0, 0X70, 0XF0
   };
 
-  __attribute__((aligned(32))) static const uint8_t o16[32] = {
-    1, 0, 3, 2, 5, 4, 7, 6,
-    9, 8, 11, 10, 13, 12, 15, 14,
-    17, 16, 19, 18, 21, 20, 23, 22,
-    25, 24, 27, 26, 29, 28, 31, 30
+  __attribute__ ((aligned(32))) static const uint8_t o256[32] = {
+	31, 30, 29, 28, 27, 26, 25, 24,
+	23, 22, 21, 20, 19, 18, 17, 16,
+	15, 14, 13, 12, 11, 10, 9, 8,
+	7, 6, 5, 4, 3, 2, 1, 0
   };
 
-  __attribute__((aligned(32))) static const uint8_t o32[32] = {
-    3, 2, 1, 0, 7, 6, 5, 4,
-    11, 10, 9, 8, 15, 14, 13, 12,
-    19, 18, 17, 16, 23, 22, 21, 20,
-    27, 26, 25, 24, 31, 30, 29, 28
+  __attribute__ ((aligned(32))) static const uint8_t o16[32] = {
+	1, 0, 3, 2, 5, 4, 7, 6,
+	9, 8, 11, 10, 13, 12, 15, 14,
+	17, 16, 19, 18, 21, 20, 23, 22,
+	25, 24, 27, 26, 29, 28, 31, 30
   };
 
-  __attribute__((aligned(32))) static const uint8_t o64[32] = {
-    7, 6, 5, 4, 3, 2, 1, 0,
-    15, 14, 13, 12, 11, 10, 9, 8,
-    23, 22, 21, 20, 19, 18, 17, 16,
-    31, 30, 29, 28, 27, 26, 25, 24
+  __attribute__ ((aligned(32))) static const uint8_t o32[32] = {
+	3, 2, 1, 0, 7, 6, 5, 4,
+	11, 10, 9, 8, 15, 14, 13, 12,
+	19, 18, 17, 16, 23, 22, 21, 20,
+	27, 26, 25, 24, 31, 30, 29, 28
+  };
+
+  __attribute__ ((aligned(32))) static const uint8_t o64[32] = {
+	7, 6, 5, 4, 3, 2, 1, 0,
+	15, 14, 13, 12, 11, 10, 9, 8,
+	23, 22, 21, 20, 19, 18, 17, 16,
+	31, 30, 29, 28, 27, 26, 25, 24
   };
 
 
@@ -146,79 +147,80 @@ namespace bits {
   /* NB remember to pack data into 256 byte chunks*/
   template<class T>
   __m256i get256(T * input) noexcept {
-    return _mm256_load_si256((__m256i const*) input);
+	return _mm256_load_si256((__m256i const*) input);
   }
 
   typedef struct ZCntFlip {
-    __m256i _Flip;
-    int64_t _zCnt[4];
+	__m256i _Flip;
+	int64_t _zCnt[4];
   } __ZCntFlip;
 
   template<class T >
   __m256i flipAVX(T * input) noexcept {
-    __m256i acc1;
-    __m256i arg1;
+	__m256i acc1;
+	__m256i arg1;
 
-    arg1 = _mm256_load_si256((__m256i const*) input);
+	arg1 = _mm256_load_si256((__m256i const*) input);
 
-    acc1 = _mm256_and_si256(ia1, arg1); /* acc1 = arg1 and ia1 */
-    arg1 = _mm256_andnot_si256(ia1, arg1); /* arg1 = arg1 and not ia1 */
-    arg1 = _mm256_srli_epi32(arg1, 4); /* shift arg1 4h */
-    arg1 = _mm256_shuffle_epi8(ia2, arg1); /* arg1 = shuf arg1 and ia2 */
-    acc1 = _mm256_shuffle_epi8(ia3, acc1); /* acc1 =  shuf acc1 and ia3 */
-    if ((std::numeric_limits<T>::digits == 8)) {
-      return _mm256_or_si256(acc1, arg1);
-    } else {
-      arg1 = _mm256_or_si256(acc1, arg1);
-      if ((std::numeric_limits<T>::digits == 16))
-        return _mm256_shuffle_epi8(_mm256_or_si256(acc1, arg1), io16);
-      if ((std::numeric_limits<T>::digits == 32))
-        return _mm256_shuffle_epi8(_mm256_or_si256(acc1, arg1), io32);
-      if ((std::numeric_limits<T>::digits == 64))
-        return _mm256_shuffle_epi8(_mm256_or_si256(acc1, arg1), io64);
-    }
+	acc1 = _mm256_and_si256(ia1, arg1); /* acc1 = arg1 and ia1 */
+	arg1 = _mm256_andnot_si256(ia1, arg1); /* arg1 = arg1 and not ia1 */
+	arg1 = _mm256_srli_epi32(arg1, 4); /* shift arg1 4h */
+	arg1 = _mm256_shuffle_epi8(ia2, arg1); /* arg1 = shuf arg1 and ia2 */
+	acc1 = _mm256_shuffle_epi8(ia3, acc1); /* acc1 =  shuf acc1 and ia3 */
+	if ((std::numeric_limits<T>::digits == 8)) {
+	  return _mm256_or_si256(acc1, arg1);
+	}
+	else {
+	  arg1 = _mm256_or_si256(acc1, arg1);
+	  if ((std::numeric_limits<T>::digits == 16))
+		return _mm256_shuffle_epi8(_mm256_or_si256(acc1, arg1), io16);
+	  if ((std::numeric_limits<T>::digits == 32))
+		return _mm256_shuffle_epi8(_mm256_or_si256(acc1, arg1), io32);
+	  if ((std::numeric_limits<T>::digits == 64))
+		return _mm256_shuffle_epi8(_mm256_or_si256(acc1, arg1), io64);
+	}
   }
 
   template <typename T, size_t N>
   void flipAVXArray(T(&a)[N]) noexcept {
-    if ((std::numeric_limits<T>::digits == 16)) {
-      _bitflipbyte(reinterpret_cast<uint8_t*> (a),
-              static_cast<uint8_t> (ceil((N * 2) / 32.0)), bits::k1);
-      uint16_t b[N];
-      for (int i = 0; i < N; i++)
-        b[i] = __builtin_bswap16(a[i]);
-      std::copy(std::begin(b), std::end(b), std::begin(a));
-    }
-    if ((std::numeric_limits<T>::digits == 8))
-      _bitflipbyte(reinterpret_cast<uint8_t*> (a),
-            static_cast<uint8_t> (ceil(N / 32.0)), bits::k1);
+	if ((std::numeric_limits<T>::digits == 16)) {
+	  _bitflipbyte(reinterpret_cast<uint8_t*> (a),
+			  static_cast<uint8_t> (ceil((N * 2) / 32.0)), bits::k1);
+	  uint16_t b[N];
+	  for (int i = 0; i < N; i++)
+		b[i] = __builtin_bswap16(a[i]);
+	  std::copy(std::begin(b), std::end(b), std::begin(a));
+	}
+	if ((std::numeric_limits<T>::digits == 8))
+	  _bitflipbyte(reinterpret_cast<uint8_t*> (a),
+			static_cast<uint8_t> (ceil(N / 32.0)), bits::k1);
   }
 
   template<class T>
   void print256(__m256i var) noexcept {
-    T *val = reinterpret_cast<T*> (& var);
-    constexpr uint8_t size = sizeof ( T);
-    constexpr uint8_t size8 = sizeof ( T) * 8;
-    for (uint64_t i = 0; i < (32 / size); i++)
-      std::cout << std::bitset < size8 > (val[i]) << std::endl;
+	T *val = reinterpret_cast<T*> (& var);
+	constexpr uint8_t size = sizeof ( T);
+	constexpr uint8_t size8 = sizeof ( T) * 8;
+	for (uint64_t i = 0; i < (32 / size); i++)
+	  std::cout << std::bitset < size8 > (val[i]) << std::endl;
   }
 
   template<class T>
   void i256toa(__m256i var, T * a) noexcept {
-    T * val = reinterpret_cast<T *> (& var);
-    constexpr uint8_t size = sizeof ( T);
-    constexpr uint8_t size8 = sizeof ( T) * 8;
-    for (uint8_t i = 0; i < (32 / size); i++) {
-      a[i] = static_cast<T> (var[i] << size8);
-    }
+	T * val = reinterpret_cast<T *> (& var);
+	constexpr uint8_t size = sizeof ( T);
+	constexpr uint8_t size8 = sizeof ( T) * 8;
+	for (uint8_t i = 0; i < (32 / size); i++) {
+	  a[i] = static_cast<T> (var[i] << size8);
+	}
   }
 
   class NullBuffer : public std::streambuf {
   public:
 
-    int overflow(int c) noexcept {
-      return c;
-    }
+	int overflow(int c) noexcept {
+	  return c;
+	}
   };
 
   typedef const std::pair<uint64_t, uint64_t> range_t;
@@ -226,9 +228,9 @@ namespace bits {
   template<class T>
   struct DeleteAligned {
 
-    void operator()(T data[]) const noexcept {
-      _aligned_free(data);
-    }
+	void operator()(T data[]) const noexcept {
+	  _aligned_free(data);
+	}
   };
 
   /**
@@ -245,44 +247,44 @@ namespace bits {
    * $Id: AlignedVector.html,v 1.5 2017/10/24 14:16:20 bv Exp $
    */
   template<class T>
-  class AlignedVector {
+  class aligned_vector_t {
   public:
-    using aligned_vec = std::vector<T>;
-    aligned_vec vec; //, aligned_allocator<T, 32 >> vec;
+	using avec = std::vector<T>;
+	avec vec; //, aligned_allocator<T, 32 >> vec;
 
-    explicit AlignedVector(const std::initializer_list<T> &l) noexcept {
-      for (auto itm : l) {
-        __attribute__((aligned(32))) T ai = itm;
-        vec.push_back(ai);
-      }
-    }
+	explicit aligned_vector_t(const std::initializer_list<T> &l) noexcept {
+	  for (auto itm : l) {
+		__attribute__ ((aligned(32))) T ai = itm;
+		vec.push_back(ai);
+	  }
+	}
 
-    explicit AlignedVector(std::unique_ptr<T[], DeleteAligned<T>>  ptr, const uint64_t size) noexcept {
-      vec(&ptr.get(), &ptr.get() + size);
-    }
+	explicit aligned_vector_t(std::unique_ptr<T*, DeleteAligned<T>> ptr, const uint64_t size) noexcept {
+	  vec(ptr.get(), ptr.get() + size);
+	}
 
-    explicit AlignedVector(const std::vector<T> &v) noexcept {
-      for (auto itm : v) {
-        __attribute__((aligned(32))) T ai = itm;
-        vec.push_back(ai);
-      }
-    }
+	explicit aligned_vector_t(const std::vector<T> &v) noexcept {
+	  for (auto itm : v) {
+		__attribute__ ((aligned(32))) T ai = itm;
+		vec.push_back(ai);
+	  }
+	}
 
-    explicit AlignedVector(const uint32_t size)noexcept : vec(size) {
+	explicit aligned_vector_t(const uint32_t size)noexcept : vec(size) {
 
-    }
+	}
 
-    template< size_t N>
-    explicit AlignedVector(const T(&array)[N]) noexcept {
-      __attribute__((aligned(32))) T alignarr[N];
-      for (int i = 0; i < N; i++)
-        alignarr[i] = array[i];
-      vec = aligned_vec(std::begin(alignarr), std::end(alignarr));
-    }
+	template< size_t N>
+	explicit aligned_vector_t(const T(&array)[N]) noexcept {
+	  __attribute__ ((aligned(32))) T alignarr[N];
+	  for (int i = 0; i < N; i++)
+		alignarr[i] = array[i];
+	  vec = vec(std::begin(alignarr), std::end(alignarr));
+	}
 
-    T& operator[](int x) noexcept {
-      return vec[x];
-    }
+	T& operator[](int x) noexcept {
+	  return vec[x];
+	}
   };
 
 
@@ -307,331 +309,333 @@ namespace bits {
   public:
 
 
-    using aligned_unique_ptr = std::unique_ptr<T[], DeleteAligned<T>>;
-    ///  Enum type of debug header.
+	using aligned_unique_ptr = std::unique_ptr<T[], DeleteAligned<T>>;
+	///  Enum type of debug header.
 
-    /** Enum type of debug header.
-     */
-    enum displayFlags {
-      NONE = 0,
-      VARIABLES = 1,
-      INPUTLIST = 2
-    };
+	/** Enum type of debug header.
+	 */
+	enum displayFlags {
+	  NONE = 0,
+	  VARIABLES = 1,
+	  INPUTLIST = 2
+	};
 
-    aligned_unique_ptr AllocateAligned(int alignment, uint64_t kSize) noexcept {
-#if defined (__MINGW64__)
-      __attribute__((aligned(32)))T * raw =
-              static_cast<T*> (_aligned_malloc(sizeof (T) * kSize, 32));
-#endif
-      return aligned_unique_ptr{raw};
-    }
+	std::unique_ptr<T*, DeleteAligned<T>> AllocateAligned(int alignment, uint64_t kSize) noexcept {
+	#if defined (__MINGW64__)
+	  void * raw = _aligned_malloc(sizeof (T) * kSize, 32);
+	#endif
+	  aligned_unique_ptr p(static_cast<T*> (raw));
+	  return p;
+	}
 
   private:
-    static constexpr uint64_t kIntSize = sizeof (T);
-    static constexpr uint8_t kIntW = std::numeric_limits<T>::digits10 + 1;
-    const range_t kRange;
-    const uint64_t kLength;
-    const uint64_t kStep;
-    const uint64_t kSize;
-    bool initialized_ = false;
-    T * p_var_;
-    aligned_unique_ptr input_;
-    aligned_unique_ptr output_;
-    bool align_alloc_ = false;
-    const AlignedVector<T> in_vec_; //std::vector<T> in_vec_;
-    AlignedVector<T> out_vec_; //  std::vector<__attribute__((aligned(32))) T> out_vec_;
-    /// debug Header
+	static constexpr uint64_t kIntSize = sizeof (T);
+	static constexpr uint8_t kIntW = std::numeric_limits<T>::digits10 + 1;
+	const range_t kRange;
+	const uint64_t kLength;
+	const uint64_t kStep;
+	const uint64_t kSize;
+	bool initialized_ = false;
+	T * p_var_;
+	aligned_unique_ptr input_;
+	aligned_unique_ptr output_;
+	bool align_alloc_ = false;
+	const aligned_vector_t<T> in_vec_; //std::vector<T> in_vec_;
+	aligned_vector_t<T> out_vec_; //  std::vector<__attribute__((aligned(32))) T> out_vec_;
+	/// debug Header
 
-    void outputHeader(uint8_t mH) noexcept {
-      if (VARIABLES & mH) {
-        std::cout
-                << "-----------------Variables for m256i-------------------"
-                << "\n --- Quantized Size       : " <<
-                kSize
-                << "\n --- Step                 : " <<
-                +kStep
-                << "\n --- Length               : " <<
-                +kLength
-                << "\n --- Integer              : " <<
-                +kIntSize * 8 << " bits" << std::endl;
-        std::cout
-                << "-----------------------------------------------------" <<
-                std::endl;
-      }
+	void outputHeader(uint8_t mH) noexcept {
+	  if (VARIABLES & mH) {
+		std::cout
+				<< "-----------------Variables for m256i-------------------"
+				<< "\n --- Quantized Size       : " <<
+				kSize
+				<< "\n --- Step                 : " <<
+				+kStep
+				<< "\n --- Length               : " <<
+				+kLength
+				<< "\n --- Integer              : " <<
+				+kIntSize * 8 << " bits" << std::endl;
+		std::cout
+				<< "-----------------------------------------------------" <<
+				std::endl;
+	  }
 
-      if (this->in_vec_.vec.empty()) {
-        if (INPUTLIST & mH) {
-          for (T i = 0, c = 0; i < kLength; i++, c++) {
-            std::cout << std::setfill('0') <<
-                    std::setw(kIntW) <<
-                    +input_[c] << " ";
-            if (!((i + 1) % (24 / kIntSize)) && i != 0) std::cout << std::endl;
-          }
-        }
-      } else {
-        if (INPUTLIST & mH) {
-          uint64_t i = 0;
-          for (auto ele : in_vec_.vec) {
-            std::cout << std::setfill('0') << std::setw(kIntW) << +ele << " ";
-            if (!((i + 1) % (24 / kIntSize)) && i != 0) std::cout << std::endl;
-            i++;
-          }
-        }
-      }
-      if (INPUTLIST & mH) std::cout << std::endl;
-    }
+	  if (this->in_vec_.vec.empty()) {
+		if (INPUTLIST & mH) {
+		  for (T i = 0, c = 0; i < kLength; i++, c++) {
+			std::cout << std::setfill('0') <<
+					std::setw(kIntW) <<
+					+input_[c] << " ";
+			if (!((i + 1) % (24 / kIntSize)) && i != 0) std::cout << std::endl;
+		  }
+		}
+	  }
+	  else {
+		if (INPUTLIST & mH) {
+		  uint64_t i = 0;
+		  for (auto ele : in_vec_.vec) {
+			std::cout << std::setfill('0') << std::setw(kIntW) << +ele << " ";
+			if (!((i + 1) % (24 / kIntSize)) && i != 0) std::cout << std::endl;
+			i++;
+		  }
+		}
+	  }
+	  if (INPUTLIST & mH) std::cout << std::endl;
+	}
 
   public:
-    char mFormat = 'B';
-    template<class S>
-    friend std::ostream & operator<<(std::ostream& s, bits::AVX<S> & p)noexcept;
+	char mFormat = 'B';
+	template<class S>
+	friend std::ostream & operator<<(std::ostream& s, bits::AVX<S> & p)noexcept;
 
-    AVX(AVX const &) = delete;
-    AVX & operator=(AVX const &) = delete;
+	AVX(AVX const &) = delete;
+	AVX & operator=(AVX const &) = delete;
 
-    AVX & operator=(AVX &&rhs) {
-      if (this != &rhs)
-        output_ = std::move(rhs.output_);
-      return *this;
-    }
+	AVX & operator=(AVX &&rhs) {
+	  if (this != &rhs)
+		output_ = std::move(rhs.output_);
+	  return *this;
+	}
 
-    AVX(AVX &&rhs) :
-    kLength(rhs.kLength),
-    kStep(rhs.kStep),
-    kSize(rhs.kSize),
-    output_(std::move(rhs.output_)) {
-    }
+	AVX(AVX &&rhs) :
+	kLength(rhs.kLength),
+	kStep(rhs.kStep),
+	kSize(rhs.kSize),
+	output_(std::move(rhs.output_)) {
+	}
 
-    /// Create an AVX from an array of T integers
+	/// Create an AVX from an array of T integers
 
-    /**
-     *  Initialize from array of type T.
-     *  @param N size of array
-     *  @param array: array of kSize N: <b>Stored in array input_ of type T and  kSize = (kStep * ceill(N / kStep) </b>
-     *  @param mF Integer format flag: <b> 'b' binary,  'd' decimal, 'n' remove trailing bits. Capitalized adds a carriage return after element</b>
-     * @param  mH Debug header enum flag: <b>NONE, INPUTLIST, VARIABLES</b>
-     *
-     */
-    template< size_t N = 0 >
-    explicit AVX(const T(&a)[N], uint8_t mH = 0, char mF = 'B') :
-    mFormat(mF),
-    kLength(N),
-    kStep(32 / kIntSize),
-    kSize(kStep * ceil(static_cast<double> (N) / kStep)),
-    out_vec_(kSize),
-    align_alloc_(true) {
-      input_ = AllocateAligned(32, kSize);
-      output_ = AllocateAligned(32, kSize);
+	/**
+	 *  Initialize from array of type T.
+	 *  @param N size of array
+	 *  @param array: array of kSize N: <b>Stored in array input_ of type T and  kSize = (kStep * ceill(N / kStep) </b>
+	 *  @param mF Integer format flag: <b> 'b' binary,  'd' decimal, 'n' remove trailing bits. Capitalized adds a carriage return after element</b>
+	 * @param  mH Debug header enum flag: <b>NONE, INPUTLIST, VARIABLES</b>
+	 *
+	 */
+	template< size_t N = 0 >
+	explicit AVX(const T(&a)[N], uint8_t mH = 0, char mF = 'B') :
+	mFormat(mF),
+	kLength(N),
+	kStep(32 / kIntSize),
+	kSize(kStep * ceil(static_cast<double> (N) / kStep)),
+	out_vec_(kSize),
+	align_alloc_(true) {
+	  input_ = AllocateAligned(32, kSize);
+	  output_ = AllocateAligned(32, kSize);
 
-      memset(input_.get(), std::numeric_limits<int>::max(), kIntSize * kSize);
-      for (uint64_t i = 0; i < N; i++)
-        input_[i] = a[i];
-      outputHeader(mH);
-      initialized_ = true;
-    }
+	  memset(input_.get(), std::numeric_limits<int>::max(), kIntSize * kSize);
+	  for (uint64_t i = 0; i < N; i++)
+		input_[i] = a[i];
+	  outputHeader(mH);
+	  initialized_ = true;
+	}
 
-    /// Create an AVX from an aligned vector of T integers
+	/// Create an AVX from an aligned vector of T integers
 
-    /**
-     *  Initialize from aligned vector of type T.
-     *  @param aligned vector: array of kSize N:
-     * <b>Stored in array input_ of type T and  kSize = (kStep * ceill(N / kStep) </b>
-     *  @param mF Integer format flag: <b> 'b' binary,  'd' decimal,
-     * 'n' remove trailing bits. Capitalized adds a carriage return after element</b>
-     * @param  mH Debug header enum flag: <b>NONE, INPUTLIST, VARIABLES</b>
-     *
-     */
-    explicit AVX(const bits::AlignedVector<T> & avec,
-            uint8_t mH = 0, char mF = 'B') :
-    mFormat(mF),
-    kStep(32 / kIntSize),
-    kSize(kStep * ceil(static_cast<double> (avec.vec.size()) / kStep)),
-    in_vec_(avec.vec),
-    kLength(avec.vec.size()),
-    out_vec_(kSize),
-    align_alloc_(true) {
-      input_ = AllocateAligned(32, kSize);
-      output_ = AllocateAligned(32, kSize);
-      uint64_t i = 0;
-      for (auto val : in_vec_.vec) {
-        input_[i] = val;
-        i++;
-      }
-      outputHeader(mH);
-      initialized_ = true;
-    }
+	/**
+	 *  Initialize from aligned vector of type T.
+	 *  @param aligned vector: array of kSize N:
+	 * <b>Stored in array input_ of type T and  kSize = (kStep * ceill(N / kStep) </b>
+	 *  @param mF Integer format flag: <b> 'b' binary,  'd' decimal,
+	 * 'n' remove trailing bits. Capitalized adds a carriage return after element</b>
+	 * @param  mH Debug header enum flag: <b>NONE, INPUTLIST, VARIABLES</b>
+	 *
+	 */
+	explicit AVX(const bits::aligned_vector_t<T> & avec,
+			uint8_t mH = 0, char mF = 'B') :
+	mFormat(mF),
+	kStep(32 / kIntSize),
+	kSize(kStep * ceil(static_cast<double> (avec.vec.size()) / kStep)),
+	in_vec_(avec.vec),
+	kLength(avec.vec.size()),
+	out_vec_(kSize),
+	align_alloc_(true) {
+	  input_ = AllocateAligned(32, kSize);
+	  output_ = AllocateAligned(32, kSize);
+	  uint64_t i = 0;
+	  for (auto val : in_vec_.vec) {
+		input_[i] = val;
+		i++;
+	  }
+	  outputHeader(mH);
+	  initialized_ = true;
+	}
 
-    /// Create an AVX from an array of T integers
+	/// Create an AVX from an array of T integers
 
-    /**
-     *  Initialize from vector  of type T.
-     *  @param vec: the vector
-     *  @param array: array of kSize N:
-     *  <b>Stored in array input_ of type T and  kSize = (kStep * ceill(N / kStep) </b>
-     *  @param mF Integer format flag:
-     *  <b> 'b' binary
-     *  'd' decimal
-     *  'n' remove trailing bits
-     *  Capitalized adds a carriage return after element</b>
-     * @param  mH Debug header enum flag: <b>NONE, INPUTLIST, VARIABLES</b>
-     *
-     */
-    explicit AVX(const std::vector<T> & vec, uint8_t mH = 0, char mF = 'B') :
-    mFormat(mF),
-    kStep(32 / kIntSize),
-    kSize(kStep * ceil(reinterpret_cast<double> (vec.size()) / kStep)),
-    in_vec_(vec),
-    kLength(vec.size()),
-    out_vec_(kSize),
-    align_alloc_(true) {
-      input_ = AllocateAligned(32, kSize);
-      output_ = AllocateAligned(32, kSize);
-      uint64_t i = 0;
-      for (auto val : in_vec_) {
-        input_[i] = val;
-        i++;
-      }
-      outputHeader(mH);
-      initialized_ = true;
-    }
+	/**
+	 *  Initialize from vector  of type T.
+	 *  @param vec: the vector
+	 *  @param array: array of kSize N:
+	 *  <b>Stored in array input_ of type T and  kSize = (kStep * ceill(N / kStep) </b>
+	 *  @param mF Integer format flag:
+	 *  <b> 'b' binary
+	 *  'd' decimal
+	 *  'n' remove trailing bits
+	 *  Capitalized adds a carriage return after element</b>
+	 * @param  mH Debug header enum flag: <b>NONE, INPUTLIST, VARIABLES</b>
+	 *
+	 */
+	explicit AVX(const std::vector<T> & vec, uint8_t mH = 0, char mF = 'B') :
+	mFormat(mF),
+	kStep(32 / kIntSize),
+	kSize(kStep * ceil(reinterpret_cast<double> (vec.size()) / kStep)),
+	in_vec_(vec),
+	kLength(vec.size()),
+	out_vec_(kSize),
+	align_alloc_(true) {
+	  input_ = AllocateAligned(32, kSize);
+	  output_ = AllocateAligned(32, kSize);
+	  uint64_t i = 0;
+	  for (auto val : in_vec_) {
+		input_[i] = val;
+		i++;
+	  }
+	  outputHeader(mH);
+	  initialized_ = true;
+	}
 
-    /// Create an AVX from a range of uint64_t integers
+	/// Create an AVX from a range of uint64_t integers
 
-    /**
-     *  Initialise from range.
-     *  @param range: array of size 2: <b>range[0] = lower limit, range[1] = upper limit</b>
-     *  @param mF Integer format flag:
-     * <b> 'b' binary
-     * 'd' decimal
-     * 'v' decimal + remove trailing bits
-     * 'w' binary remove trailing bits
-     * 'h' hexadecimal
-     *  captalised character flag adds a carriage return after each element</b>
-     * @param  mH Debug header enum flag: <b>NONE, INPUTLIST, VARIABLES</b>
-     *
-     */
-    explicit AVX(const range_t range, uint8_t mH = 0, char mF = 'B') :
-    mFormat(mF),
-    kRange(range),
-    kLength(range.second - range.first + 1),
-    kStep(32 / kIntSize),
-    kSize(kStep * ceil(static_cast<double> (kLength) / kStep)),
-    out_vec_(kSize),
-    align_alloc_(true) {
-      uint64_t big = kRange.first > kRange.second ?
-              kRange.first : kRange.second;
-      uint8_t mBytes = (big >= 0xFFFFFFFF) ? 8 :
-              (big >= 0xFFFF) ? 4 : (big >= 0xFF) ? 2 : 1;
+	/**
+	 *  Initialise from range.
+	 *  @param range: array of size 2: <b>range[0] = lower limit, range[1] = upper limit</b>
+	 *  @param mF Integer format flag:
+	 * <b> 'b' binary
+	 * 'd' decimal
+	 * 'v' decimal + remove trailing bits
+	 * 'w' binary remove trailing bits
+	 * 'h' hexadecimal
+	 *  captalised character flag adds a carriage return after each element</b>
+	 * @param  mH Debug header enum flag: <b>NONE, INPUTLIST, VARIABLES</b>
+	 *
+	 */
+	explicit AVX(const range_t range, uint8_t mH = 0, char mF = 'B') :
+	mFormat(mF),
+	kRange(range),
+	kLength(range.second - range.first + 1),
+	kStep(32 / kIntSize),
+	kSize(kStep * ceil(static_cast<double> (kLength) / kStep)),
+	out_vec_(kSize),
+	align_alloc_(true) {
+	  uint64_t big = kRange.first > kRange.second ?
+			  kRange.first : kRange.second;
+	  uint8_t mBytes = (big >= 0xFFFFFFFF) ? 8 :
+			  (big >= 0xFFFF) ? 4 : (big >= 0xFF) ? 2 : 1;
 
-      if (mBytes > kIntSize) {
-        std::cout << "Range Integer too large for AVX Type" << std::endl;
-        initialized_ = false;
-        return;
-      }
-      input_ = AllocateAligned(32, kSize);
-      output_ = AllocateAligned(32, kSize);
-      for (uint64_t i = kRange.first, c = 0; i <= kRange.second; i++, c++)
-        input_[c] = i;
-      outputHeader(mH);
-      initialized_ = true;
-    }
+	  if (mBytes > kIntSize) {
+		std::cout << "Range Integer too large for AVX Type" << std::endl;
+		initialized_ = false;
+		return;
+	  }
+	  input_ = AllocateAligned(32, kSize);
+	  output_ = AllocateAligned(32, kSize);
+	  for (uint64_t i = kRange.first, c = 0; i <= kRange.second; i++, c++)
+		input_[c] = i;
+	  outputHeader(mH);
+	  initialized_ = true;
+	}
 
-    /// Return vector of flipped integers
-    /**
-     *  flip vector  of integers and return a vector  of the flipped integers
-     * @return   std::vector<T> : vector  of integer type T
-     * flipAVX takes in 256bits at a time
-     **/
-    auto vFlip() noexcept -> AlignedVector<T> {
-      if (initialized_ && in_vec_.vec.empty()) {
-        for (uint64_t j = 0; j < kSize; j += kStep) {
-          __m256i m = bits::flipAVX(&input_[ j]);
-          T* pm = reinterpret_cast<T*> (& m);
-          for (uint64_t i = 0; i < kStep; i++)
-            output_[ j + i] = pm[i];
-        }
-        return AlignedVector<T>(std::move(output_), kSize);
-      } else {
-        if (initialized_) {
-          for (uint64_t j = 0; j < kSize; j += kStep) {
-            __attribute__((aligned(32))) T x[kStep];
-            //   memcpy(&x, &in_vec_[j], 32);
-            __m256i m = bits::flipAVX(reinterpret_cast<T*> (in_vec_.vec[j]));
-            memcpy(&out_vec_.vec[j], &m, 32);
-          }
-          return out_vec_;
-        }
-      }
-    }
-    /// Return pointer to flipped integers
-    /**
-     *  flip array of integers and return pointer of the flipped array
-     * @return   aligned_unique_ptr<T> : pointer of array of integer type T
-     * @note The output array is in blocks of 256 bits.
-     * flipAVX takes in 256bits at a time
-     * There will be null values present for <b><> kLength  * TS  % 32  and << kLength  * TS  % 32 </b>
-     * where:
-     * TS is Integer byte length
-     *  kLength is the number of elements in the input array
-     **/
-    auto pFlip() noexcept -> aligned_unique_ptr {
-      if (initialized_) {
-        for (uint64_t j = 0; j < kSize; j += kStep) {
-          __m256i m = bits::flipAVX(&input_[ j]);
-          T* pm = reinterpret_cast<T*> (& m);
-          for (uint64_t i = 0; i < kStep; i++)
-            output_[ j + i] = pm[i];
-        }
-      }
-      return std::move(output_);
-    }
-    /// Return pointer to flipped integers
-    /**
-     *  flip array of integers and return pointer of the flipped array
-     * @return   std::shared_ptr<T[] > : pointer of array of integer type T
-     * @note The output array is in blocks of 256 bits.
-     * flipAVX takes in 256bits at a time
-     * There will be null values present for <b><> kLength  * TS  % 32  and << kLength  * TS  % 32 </b>
-     * where:
-     * TS is Integer byte length
-     *  kLength is the number of elements in the input array
-     **/
-    auto nshared_pFlip()noexcept -> std::shared_ptr<T[] > {
-      if (initialized_) {
-        for (uint64_t j = 0; j < kSize; j += kStep) {
-          __m256i m = bits::flipAVX(&input_[ j]);
-          T* pm = reinterpret_cast<T*> (& m);
-          for (uint64_t i = 0; i < kStep; i++)
-            output_[ j + i] = pm[i];
-        }
-      }
-      return std::shared_ptr < T[] >(output_.get());
-    }
-    /// Return pointer to flipped integers
+	/// Return vector of flipped integers
+	/**
+	 *  flip vector  of integers and return a vector  of the flipped integers
+	 * @return   std::vector<T> : vector  of integer type T
+	 * flipAVX takes in 256bits at a time
+	 **/
+	auto vFlip() noexcept -> aligned_vector_t<T> {
+	  if (initialized_ && in_vec_.vec.empty()) {
+		for (uint64_t j = 0; j < kSize; j += kStep) {
+		  __m256i m = bits::flipAVX(&input_[ j]);
+		  T* pm = reinterpret_cast<T*> (& m);
+		  for (uint64_t i = 0; i < kStep; i++)
+			output_[ j + i] = pm[i];
+		}
+		return aligned_vector_t<T>(std::move(output_), kSize);
+	  }
+	  else {
+		if (initialized_) {
+		  for (uint64_t j = 0; j < kSize; j += kStep) {
+			__attribute__ ((aligned(32))) T x[kStep];
+			//   memcpy(&x, &in_vec_[j], 32);
+			__m256i m = bits::flipAVX(reinterpret_cast<T*> (in_vec_.vec[j]));
+			memcpy(&out_vec_.vec[j], &m, 32);
+		  }
+		  return out_vec_;
+		}
+	  }
+	}
+	/// Return pointer to flipped integers
+	/**
+	 *  flip array of integers and return pointer of the flipped array
+	 * @return   aligned_unique_ptr<T> : pointer of array of integer type T
+	 * @note The output array is in blocks of 256 bits.
+	 * flipAVX takes in 256bits at a time
+	 * There will be null values present for <b><> kLength  * TS  % 32  and << kLength  * TS  % 32 </b>
+	 * where:
+	 * TS is Integer byte length
+	 *  kLength is the number of elements in the input array
+	 **/
+	auto pFlip() noexcept -> aligned_unique_ptr {
+	  if (initialized_) {
+		for (uint64_t j = 0; j < kSize; j += kStep) {
+		  __m256i m = bits::flipAVX(&input_[ j]);
+		  T* pm = reinterpret_cast<T*> (& m);
+		  for (uint64_t i = 0; i < kStep; i++)
+			output_[ j + i] = pm[i];
+		}
+	  }
+	  return std::move(output_);
+	}
+	/// Return pointer to flipped integers
+	/**
+	 *  flip array of integers and return pointer of the flipped array
+	 * @return   std::shared_ptr<T[] > : pointer of array of integer type T
+	 * @note The output array is in blocks of 256 bits.
+	 * flipAVX takes in 256bits at a time
+	 * There will be null values present for <b><> kLength  * TS  % 32  and << kLength  * TS  % 32 </b>
+	 * where:
+	 * TS is Integer byte length
+	 *  kLength is the number of elements in the input array
+	 **/
+	auto nshared_pFlip()noexcept -> std::shared_ptr<T[] > {
+	  if (initialized_) {
+		for (uint64_t j = 0; j < kSize; j += kStep) {
+		  __m256i m = bits::flipAVX(&input_[ j]);
+		  T* pm = reinterpret_cast<T*> (& m);
+		  for (uint64_t i = 0; i < kStep; i++)
+			output_[ j + i] = pm[i];
+		}
+	  }
+	  return std::shared_ptr < T[] >(output_.get());
+	}
+	/// Return pointer to flipped integers
 
-    /**
-     *  flip array of integers and return pointer of the flipped array
-     * @return   T * : pointer of array of integer type T
-     * @note Flying into the Danger Zone. Must declare a aligned free function to release pointer.
-     * The output array is in blocks of 256 bits.
-     * flipAVX takes in 256bits at a time
-     * There will be null values present for <b><> kLength  * TS  % 32  and << kLength  * TS  % 32 </b>
-     * where:
-     * TS is Integer byte length
-     *  kLength is the number of elements in the input array
-     **/
-    T* shared_pFlip() noexcept {
-      if (initialized_) {
-        for (uint64_t j = 0; j < kSize; j += kStep) {
-          __m256i m = bits::flipAVX(&input_[ j]);
-          T* pm = reinterpret_cast<T*> (& m);
-          for (uint64_t i = 0; i < kStep; i++)
-            output_[ j + i] = pm[i];
-        }
-      }
-      return output_.get();
-    }
-#include <array>
+	/**
+	 *  flip array of integers and return pointer of the flipped array
+	 * @return   T * : pointer of array of integer type T
+	 * @note Flying into the Danger Zone. Must declare a aligned free function to release pointer.
+	 * The output array is in blocks of 256 bits.
+	 * flipAVX takes in 256bits at a time
+	 * There will be null values present for <b><> kLength  * TS  % 32  and << kLength  * TS  % 32 </b>
+	 * where:
+	 * TS is Integer byte length
+	 *  kLength is the number of elements in the input array
+	 **/
+	T* shared_pFlip() noexcept {
+	  if (initialized_) {
+		for (uint64_t j = 0; j < kSize; j += kStep) {
+		  __m256i m = bits::flipAVX(&input_[ j]);
+		  T* pm = reinterpret_cast<T*> (& m);
+		  for (uint64_t i = 0; i < kStep; i++)
+			output_[ j + i] = pm[i];
+		}
+	  }
+	  return output_.get();
+	}
+	#include <array>
   };
   /// stream of the array of AVX vectors
 
@@ -646,58 +650,58 @@ namespace bits {
    **/
   template<class T >
   std::ostream & operator<<(std::ostream& lhs, bits::AVX<T>& p) noexcept {
-    if (p.initialized_) {
-      constexpr uint8_t intW = std::numeric_limits<T>::digits10 + 1;
-      constexpr uint8_t intH = std::numeric_limits<T>::digits + 1;
+	if (p.initialized_) {
+	  constexpr uint8_t intW = std::numeric_limits<T>::digits10 + 1;
+	  constexpr uint8_t intH = std::numeric_limits<T>::digits + 1;
 
-      for (uint64_t j = 0; j < p.kSize; j += p.kStep) {
-        __m256i m = bits::flipAVX(&p.input_[ j]);
-        p.p_var_ = reinterpret_cast<T*> (& m);
-        for (uint8_t i = 0; i < p.kStep; i++) {
-          switch (tolower(p.mFormat)) {
-            case 'd':
-              lhs <<
-                      std::setfill('0') <<
-                      std::setw(intW) <<
-                      std::dec <<
-                      +p.p_var_[i];
-              break;
-            case 'b':
-              lhs <<
-                      std::bitset < p.kIntSize * 8 > (p.p_var_[i]);
-              break;
-            case 'v':
-              lhs << (p.p_var_[i] >> __builtin_ctzll(p.p_var_[i]));
-              break;
-            case 'h':
-              lhs <<
-                      std::setfill('0') <<
-                      std::setw(16) <<
-                      std::hex <<
-                      +p.input_[i + j] <<
-                      "->" << std::hex << p.p_var_[i];
-              break;
-            case'w':
-              lhs <<
-                      std::bitset < p. kIntSize * 8 > (p.p_var_[i]
-                      >> __builtin_ctzll(p.p_var_[i]));
-              break;
-            case 'i':
-              // std::setfill('0') << std::setw(intW) <<
-              lhs <<
-                      std::dec <<
-                      +p.input_[i + j] <<
-                      "-->" <<
-                      +(p.p_var_[i] >> __builtin_ctzll(p.p_var_[i]));
-              break;
-          }
-          isupper(p.mFormat) ? lhs << std::endl : lhs << " ";
-        }
-      }
-    }
-    return lhs;
+	  for (uint64_t j = 0; j < p.kSize; j += p.kStep) {
+		__m256i m = bits::flipAVX(&p.input_[ j]);
+		p.p_var_ = reinterpret_cast<T*> (& m);
+		for (uint8_t i = 0; i < p.kStep; i++) {
+		  switch (tolower(p.mFormat)) {
+			case 'd':
+			  lhs <<
+					  std::setfill('0') <<
+					  std::setw(intW) <<
+					  std::dec <<
+					  +p.p_var_[i];
+			  break;
+			case 'b':
+			  lhs <<
+					  std::bitset < p.kIntSize * 8 > (p.p_var_[i]);
+			  break;
+			case 'v':
+			  lhs << (p.p_var_[i] >> __builtin_ctzll(p.p_var_[i]));
+			  break;
+			case 'h':
+			  lhs <<
+					  std::setfill('0') <<
+					  std::setw(16) <<
+					  std::hex <<
+					  +p.input_[i + j] <<
+					  "->" << std::hex << p.p_var_[i];
+			  break;
+			case'w':
+			  lhs <<
+					  std::bitset < p. kIntSize * 8 > (p.p_var_[i]
+					  >> __builtin_ctzll(p.p_var_[i]));
+			  break;
+			case 'i':
+			  // std::setfill('0') << std::setw(intW) <<
+			  lhs <<
+					  std::dec <<
+					  +p.input_[i + j] <<
+					  "-->" <<
+					  +(p.p_var_[i] >> __builtin_ctzll(p.p_var_[i]));
+			  break;
+		  }
+		  isupper(p.mFormat) ? lhs << std::endl : lhs << " ";
+		}
+	  }
+	}
+	return lhs;
   }
 } // namespace bits
-#endif
+  #endif
 #endif  // INCLUDE_BITFLIPAVX_H_
 

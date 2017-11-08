@@ -14,10 +14,10 @@ GREP=grep
 NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
-CC=gcc
-CCC=g++
-CXX=g++
-FC=gfortran
+CC=x86_64-w64-mingw32-gcc
+CCC=x86_64-w64-mingw32-g++
+CXX=x86_64-w64-mingw32-g++
+FC=x86_64-w64-mingw32-gfortran
 AS=nasm
 
 # Macros
@@ -44,8 +44,8 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
-	${TESTDIR}/TestFiles/f2 \
-	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip
+	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip \
+	${TESTDIR}/TestFiles/f2
 
 # Test Object Files
 TESTOBJECTFILES= \
@@ -100,19 +100,13 @@ ${OBJECTDIR}/src/bitFlipAVX.o: src/bitFlipAVX.cpp
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
-${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/flipBits.o ${OBJECTFILES:%.o=%_nomain.o}
-	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS}   
-
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/tests/bitFlipTestSuite.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip $^ ${LDLIBSOPTIONS}   -lbenchmark -lgtest -lshlwapi -lpthread -lm 
 
-
-${TESTDIR}/tests/flipBits.o: tests/flipBits.cpp 
-	${MKDIR} -p ${TESTDIR}/tests
-	${RM} "$@.d"
-	$(COMPILE.cc) -DYESASSMBLR -Iinclude -I. -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/flipBits.o tests/flipBits.cpp
+${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/flipBits.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS}   
 
 
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
@@ -125,6 +119,12 @@ ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.cc) -DYESASSMBLR -DTABLEHEADERS -Iinclude -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+
+
+${TESTDIR}/tests/flipBits.o: tests/flipBits.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -DYESASSMBLR -Iinclude -I. -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/flipBits.o tests/flipBits.cpp
 
 
 ${OBJECTDIR}/src/_bitflipbyte_nomain.o: ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm 
@@ -169,8 +169,8 @@ ${OBJECTDIR}/src/bitFlipAVX_nomain.o: ${OBJECTDIR}/src/bitFlipAVX.o src/bitFlipA
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
-	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip || true; \
+	    ${TESTDIR}/TestFiles/f2 || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi

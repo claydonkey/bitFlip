@@ -5,7 +5,7 @@
  * Created on 06-Oct-2017, 16:08:35
  */
 
-#include <gtest/gtest.h>
+
 #ifndef NOBENCHMARK
 #include <benchmark/benchmark.h>
 #endif
@@ -17,6 +17,7 @@
 #include <iostream>
 #include <cmath>
 #include <time.h>
+#include <gtest/gtest.h>
 #include "bitFlip.h"
 #include "bitFlipAVX.h"
 #include "bitFlipTables.h"
@@ -108,14 +109,7 @@ void setup() {
 #endif
 }
 
-class TestSuite : public testing::Test {
-public:
 
-  void SetUp() {
-	setup();
-  }
-
-};
 /*--------------------------------------------------      flip Counters      --------------------------------------------------*/
 
 /*------------------------------------------------------ Begin BENCHMARKS -----------------------------------------------------*/
@@ -144,7 +138,7 @@ void BM_Flip_IntrAVX64i256(benchmark::State& state) {
 }
 
 void BM_Flip_IntrAVXClassNullBuffer(benchmark::State& state) {
-  bits::AlignedVector<uint64_t> avec(foo64);
+  bits::aligned_vector_t<uint64_t> avec(foo64);
   bits::NullBuffer null_buffer;
   std::ostream null_stream(&null_buffer);
   bits::AVX<uint64_t> avx(avec);
@@ -154,7 +148,7 @@ void BM_Flip_IntrAVXClassNullBuffer(benchmark::State& state) {
 }
 
 void BM_Flip_IntrAVXClassShared_ptr(benchmark::State& state) {
-  bits::AlignedVector<uint64_t> avec(foo64);
+  bits::aligned_vector_t<uint64_t> avec(foo64);
   bits::AVX<uint64_t> avx2(avec);
   while (state.KeepRunning()) {
 	auto arr = avx2.shared_pFlip();
@@ -163,8 +157,8 @@ void BM_Flip_IntrAVXClassShared_ptr(benchmark::State& state) {
 }
 
 void BM_Flip_IntrAVXClassUnique_ptr(benchmark::State& state) {
-  bits::AlignedVector<uint64_t> avec(foo64);
-  auto avec2 = bits::AlignedVector<uint32_t>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
+  bits::aligned_vector_t<uint64_t> avec(foo64);
+  auto avec2 = bits::aligned_vector_t<uint32_t>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
   bits::AVX<uint64_t> avx2(avec);
   while (state.KeepRunning()) {
 	//   auto arr = avx2.pFlip();
@@ -180,7 +174,7 @@ void BM_Flip_IntrAVXArr_VecClass(benchmark::State& state) {
 }
 
 void BM_Flip_IntrAVXVec_VecClass(benchmark::State& state) {
-  bits::AlignedVector<uint64_t> avec(foo64);
+  bits::aligned_vector_t<uint64_t> avec(foo64);
   bits::AVX<uint64_t> avx(avec);
   while (state.KeepRunning()) {
 	auto arr = avx.vFlip();
@@ -296,7 +290,7 @@ TEST_F(TestSuite, testFlipIntrArrayAVX) {
 
 TEST_F(TestSuite, testFlipIntrClassAVX) {
   uint32_t val = rand() % ARRAY_SIZE / 8;
-  bits::AlignedVector <uint64_t> avec(foo64);
+  bits::aligned_vector_t <uint64_t> avec(foo64);
 
   auto dfoo = bits::AVX<uint64_t> (fooZ64).pFlip();
   //	std::cout << "[WATCH] " << dfoo[val] << " " << bits::flipNaiveLambda(fooZ64[val]) << std::endl;
@@ -306,7 +300,7 @@ TEST_F(TestSuite, testFlipIntrClassAVX) {
 TEST_F(TestSuite, testFlipIntrVecClassAVX) {
   uint32_t val = rand() % ARRAY_SIZE / 8;
 
-  bits::AlignedVector <uint64_t> avec(foo64);
+  bits::aligned_vector_t<uint64_t> avec(foo64);
   auto dfoo = bits::AVX<uint64_t> (avec).vFlip();
   //	std::cout << "[WATCH] " << dfoo[val] << " " << bits::flipNaiveLambda(fooZ64[val]) << std::endl;
   EXPECT_EQ(bits::flipNaiveLambda(foo64[val]), dfoo[val]);
@@ -318,17 +312,6 @@ TEST_F(TestSuite, testFlipAVX) {
   EXPECT_EQ(bits::flipNaive(foo8[0]), flipAVX8(foo8[0]));
 }
 
-/*
-TEST_F(TestSuite, testFlipAVX16) {
-	uint16_t foo16b[ARRAY_SIZE / 2];
-	std::copy(std::begin(foo16), std::end(foo16), std::begin(foo16b));
-	uint32_t rrange = rand() % ARRAY_SIZE;
-
-	flipNaiveArray(foo16b);
-	bits::flipAVXArray(fooZ16);
-	EXPECT_EQ(foo16b[rrange], fooZ16[rrange]);
-}
- */
 
 #ifndef NOASSMBLR
 

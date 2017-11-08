@@ -48,68 +48,73 @@ void _bitflipbyte(uint8_t[], uint32_t, uint8_t[]) {
 #if defined (__MINGW32__) || defined (__unix__)
 
 void _bitflipllloop(uint64_t * bits, uint32_t size) {
-    for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipNaive<uint64_t>(bits[i]);
+  for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipNaive<uint64_t>(bits[i]);
 }
 #endif
 
 uint8_t flipMask(uint8_t bits) {
-    return (bits * 0x202020202ULL & 0x010884422010ULL) % 1023;
+  return (bits * 0x202020202ULL & 0x010884422010ULL) % 1023;
 }
 
 extern "C" {
 
-    uint16_t flipNaives(const uint16_t bits) {
-        return bits::flipNaive<uint16_t> (bits);
-    }
+  uint16_t flipNaives(const uint16_t bits) {
+	return bits::flipNaive<uint16_t> (bits);
+  }
 
-    uint64_t flipNaivell(const uint64_t bits) {
-        return bits::flipNaive<uint64_t> (bits);
-    }
+  uint64_t flipNaivell(const uint64_t bits) {
+	return bits::flipNaive<uint64_t> (bits);
+  }
 
-    void flipNaiveArrayll(uint64_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipNaive<uint64_t>(bits[i]);
-    }
+  void flipNaiveArrayll(uint64_t * bits, uint32_t size) {
+	for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipNaive<uint64_t>(bits[i]);
+  }
 
-    void flipTableArrayl(uint32_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipTable<uint32_t>(bits[i]);
-    }
+  void flipTableArrayl(uint32_t * bits, uint32_t size) {
+	for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipTable<uint32_t>(bits[i]);
+  }
 
-    void flipTableArrays(uint16_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipTable<uint16_t>(bits[i]);
-    }
+  void flipTableArrays(uint16_t * bits, uint32_t size) {
+	for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipTable<uint16_t>(bits[i]);
+  }
 
-    void flipMaskArrayb(uint8_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipMask<uint8_t> (bits[i]);
-    }
+  void flipMaskArrayb(uint8_t * bits, uint32_t size) {
+	for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipMask<uint8_t> (bits[i]);
+  }
 
-    void flipNaiveArrayb(uint8_t * bits, uint32_t size) {
-        for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipNaive<uint8_t> (bits[i]);
-    }
+  void flipNaiveArrayb(uint8_t * bits, uint32_t size) {
+	for (uint32_t i = 0; i < size; i++) bits[i] = bits::flipNaive<uint8_t> (bits[i]);
+  }
 
-    __m256 multiply_and_add(__m256 a, __m256 b, __m256 c) {
-        return _mm256_fmadd_ps(a, b, c);
-    }
+  __m256 multiply_and_add(__m256 a, __m256 b, __m256 c) {
+	return _mm256_fmadd_ps(a, b, c);
+  }
 
-    v4si builtinSwap(v4si x) {
-        static const v4si m = {7u, 6u, 5u, 4u, 3u, 2u, 1u, 0u};
-        return __builtin_shuffle(x, m);
-    }
+  v4si builtinSwap(v4si x) {
+	static const v4si m = {7u, 6u, 5u, 4u, 3u, 2u, 1u, 0u};
+	return __builtin_shuffle(x, m);
+  }
 
-    v4si builtinSwap2() {
-        static const v4si x = {0x1234, 0x5678, 0xAAAA, 0xBBBB, 0xCCCC, 0xDDDD, 0xEEEE, 0xFFFF};
-        static const v4si m = {7u, 6u, 5u, 4u, 3u, 2u, 1u, 0u};
-        return __builtin_shuffle(x, m);
-    }
+  v4si builtinSwap2() {
+	static const v4si x = {0x1234, 0x5678, 0xAAAA, 0xBBBB, 0xCCCC, 0xDDDD, 0xEEEE, 0xFFFF};
+	static const v4si m = {7u, 6u, 5u, 4u, 3u, 2u, 1u, 0u};
+	return __builtin_shuffle(x, m);
+  }
 
-    int16_t popcnt16(uint16_t i) {
-        uint16_t c = i - ((i >> 1) & 033333333333) - ((i >> 2) & 011111111111);
-        return ((c + (c >> 3)) & 030707070707) % 63;
-    }
+  int16_t popcnt16(uint16_t i) {
+	uint16_t c = i - ((i >> 1) & 033333333333) - ((i >> 2) & 011111111111);
+	return ((c + (c >> 3)) & 030707070707) % 63;
+  }
 
-    int32_t popcnt32(uint32_t i) {
-        uint32_t c = i - ((i >> 1) & 033333333333) - ((i >> 2) & 011111111111);
-        return ((c + (c >> 3)) & 030707070707) % 63;
-    }
+  int32_t popcnt32(uint32_t i) {
+	uint32_t c = i - ((i >> 1) & 033333333333) - ((i >> 2) & 011111111111);
+	return ((c + (c >> 3)) & 030707070707) % 63;
+  }
+
+  int32_t popcnt64(uint64_t i) {
+	uint32_t c = i - ((i >> 1) & 0333333333333333333333) - ((i >> 2) & 01111111111111111111111);
+	return ((c + (c >> 3)) & 0307070707070707070707) % 63;
+  }
 }
 
 #endif
