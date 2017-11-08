@@ -62,12 +62,12 @@ include_directories(${benchmark_INCLUDE_DIR})
 include_directories(${GTEST_INCLUDE_DIRS})
 
 
-set(GCC_BITFLIP_COMPILE_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG} ${ASM_FLAG}")
-set(GCC_BITFLIP_LINK_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native ${BENCHMARK_FLAG} ${TABLE_FLAG} ${ASM_FLAG}")
+set(GCC_BITFLIP_COMPILE_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native  ${BENCHMARK_FLAG} ${TABLE_FLAG} ${ASM_FLAG}")
+set(GCC_BITFLIP_LINK_FLAGS "-O3 -pipe -fomit-frame-pointer -fopenmp -mavx -m64 -march=native  ${BENCHMARK_FLAG} ${TABLE_FLAG} ${ASM_FLAG}")
 
 IF(MINGW)
-	set(GCC_BITFLIP_COMPILE_FLAGS "${GCC_BITFLIP_COMPILE_FLAGS}  -Wl,--subsystem,windows")
-	set(GCC_BITFLIP_LINK_FLAGS "${GCC_BITFLIP_LINK_FLAGS}  -Wl,--subsystem,windows")
+	set(GCC_BITFLIP_COMPILE_FLAGS "${GCC_BITFLIP_COMPILE_FLAGS} -static-libstdc++")  #   -Wl,--subsystem,windows")
+	set(GCC_BITFLIP_LINK_FLAGS "${GCC_BITFLIP_LINK_FLAGS} ")#  -Wl,--subsystem,windows")
 ENDIF(MINGW)
 
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_BITFLIP_COMPILE_FLAGS}" )

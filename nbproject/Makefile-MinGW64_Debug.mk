@@ -44,7 +44,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
-	${TESTDIR}/TestFiles/f2 \
+	${TESTDIR}/TestFiles/flipBits \
 	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip
 
 # Test Object Files
@@ -100,9 +100,9 @@ ${OBJECTDIR}/src/bitFlipAVX.o: src/bitFlipAVX.cpp
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
-${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/flipBits.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/flipBits: ${TESTDIR}/tests/flipBits.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS}   
+	${LINK.cc} -o ${TESTDIR}/TestFiles/flipBits $^ ${LDLIBSOPTIONS}   
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/tests/bitFlipTestSuite.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
@@ -112,19 +112,19 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip: ${TESTDIR}/tests/bitFlipTest
 ${TESTDIR}/tests/flipBits.o: tests/flipBits.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -DYESASSMBLR -Iinclude -I. -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/flipBits.o tests/flipBits.cpp
+	$(COMPILE.cc) -DYESASSMBLR -Iinclude -I. -g -O3 -static-libstdc++ -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/flipBits.o tests/flipBits.cpp
 
 
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -DYESASSMBLR -DTABLEHEADERS -Iinclude -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -DYESASSMBLR -DTABLEHEADERS -Iinclude -g -O3 -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
 ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -DYESASSMBLR -DTABLEHEADERS -Iinclude -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+	$(COMPILE.cc) -DYESASSMBLR -DTABLEHEADERS -Iinclude -g -O3 -g -O3 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/src/_bitflipbyte_nomain.o: ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm 
@@ -169,7 +169,7 @@ ${OBJECTDIR}/src/bitFlipAVX_nomain.o: ${OBJECTDIR}/src/bitFlipAVX.o src/bitFlipA
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
-	    ${TESTDIR}/TestFiles/f2 || true; \
+	    ${TESTDIR}/TestFiles/flipBits || true; \
 	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip || true; \
 	else  \
 	    ./${TEST} || true; \
