@@ -123,6 +123,16 @@ public:
 #define BUFFERCNT ARRAY_SIZE/8
 #define INTTYPE uint64_t
 
+void BM_Flip_AVX(benchmark::State& state) {
+  while (state.KeepRunning())
+	bits::flipAVXArray(fooZ8);
+}
+
+void BM_Flip_AVX16(benchmark::State& state) {
+  while (state.KeepRunning())
+	bits::flipAVXArray(fooZ16);
+}
+
 void BM_Flip_IntrAVX64(benchmark::State& state) {
 
   constexpr uint16_t intsize = sizeof (INTTYPE);
@@ -144,7 +154,7 @@ void BM_Flip_IntrAVX64i256(benchmark::State& state) {
 }
 
 void BM_Flip_IntrAVXClassNullBuffer(benchmark::State& state) {
-  bits::AlignedVector<uint64_t> avec(foo64);
+  bits::AlignedVector<uint64_t> avec(fooZ64);
   bits::NullBuffer null_buffer;
   std::ostream null_stream(&null_buffer);
   bits::AVX<uint64_t> avx(avec);
@@ -153,26 +163,31 @@ void BM_Flip_IntrAVXClassNullBuffer(benchmark::State& state) {
   }
 }
 
-void BM_Flip_IntrAVXClassShared_ptr(benchmark::State& state) {
-  bits::AlignedVector<uint64_t> avec(foo64);
+void BM_Flip_IntrAVXClassUnique_ptr(benchmark::State& state) {
+  bits::AlignedVector<uint64_t> avec(fooZ64);
   bits::AVX<uint64_t> avx2(avec);
   while (state.KeepRunning()) {
-	auto arr = avx2.shared_pFlip();
-	//	_aligned_free(arr);
+	auto arr = avx2.unique_pFlip();
   }
 }
 
-void BM_Flip_IntrAVXClassUnique_ptr(benchmark::State& state) {
-  bits::AlignedVector<uint64_t> avec(foo64);
-  auto avec2 = bits::AlignedVector<uint32_t>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
+void BM_Flip_IntrAVXClass_ptr(benchmark::State& state) {
+  bits::AlignedVector<uint64_t> avec(fooZ64);
   bits::AVX<uint64_t> avx2(avec);
   while (state.KeepRunning()) {
-	//   auto arr = avx2.pFlip();
+	auto arr = avx2.pFlip();
+  }
+}
+
+void BM_Flip_IntrAVXClassShared_ptr(benchmark::State& state) {
+  bits::AlignedVector<uint64_t> avec(fooZ64);
+  bits::AVX<uint64_t> avx2(avec);
+  while (state.KeepRunning()) {
+	auto arr = avx2.shared_pFlip();
   }
 }
 
 void BM_Flip_IntrAVXArr_VecClass(benchmark::State& state) {
-
   bits::AVX<uint64_t> avx(fooZ64);
   while (state.KeepRunning()) {
 	auto arr = avx.vFlip();
@@ -185,16 +200,6 @@ void BM_Flip_IntrAVXVec_VecClass(benchmark::State& state) {
   while (state.KeepRunning()) {
 	auto arr = avx.vFlip();
   }
-}
-
-void BM_Flip_AVX(benchmark::State& state) {
-  while (state.KeepRunning())
-	bits::flipAVXArray(fooZ8);
-}
-
-void BM_Flip_AVX16(benchmark::State& state) {
-  while (state.KeepRunning())
-	bits::flipAVXArray(fooZ16);
 }
 
 void BM_Flip_NaiveArrayll(benchmark::State& state) {
@@ -242,13 +247,18 @@ void BM_Flip_Table32(benchmark::State& state) {
 BENCHMARK(BM_Flip_AVX);
 BENCHMARK(BM_Flip_AVX16);
 #endif
-BENCHMARK(BM_Flip_IntrAVX64);
-BENCHMARK(BM_Flip_IntrAVX64i256);
 BENCHMARK(BM_Flip_IntrAVXArr_VecClass);
 BENCHMARK(BM_Flip_IntrAVXVec_VecClass);
-BENCHMARK(BM_Flip_IntrAVXClassShared_ptr);
-BENCHMARK(BM_Flip_IntrAVXClassUnique_ptr);
+
+BENCHMARK(BM_Flip_IntrAVXClass_ptr);
+//BENCHMARK(BM_Flip_IntrAVXClassShared_ptr);
+//BENCHMARK(BM_Flip_IntrAVXClassUnique_ptr);
+
 BENCHMARK(BM_Flip_IntrAVXClassNullBuffer);
+
+BENCHMARK(BM_Flip_IntrAVX64);
+BENCHMARK(BM_Flip_IntrAVX64i256);
+
 
 BENCHMARK(BM_Flip_Table16);
 BENCHMARK(BM_Flip_Table32);

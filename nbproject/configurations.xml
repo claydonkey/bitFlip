@@ -147,7 +147,7 @@
           <commandLine>-pipe -fomit-frame-pointer -mavx2 -m64 -fopenmp -m64 -march=native</commandLine>
         </ccTool>
         <linkerTool>
-          <output>${TESTDIR}/TestFiles/f2</output>
+          <output>${TESTDIR}/TestFiles/flipBits</output>
         </linkerTool>
       </folder>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">
@@ -236,6 +236,7 @@
       </folder>
       <folder path="TestFiles/f1">
         <ccTool>
+          <commandLine>-g -O3</commandLine>
           <preprocessorList>
             <Elem>TABLEHEADERS</Elem>
           </preprocessorList>
@@ -260,9 +261,10 @@
           <incDir>
             <pElem>.</pElem>
           </incDir>
+          <commandLine>-static-libstdc++</commandLine>
         </ccTool>
         <linkerTool>
-          <output>${TESTDIR}/TestFiles/f2</output>
+          <output>${TESTDIR}/TestFiles/flipBits</output>
         </linkerTool>
       </folder>
       <item path="include/bitFlip.h" ex="false" tool="3" flavor2="0">

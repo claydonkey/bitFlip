@@ -165,25 +165,29 @@ Google Benchmark to iterate over 10240 byte reversals
 
 ```
 
+Run on (8 X 3292 MHz CPU s)
+11/08/17 20:47:54
 ----------------------------------------------------------------------
 Benchmark                               Time           CPU Iterations
 ----------------------------------------------------------------------
-BM_Flip_IntrAVX64                     350 ns        345 ns    1947826
-BM_Flip_IntrAVX64i256                 794 ns        802 ns     896000
-BM_Flip_IntrAVXArr_VecClass          1504 ns       1507 ns     497778
-BM_Flip_IntrAVXVec_VecClass          3924 ns       3924 ns     179200
-BM_Flip_IntrAVXClassShared_ptr       1106 ns       1099 ns     640000
-BM_Flip_IntrAVXClassUnique_ptr      todo  ns        --- ns     -----
-BM_Flip_IntrAVXClassNullBuffer     764653 ns     767299 ns        896
-BM_Flip_Table16                      2970 ns       2982 ns     235789
-BM_Flip_Table32                      3940 ns       3924 ns     179200
-BM_Flip_Naive                       10103 ns      10010 ns      64000
-BM_Flip_Naive64                      9647 ns       9626 ns      74667
-BM_Flip_Mask                        15675 ns      15695 ns      44800
-BM_Flip_NaiveArrayll                25985 ns      26088 ns      26353
-BM_Flip_NaiveLambda                 25991 ns      26088 ns      26353
-BM_popcntWegner                     33511 ns      32993 ns      20364
-BM_popcntIntrinsic                      1 ns          1 ns  560000000
+BM_Flip_AVX                           212 ns        215 ns    3200000 <-- 8 bit
+BM_Flip_AVX16                        2542 ns       2511 ns     248889
+BM_Flip_IntrAVXArr_VecClass           805 ns        795 ns     746667
+BM_Flip_IntrAVXVec_VecClass           758 ns        767 ns     896000
+BM_Flip_IntrAVXClass_ptr              411 ns        408 ns    1723077 <-- 64 bit :The winner
+BM_Flip_IntrAVXClassNullBuffer     686280 ns     683594 ns       1120
+BM_Flip_IntrAVX64                     346 ns        343 ns    1866667
+BM_Flip_IntrAVX64i256                 761 ns        750 ns     896000
+BM_Flip_Table16                      3090 ns       3115 ns     235789
+BM_Flip_Table32                      3817 ns       3836 ns     179200
+BM_Flip_Naive                        9911 ns      10045 ns      74667
+BM_Flip_Naive64                     12000 ns      12207 ns      64000
+BM_Flip_Mask                        16790 ns      16881 ns      40727
+BM_Flip_lloop                       25351 ns      25112 ns      28000
+BM_Flip_NaiveArrayll                24819 ns      24902 ns      26353
+BM_Flip_NaiveLambda                 25102 ns      25112 ns      28000
+BM_popcntWegner                     36078 ns      36098 ns      19478
+BM_popcntIntrinsic                      2 ns          2 ns  320000000
 
 ```
 
