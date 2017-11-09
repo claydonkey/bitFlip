@@ -96,6 +96,7 @@
         <ccTool>
           <developmentMode>6</developmentMode>
           <stripSymbols>true</stripSymbols>
+          <standard>11</standard>
           <incDir>
             <pElem>include</pElem>
           </incDir>

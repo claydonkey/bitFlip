@@ -86,12 +86,12 @@ ${OBJECTDIR}/src/_bitflipbyte.o: src/_bitflipbyte.asm
 ${OBJECTDIR}/src/bitFlip.o: src/bitFlip.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 
 ${OBJECTDIR}/src/bitFlipAVX.o: src/bitFlipAVX.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlipAVX.o src/bitFlipAVX.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlipAVX.o src/bitFlipAVX.cpp
 
 # Subprojects
 .build-subprojects:
@@ -112,19 +112,19 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bitFlip: ${TESTDIR}/tests/bitFlipTest
 ${TESTDIR}/tests/flipBits.o: tests/flipBits.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -I. -pipe -fomit-frame-pointer -mavx2 -m64 -fopenmp -m64 -march=native -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/flipBits.o tests/flipBits.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -I. -std=c++14 -pipe -fomit-frame-pointer -mavx2 -m64 -fopenmp -m64 -march=native -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/flipBits.o tests/flipBits.cpp
 
 
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
 ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/src/_bitflipbyte_nomain.o: ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm 
@@ -147,7 +147,7 @@ ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
+	    $(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip_nomain.o src/bitFlip.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/bitFlip.o ${OBJECTDIR}/src/bitFlip_nomain.o;\
 	fi
@@ -160,7 +160,7 @@ ${OBJECTDIR}/src/bitFlipAVX_nomain.o: ${OBJECTDIR}/src/bitFlipAVX.o src/bitFlipA
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlipAVX_nomain.o src/bitFlipAVX.cpp;\
+	    $(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlipAVX_nomain.o src/bitFlipAVX.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/bitFlipAVX.o ${OBJECTDIR}/src/bitFlipAVX_nomain.o;\
 	fi

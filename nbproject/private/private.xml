@@ -2,20 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <data xmlns="http://www.netbeans.org/ns/make-project-private/1">
         <activeConfTypeElem>3</activeConfTypeElem>
-        <activeConfIndexElem>0</activeConfIndexElem>
+        <activeConfIndexElem>1</activeConfIndexElem>
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/tests/flipBits.cpp</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/src/bitFlipAVX.cpp</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/include/bitFlipAVX.h</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/tests/bitFlipTestSuite.cpp</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/tests/bitFlipTest.cpp</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/include/bitFlip.h</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/tests/CMakeLists.txt</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/tests/bitFlipTestSuite.h</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/CMakeLists.txt</file>
+            <file>file:/C:/Users/User/Documents/Minnow/Source/CPP/bitFlip/tests/bitFlipTestSuite.cpp</file>
+            <file>file:/C:/Users/User/Documents/Minnow/Source/CPP/bitFlip/README.md</file>
+            <file>file:/C:/Users/User/Documents/Minnow/Source/CPP/bitFlip/src/main/scala/bitFlip.scala</file>
+            <file>file:/C:/Users/User/Documents/Minnow/Source/CPP/bitFlip/src/bitFlipAVX.cpp</file>
+            <file>file:/C:/Users/User/Documents/Minnow/Source/CPP/bitFlip/include/bitFlipTables.h</file>
+            <file>file:/C:/Users/User/Documents/Minnow/Source/CPP/bitFlip/include/typeDeduce.h</file>
+            <file>file:/C:/Users/User/Documents/Minnow/Source/CPP/bitFlip/include/bitFlipAVX.h</file>
         </group>
     </open-files>
 </project-private>
