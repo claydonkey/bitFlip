@@ -118,13 +118,13 @@ ${TESTDIR}/tests/flipBits.o: tests/flipBits.cpp
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -DNOBENCHMARK -Iinclude -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
 ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -Iinclude -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+	$(COMPILE.cc) -O3 -s -DEXTERNALTABLE -DNDEBUG -DYESASSMBLR -DNOBENCHMARK -Iinclude -std=c++14 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/src/_bitflipbyte_nomain.o: ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm 
