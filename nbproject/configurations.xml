@@ -159,7 +159,7 @@
       <folder path="TestFiles/f1">
         <ccTool>
           <preprocessorList>
-            <Elem>NOBENCHMARK</Elem>
+            <Elem>BENCHMARK</Elem>
           </preprocessorList>
         </ccTool>
         <linkerTool>
