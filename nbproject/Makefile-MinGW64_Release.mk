@@ -14,15 +14,15 @@ GREP=grep
 NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
-CC=x86_64-w64-mingw32-gcc
-CCC=x86_64-w64-mingw32-g++
-CXX=x86_64-w64-mingw32-g++
-FC=x86_64-w64-mingw32-gfortran
+CC=gcc
+CCC=g++
+CXX=g++
+FC=gfortran
 AS=nasm
 
 # Macros
-CND_PLATFORM=x86_64-w64-mingw32-Windows
-CND_DLIB_EXT=dll
+CND_PLATFORM=GNU-Linux
+CND_DLIB_EXT=so
 CND_CONF=MinGW64_Release
 CND_DISTDIR=dist
 CND_BUILDDIR=build

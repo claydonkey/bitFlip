@@ -37,19 +37,22 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/src/_bitflipbyte.o \
 	${OBJECTDIR}/src/_bitflipllloop.o \
-	${OBJECTDIR}/src/bitFlip.o
+	${OBJECTDIR}/src/bitFlip.o \
+	${OBJECTDIR}/src/bitFlipAVX.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
-	${TESTDIR}/TestFiles/f1
+	${TESTDIR}/TestFiles/f2 \
+	${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT}
 
 # Test Object Files
 TESTOBJECTFILES= \
 	${TESTDIR}/tests/bitFlipTest.o \
-	${TESTDIR}/tests/bitFlipTestSuite.o
+	${TESTDIR}/tests/bitFlipTestSuite.o \
+	${TESTDIR}/tests/flipBits.o
 
 # C Compiler Flags
 CFLAGS=
@@ -88,6 +91,11 @@ ${OBJECTDIR}/src/bitFlip.o: src/bitFlip.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 
+${OBJECTDIR}/src/bitFlipAVX.o: src/bitFlipAVX.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlipAVX.o src/bitFlipAVX.cpp
+
 # Subprojects
 .build-subprojects:
 
@@ -95,21 +103,31 @@ ${OBJECTDIR}/src/bitFlip.o: src/bitFlip.cpp
 .build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
 .build-tests-subprojects:
 
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/tests/bitFlipTestSuite.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/flipBits.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.cc} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   -lgtest -lbenchmark -lpthread 
+	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS}   
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT}: ${TESTDIR}/tests/bitFlipTest.o ${TESTDIR}/tests/bitFlipTestSuite.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT} $^ ${LDLIBSOPTIONS}   
+
+
+${TESTDIR}/tests/flipBits.o: tests/flipBits.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -I/usr/include -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/flipBits.o tests/flipBits.cpp
 
 
 ${TESTDIR}/tests/bitFlipTest.o: tests/bitFlipTest.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -I/usr/include -I../include -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
+	$(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -I/usr/include -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTest.o tests/bitFlipTest.cpp
 
 
 ${TESTDIR}/tests/bitFlipTestSuite.o: tests/bitFlipTestSuite.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -I/usr/include -I../include -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
+	$(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -I/usr/include -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/bitFlipTestSuite.o tests/bitFlipTestSuite.cpp
 
 
 ${OBJECTDIR}/src/_bitflipbyte_nomain.o: ${OBJECTDIR}/src/_bitflipbyte.o src/_bitflipbyte.asm 
@@ -149,11 +167,25 @@ ${OBJECTDIR}/src/bitFlip_nomain.o: ${OBJECTDIR}/src/bitFlip.o src/bitFlip.cpp
 	    ${CP} ${OBJECTDIR}/src/bitFlip.o ${OBJECTDIR}/src/bitFlip_nomain.o;\
 	fi
 
+${OBJECTDIR}/src/bitFlipAVX_nomain.o: ${OBJECTDIR}/src/bitFlipAVX.o src/bitFlipAVX.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/bitFlipAVX.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -DEXTERNALTABLE -Iinclude -fPIC  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/bitFlipAVX_nomain.o src/bitFlipAVX.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/src/bitFlipAVX.o ${OBJECTDIR}/src/bitFlipAVX_nomain.o;\
+	fi
+
 # Run Test Targets
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
-	    ${TESTDIR}/TestFiles/f1 || true; \
+	    ${TESTDIR}/TestFiles/f2 || true; \
+	    ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbitFlip.${CND_DLIB_EXT} || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi

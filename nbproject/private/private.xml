@@ -2,14 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <data xmlns="http://www.netbeans.org/ns/make-project-private/1">
         <activeConfTypeElem>3</activeConfTypeElem>
-        <activeConfIndexElem>0</activeConfIndexElem>
+        <activeConfIndexElem>2</activeConfIndexElem>
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/tests/bitFlipTestSuite.cpp</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/src/bitFlip.cpp</file>
-            <file>file:/D:/Users/anthony/Documents/Minnow/Source/CPP/bitFlip/include/bitFlip.h</file>
+            <file>file:/home/anthony/Documents/Source/CPP/bitFlip/tests/CMakeLists.txt</file>
+            <file>file:/home/anthony/Documents/Source/CPP/bitFlip/bitFlip.scala</file>
+            <file>file:/home/anthony/Documents/Source/CPP/bitFlip/src/bitFlip.cpp</file>
+            <file>file:/home/anthony/Documents/Source/CPP/bitFlip/CMakeLists.txt</file>
         </group>
     </open-files>
 </project-private>

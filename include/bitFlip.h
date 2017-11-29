@@ -43,6 +43,7 @@
 	#include <type_traits>
 	#include <iostream>
 	#include <limits>
+      #include <limits.h>
 	#include <cmath>
 	#include <immintrin.h>
 	#include <functional>
